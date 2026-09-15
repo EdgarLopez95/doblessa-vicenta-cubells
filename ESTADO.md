@@ -2,23 +2,81 @@
 
 ## Estado actual
 
-Esqueleto Astro inicializado. No hay diseño, componentes de marca ni páginas del rediseño implementadas todavía.
+Mockup estático completo del rediseño: 10 pantallas, sistema visual propio, componentes reutilizables, SEO técnico y formulario demostrativo. Presentable al cliente; contenido pendiente de validación clínica, legal y de marca.
 
 ## Base técnica
 
-- Framework: Astro 7 + TypeScript + CSS nativo.
-- Rama de publicación: `main`.
+- Framework: Astro 7 + TypeScript + CSS nativo (sin Tailwind ni dependencias nuevas).
+- `base`: `/doblessa-vicenta-cubells` (configuración original de `astro.config.mjs` sin cambios).
 - GitHub Pages: `https://edgarlopez95.github.io/doblessa-vicenta-cubells/`.
 - Validación: `npm run build`.
 
-## Último cambio
+## Rutas creadas
 
-- Inicialización técnica publicada en GitHub Pages.
-- Commit inicial: `e6b3af0` — `chore: initialize Astro skeleton`.
+| Ruta | Página | Indexable |
+|---|---|---|
+| `/` | Inicio | Sí |
+| `/consulta-control-peso-castellon/` | Consulta (servicio principal) | Sí |
+| `/metodo-pnk-castellon/` | Método PnK® | Sí |
+| `/como-es-la-primera-consulta/` | Primera valoración | Sí |
+| `/dra-vicenta-cubells/` | Perfil profesional | Sí |
+| `/clinica/` | La clínica CLIN&DIET | Sí |
+| `/preguntas-frecuentes/` | FAQ extensa (4 categorías) | Sí |
+| `/contacto/` | Solicita una valoración | Sí |
+| `/politica-de-privacidad/` | Legal (borrador) | `noindex`, fuera del sitemap |
+| `/aviso-legal/` | Legal (borrador) | `noindex`, fuera del sitemap |
+| `/sitemap.xml`, `/robots.txt` | Endpoints estáticos | — |
+
+## Componentes construidos (`src/components/`)
+
+`Header` (sticky, navegación, CTA persistente, menú móvil accesible con Escape y `aria-expanded`) · `Footer` (navegación, teléfonos, legal, aviso médico) · `MobileActionBar` (Llamar + Solicitar valoración en <720 px; oculta en contacto) · `Hero` (inicio / interior, con imagen o ficha lateral) · `Breadcrumbs` · `SectionHeader` · `PillarCard` · `Timeline` (horizontal / vertical) · `Credentials` (compacto / completo, con aviso de verificación) · `ResourceCard` (recurso de muestra) · `Faq` (`<details>` nativo) · `DemoForm` · `CtaBlock` (oscuro / sage) · `PhoneList` · `ReviewNote` · `Icon` (iconos lineales SVG).
+
+Layout SEO: `src/layouts/BaseLayout.astro` (title, description, canonical, Open Graph, `noindex` opcional, preload del hero y JSON-LD). Datos: `src/data/site.ts` y `src/data/faqs.ts`. Rutas: `src/lib/url.ts` (`url()` y `absoluteUrl()` sobre `import.meta.env.BASE_URL`).
+
+## Imágenes copiadas (`public/images/`)
+
+- `marca/logo-dra-vicenta-cubells.png` → logotipo blanco, usado en el pie.
+- `inicio/consulta-control-de-peso.png` → **es el logotipo CLIN&DIET en gris, no una foto**; usado en la cabecera.
+- `doctora/dra-vicenta-cubells-retrato.jpg` → hero de inicio y perfil (alt «Dra. Vicenta Cubells», precargada).
+- `doctora/dra-vicenta-cubells-en-consulta.jpg` → módulo de la doctora en inicio y perfil (alt «Dra. Vicenta Cubells en consulta», lazy).
+
+## Decisiones de implementación
+
+- Elemento memorable: la barra diagonal de latón del logotipo CLIN&DIET reutilizada en etiquetas, hero, timeline y CTA.
+- Tokens obligatorios en `:root`; derivados semánticos mínimos (líneas, borde de controles y `--error-700` para errores de formulario).
+- Navegación completa desde 1180 px; por debajo, menú móvil con CTA y teléfonos.
+- Formulario sin atributos `name` y con `preventDefault`: incluso sin JavaScript no serializa datos en la URL. Valida junto a cada campo, enfoca el primer error y muestra el mensaje demostrativo exigido.
+- JSON-LD prudente: `WebSite`, `Person` (nombre, «Médica», teléfonos públicos e imagen), `MedicalWebPage` / `ProfilePage` / `AboutPage` / `ContactPage` / `FAQPage`, `BreadcrumbList` y `FAQPage` solo con las FAQs visibles en cada página. Sin dirección, reseñas, ofertas ni resultados.
+- La foto «en consulta» no muestra la clínica: en `/clinica/` hay un bloque neutro reservado para una fotografía autorizada, en lugar de presentarla como el espacio.
+- Se descartó el revelado al hacer scroll: ocultaba pasos del timeline en capturas y herramientas que no desplazan. Solo hay transiciones de 200 ms en hover, foco y acordeón, anuladas con `prefers-reduced-motion`.
+- No se generan variantes WebP/AVIF: las imágenes se sirven desde `public/` tal y como se pidió.
+- Documentos de diseño en `design/brief.md` y `design/direction.md`. Las capturas de QA (`design/qa/`) quedan fuera de git.
+
+## Resultado de build y QA
+
+- `npm run build`: 10 páginas + `robots.txt` + `sitemap.xml`, sin errores ni avisos.
+- Un único H1 por página; canonical correcto bajo la base; sin `href="#"`, sin enlaces vacíos ni rutas absolutas sin base; todos los enlaces internos resuelven a archivos generados.
+- Capturas revisadas en 390, 768, 1024 y 1440 px sin desbordamiento horizontal.
+- Formulario verificado en navegador: 4 errores en envío vacío, foco en el primero, mensaje demostrativo al enviar válido, sin navegación ni errores de consola.
 
 ## Próxima acción
 
-Esperar un prompt del orquestador para implementar la primera pantalla o componente.
+Revisión con la doctora de los contenidos marcados abajo, y crítica de diseño independiente para pulir detalles.
+
+## Validación pendiente (doctora, legal, marca)
+
+- **Credenciales**: Licenciada en Medicina y Cirugía, Máster en Nutrición y Dietética, Especialista en Medicina del Trabajo y formadora de métodos Pronokal / PnK / Diaprokal. Se tomaron de la auditoría y deben verificarse documentalmente.
+- **Número de colegiación**: pendiente de aportar.
+- **Omitido a propósito**: los «más de 30 años de experiencia» de la web antigua.
+- **Uso de marca**: PnK® / Pronokal / Diaprokal y descripción del método, pendientes de validación clínica, legal y con el titular de la marca.
+- **Logotipo blanco**: incluye el lema «medicina estética», que no encaja con el posicionamiento de consulta médica de control de peso. Conviene una versión sin lema o validarlo.
+- **Fotografías**: confirmar vigencia y permiso de uso. La foto «en consulta» no está tomada en la clínica. Faltan fotos reales del espacio.
+- **NAP y ubicación**: dirección, horario, email y mapa pendientes; no se muestran.
+- **Textos**: copy de enfoque, FAQs y proceso de primera consulta (incluido que «la consulta te contacta») pendientes de revisión médica.
+- **Legal**: privacidad y aviso legal son borradores con campos pendientes (titular, NIF, conservación, destinatarios, canal de derechos).
+- **Formulario real**: requiere solución segura de envío y consentimiento antes de publicar.
+- **Indexación**: el mockup es indexable en github.io con el nombre de la doctora; valorar `noindex` global hasta tener los contenidos aprobados.
+- **Web antigua**: sigue pendiente limpiar el contenido de casino inyectado antes de migrar o redirigir.
 
 ## Límites y bloqueos
 
