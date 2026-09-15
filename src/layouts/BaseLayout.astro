@@ -8,7 +8,7 @@ import type { FaqItem } from '../data/faqs';
 import { site, images } from '../data/site';
 import { url, absoluteUrl } from '../lib/url';
 
-type PageType = 'WebPage' | 'MedicalWebPage' | 'ContactPage' | 'ProfilePage' | 'FAQPage' | 'AboutPage';
+type PageType = 'WebPage' | 'MedicalWebPage' | 'ContactPage' | 'ProfilePage' | 'AboutPage';
 
 interface Props {
   title: string;
@@ -30,7 +30,7 @@ const {
   faqs = [],
   preloadImage,
   ogImage = images.portrait.src,
-  noindex = false,
+  noindex = true,
   showActionBar = true,
 } = Astro.props;
 
@@ -39,13 +39,8 @@ const canonical = new URL(pathname, Astro.site).href;
 const home = absoluteUrl('');
 const personId = `${absoluteUrl('dra-vicenta-cubells/')}#persona`;
 
-const questions = faqs.map((item) => ({
-  '@type': 'Question',
-  name: item.q,
-  acceptedAnswer: { '@type': 'Answer', text: item.a },
-}));
-
-// JSON-LD prudente: solo datos verificables (nombre, profesión, teléfonos públicos). Sin dirección, reseñas, ofertas ni resultados.
+// JSON-LD prudente: solo datos verificables (nombre, profesión, teléfonos públicos).
+// Sin dirección, reseñas, ofertas, resultados ni schema FAQPage.
 const graph: Record<string, unknown>[] = [
   { '@type': 'WebSite', '@id': `${home}#website`, url: home, name: site.name, inLanguage: 'es-ES' },
   {
@@ -67,7 +62,6 @@ const graph: Record<string, unknown>[] = [
     inLanguage: 'es-ES',
     isPartOf: { '@id': `${home}#website` },
     ...(pageType === 'ProfilePage' ? { mainEntity: { '@id': personId } } : {}),
-    ...(pageType === 'FAQPage' ? { mainEntity: questions } : {}),
   },
 ];
 
@@ -84,10 +78,6 @@ if (breadcrumbs.length) {
   });
 }
 
-if (questions.length && pageType !== 'FAQPage') {
-  graph.push({ '@type': 'FAQPage', '@id': `${canonical}#faq`, url: canonical, mainEntity: questions });
-}
-
 const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': graph }).replace(/</g, '\\u003c');
 ---
 
@@ -99,7 +89,7 @@ const jsonLd = JSON.stringify({ '@context': 'https://schema.org', '@graph': grap
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
-    {noindex && <meta name="robots" content="noindex, follow" />}
+    <meta name="robots" content="noindex, follow" />
     <meta name="theme-color" content="#193831" />
     <link rel="icon" href={url('favicon.svg')} type="image/svg+xml" />
 
