@@ -18,6 +18,19 @@ export const nav = [
   { label: 'Contacto', path: 'contacto/' },
 ] as const;
 
+/** Jerarquía: páginas hija → sección padre del menú principal. */
+export const sectionParents: Record<string, string> = {
+  'como-es-la-primera-consulta/': 'consulta-control-peso-castellon/',
+  'clinica/': 'consulta-control-peso-castellon/',
+};
+
+/** Navegación local de la rama "La consulta". */
+export const consultaSection = [
+  { label: 'La consulta', path: 'consulta-control-peso-castellon/' },
+  { label: 'Cómo es la primera consulta', path: 'como-es-la-primera-consulta/' },
+  { label: 'La clínica', path: 'clinica/' },
+];
+
 /** Rutas indexables incluidas en sitemap.xml. Las páginas legales provisionales quedan fuera. */
 export const sitemapRoutes = [
   '',

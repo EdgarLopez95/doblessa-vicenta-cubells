@@ -7,7 +7,9 @@ import Faq from '../components/Faq.astro';
 import CtaBlock from '../components/CtaBlock.astro';
 import PhoneList from '../components/PhoneList.astro';
 import ReviewNote from '../components/ReviewNote.astro';
+import SectionNav from '../components/SectionNav.astro';
 import Icon, { type IconName } from '../components/Icon.astro';
+import { consultaSection } from '../data/site';
 import { pickFaqs } from '../data/faqs';
 import { url } from '../lib/url';
 
@@ -75,7 +77,7 @@ const prepare = [
         </div>
         <div class="fact-card__row">
           <dt>Dónde</dt>
-          <dd>Castellón · dirección pendiente de confirmar</dd>
+          <dd><a href={url('clinica/')}>CLIN&DIET</a>, Castellón · dirección pendiente de confirmar</dd>
         </div>
         <div class="fact-card__row">
           <dt>Cómo empezar</dt>
@@ -86,7 +88,9 @@ const prepare = [
     </aside>
   </Hero>
 
-  <section class="section section--line" aria-labelledby="conversacion">
+  <SectionNav items={consultaSection} label="Secciones de La consulta" />
+
+  <section class="section" aria-labelledby="conversacion">
     <div class="container">
       <SectionHeader
         id="conversacion"

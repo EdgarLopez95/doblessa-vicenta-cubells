@@ -1,11 +1,23 @@
 ---
-import { nav, images } from '../data/site';
+import { nav, images, sectionParents } from '../data/site';
 import { url } from '../lib/url';
 import Icon from './Icon.astro';
 import PhoneList from './PhoneList.astro';
 
 const current = Astro.url.pathname.replace(/\/?$/, '/');
-const isCurrent = (path: string) => current === url(path);
+const isExact = (path: string) => current === url(path);
+
+// Si la página es hija de una sección, el menú marca la sección padre.
+const childPath = Object.keys(sectionParents).find((child) => isExact(child));
+const parentPath = childPath ? sectionParents[childPath] : undefined;
+
+// El menú móvil sí lista "Cómo es la primera consulta": ahí solo se marca la coincidencia exacta
+// para no señalar dos elementos a la vez.
+const mobilePaths = [...nav.map((item) => item.path), 'como-es-la-primera-consulta/'];
+const currentInMobile = mobilePaths.some((path) => isExact(path));
+
+const isDesktopCurrent = (path: string) => isExact(path) || path === parentPath;
+const isMobileCurrent = (path: string) => isExact(path) || (path === parentPath && !currentInMobile);
 ---
 
 <header class="site-header" data-header>
@@ -24,7 +36,7 @@ const isCurrent = (path: string) => current === url(path);
         {
           nav.map((item) => (
             <li>
-              <a href={url(item.path)} aria-current={isCurrent(item.path) ? 'page' : undefined}>
+              <a href={url(item.path)} aria-current={isDesktopCurrent(item.path) ? 'page' : undefined}>
                 {item.label}
               </a>
             </li>
@@ -56,7 +68,7 @@ const isCurrent = (path: string) => current === url(path);
           {
             nav.map((item) => (
               <li>
-                <a href={url(item.path)} aria-current={isCurrent(item.path) ? 'page' : undefined}>
+                <a href={url(item.path)} aria-current={isMobileCurrent(item.path) ? 'page' : undefined}>
                   {item.label}
                   <Icon name="arrow" size={20} />
                 </a>
@@ -64,7 +76,10 @@ const isCurrent = (path: string) => current === url(path);
             ))
           }
           <li>
-            <a href={url('como-es-la-primera-consulta/')} aria-current={isCurrent('como-es-la-primera-consulta/') ? 'page' : undefined}>
+            <a
+              href={url('como-es-la-primera-consulta/')}
+              aria-current={isExact('como-es-la-primera-consulta/') ? 'page' : undefined}
+            >
               Cómo es la primera consulta
               <Icon name="arrow" size={20} />
             </a>

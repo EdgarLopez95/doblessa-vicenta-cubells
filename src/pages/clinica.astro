@@ -3,11 +3,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import CtaBlock from '../components/CtaBlock.astro';
+import SectionNav from '../components/SectionNav.astro';
 import PhoneList from '../components/PhoneList.astro';
 import Icon, { type IconName } from '../components/Icon.astro';
+import { consultaSection } from '../data/site';
 import { url } from '../lib/url';
 
-const breadcrumbs = [{ label: 'La clínica', path: 'clinica/' }];
+const breadcrumbs = [
+  { label: 'La consulta', path: 'consulta-control-peso-castellon/' },
+  { label: 'La clínica', path: 'clinica/' },
+];
 
 const principles: { icon: IconName; title: string; text: string }[] = [
   { icon: 'lock', title: 'Privacidad', text: 'Las conversaciones sobre tu salud se mantienen en la consulta. La web no pide información clínica.' },
@@ -57,7 +62,9 @@ const principles: { icon: IconName; title: string; text: string }[] = [
     </aside>
   </Hero>
 
-  <section class="section section--line" aria-labelledby="principios">
+  <SectionNav items={consultaSection} label="Secciones de La consulta" />
+
+  <section class="section" aria-labelledby="principios">
     <div class="container">
       <SectionHeader
         id="principios"

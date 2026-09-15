@@ -698,6 +698,51 @@ body.menu-open {
   }
 }
 
+/* ---------- Section (local) navigation ---------- */
+.section-nav {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: var(--ivory-50);
+}
+
+.section-nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.75rem;
+  list-style: none;
+}
+
+.section-nav a {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: 56px;
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--graphite-600);
+  text-decoration: none;
+  transition: color var(--dur) var(--ease);
+}
+
+.section-nav a:hover {
+  color: var(--clinic-900);
+}
+
+.section-nav a[aria-current='page'] {
+  color: var(--clinic-900);
+  font-weight: 600;
+}
+
+.section-nav a[aria-current='page']::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--brass-500);
+}
+
 /* ---------- Breadcrumbs ---------- */
 .breadcrumbs {
   margin-bottom: var(--space-32);

@@ -7,11 +7,15 @@ import Faq from '../components/Faq.astro';
 import CtaBlock from '../components/CtaBlock.astro';
 import PhoneList from '../components/PhoneList.astro';
 import Icon from '../components/Icon.astro';
-import { firstVisitSteps } from '../data/site';
+import SectionNav from '../components/SectionNav.astro';
+import { consultaSection, firstVisitSteps } from '../data/site';
 import { pickFaqs } from '../data/faqs';
 import { url } from '../lib/url';
 
-const breadcrumbs = [{ label: 'Primera consulta', path: 'como-es-la-primera-consulta/' }];
+const breadcrumbs = [
+  { label: 'La consulta', path: 'consulta-control-peso-castellon/' },
+  { label: 'Primera consulta', path: 'como-es-la-primera-consulta/' },
+];
 const faqs = pickFaqs(['valoracion-preparar', 'valoracion-compromiso', 'privacidad-telefono']);
 
 const details = [
@@ -58,7 +62,9 @@ const noNeed = [
     </aside>
   </Hero>
 
-  <section class="section section--line" aria-labelledby="pasos">
+  <SectionNav items={consultaSection} label="Secciones de La consulta" />
+
+  <section class="section" aria-labelledby="pasos">
     <div class="container split">
       <div class="split__aside">
         <div class="sticky">
