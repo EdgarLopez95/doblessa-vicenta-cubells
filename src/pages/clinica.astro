@@ -55,7 +55,7 @@ const principles: { icon: IconName; title: string; text: string }[] = [
         </div>
         <div class="fact-card__row">
           <dt>Fotografías del espacio</dt>
-          <dd>Pendientes de autorización</dd>
+          <dd>Falta una fotografía autorizada de la consulta CLIN&amp;DIET</dd>
         </div>
       </dl>
       <PhoneList />
@@ -63,6 +63,18 @@ const principles: { icon: IconName; title: string; text: string }[] = [
   </Hero>
 
   <SectionNav items={consultaSection} label="Secciones de La consulta" />
+
+  <section class="section section--flush-top" aria-label="Fotografía de la consulta">
+    <div class="container">
+      <div class="placeholder placeholder--band" role="note">
+        <div>
+          <Icon name="notes" size={24} />
+          <strong>Espacio de consulta</strong>
+          <p>Falta una fotografía autorizada de la consulta CLIN&amp;DIET</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <section class="section" aria-labelledby="principios">
     <div class="container">

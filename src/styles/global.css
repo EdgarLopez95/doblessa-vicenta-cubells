@@ -662,6 +662,29 @@ main:focus {
   text-decoration-color: var(--brass-500);
 }
 
+.mobile-menu__sublist {
+  list-style: none;
+  padding-left: 1.25rem;
+  background: var(--sage-100);
+  border-bottom: 1px solid var(--line);
+}
+
+.mobile-menu__sublist li:last-child a {
+  border-bottom: none;
+}
+
+.mobile-menu__sublist a {
+  min-height: 48px;
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--graphite-900);
+}
+
+.mobile-menu__sublist a .icon {
+  color: var(--clinic-700);
+}
+
 .mobile-menu .phones {
   margin-top: 1.25rem;
 }
@@ -1887,6 +1910,12 @@ body.menu-open {
   margin-top: 1.25rem;
 }
 
+.contact-pricing-note {
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--graphite-600);
+}
+
 @media (min-width: 1024px) {
   .contact-layout {
     grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -2328,8 +2357,26 @@ body.menu-open {
   font-size: 1.0625rem;
 }
 
-.site-footer__notice {
+.site-footer__review {
   margin-top: var(--space-32);
+  padding: 1rem 1.25rem;
+  border: 1px solid rgba(243, 232, 204, 0.2);
+  border-radius: var(--radius);
+  background: rgba(243, 232, 204, 0.06);
+}
+
+.site-footer .review-note {
+  max-width: 100%;
+  color: var(--on-dark-muted);
+  font-size: 0.9375rem;
+}
+
+.site-footer .review-note .icon {
+  color: var(--brass-500);
+}
+
+.site-footer__notice {
+  margin-top: 1rem;
   padding: 1.25rem 1.5rem;
   border: 1px solid rgba(243, 232, 204, 0.25);
   border-radius: var(--radius);

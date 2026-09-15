@@ -2,6 +2,7 @@
 import { nav, site, images } from '../data/site';
 import { url } from '../lib/url';
 import PhoneList from './PhoneList.astro';
+import ReviewNote from './ReviewNote.astro';
 
 const more = [
   { label: 'Cómo es la primera consulta', path: 'como-es-la-primera-consulta/' },
@@ -36,8 +37,12 @@ const more = [
       <div class="site-footer__col">
         <p class="site-footer__title">Contacto</p>
         <PhoneList tone="light" />
-        <p class="site-footer__muted">Dirección y horario pendientes de confirmar.</p>
+        <p class="site-footer__muted">Ubicación, horario y correo de la consulta: pendientes de confirmar por CLIN&amp;DIET. Mientras tanto, llama a los teléfonos de cabecera.</p>
       </div>
+    </div>
+
+    <div class="site-footer__review">
+      <ReviewNote />
     </div>
 
     <div class="site-footer__notice">
