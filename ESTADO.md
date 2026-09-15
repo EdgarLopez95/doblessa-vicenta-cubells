@@ -29,7 +29,7 @@ Mockup estático completo del rediseño: 10 pantallas, sistema visual propio, co
 
 ## Componentes construidos (`src/components/`)
 
-`Header` (sticky, navegación, CTA persistente, menú móvil accesible con Escape y `aria-expanded`) · `Footer` (navegación, teléfonos, legal, aviso médico) · `MobileActionBar` (Llamar + Solicitar valoración en <720 px; oculta en contacto) · `Hero` (inicio / interior, con imagen o ficha lateral) · `Breadcrumbs` · `SectionHeader` · `PillarCard` · `Timeline` (horizontal / vertical) · `Credentials` (compacto / completo, con aviso de verificación) · `ResourceCard` (recurso de muestra) · `Faq` (`<details>` nativo) · `DemoForm` · `CtaBlock` (oscuro / sage) · `PhoneList` · `ReviewNote` · `Icon` (iconos lineales SVG).
+`Header` (sticky, navegación, CTA persistente, menú móvil accesible con Escape y `aria-expanded`) · `Footer` (navegación, teléfonos, legal, aviso médico) · `MobileActionBar` (Llamar + Solicitar valoración en <720 px; oculta en contacto) · `Hero` (inicio / interior, con imagen o ficha lateral) · `Breadcrumbs` · `SectionHeader` · `PillarCard` · `Timeline` (horizontal / vertical) · `Credentials` (compacto / completo, con aviso de verificación) · `ResourceCard` (recurso de muestra) · `Faq` (`<details>` nativo) · `DemoForm` · `CtaBlock` (oscuro / sage) · `PhoneList` · `ReviewNote` · `Icon` (iconos lineales SVG) · `SectionNav` (navegación local de la rama «La consulta») · `StatementBand` (banda editorial a todo el ancho).
 
 Layout SEO: `src/layouts/BaseLayout.astro` (title, description, canonical, Open Graph, `noindex` opcional, preload del hero y JSON-LD). Datos: `src/data/site.ts` y `src/data/faqs.ts`. Rutas: `src/lib/url.ts` (`url()` y `absoluteUrl()` sobre `import.meta.env.BASE_URL`).
 
@@ -45,6 +45,8 @@ Layout SEO: `src/layouts/BaseLayout.astro` (title, description, canonical, Open 
 - Elemento memorable: la barra diagonal de latón del logotipo CLIN&DIET reutilizada en etiquetas, hero, timeline y CTA.
 - Tokens obligatorios en `:root`; derivados semánticos mínimos (líneas, borde de controles y `--error-700` para errores de formulario).
 - Navegación completa desde 1180 px; por debajo, menú móvil con CTA y teléfonos.
+- Jerarquía de navegación (`e44eee1`): `/como-es-la-primera-consulta/` y `/clinica/` son hijas de «La consulta». El menú de escritorio marca la sección padre, el menú móvil solo la coincidencia exacta (para no señalar dos elementos), los breadcrumbs tienen tres niveles y las tres páginas comparten una navegación local. El menú principal sigue con los 5 elementos del encargo.
+- El pie usa un verde más profundo (`--clinic-950`) con filete de latón para no fundirse con el CTA final, navegación en dos columnas y enlaces legales en la franja inferior (`d19209b`).
 - Formulario sin atributos `name` y con `preventDefault`: incluso sin JavaScript no serializa datos en la URL. Valida junto a cada campo, enfoca el primer error y muestra el mensaje demostrativo exigido.
 - JSON-LD prudente: `WebSite`, `Person` (nombre, «Médica», teléfonos públicos e imagen), `MedicalWebPage` / `ProfilePage` / `AboutPage` / `ContactPage` / `FAQPage`, `BreadcrumbList` y `FAQPage` solo con las FAQs visibles en cada página. Sin dirección, reseñas, ofertas ni resultados.
 - La foto «en consulta» no muestra la clínica: en `/clinica/` hay un bloque neutro reservado para una fotografía autorizada, en lugar de presentarla como el espacio.
