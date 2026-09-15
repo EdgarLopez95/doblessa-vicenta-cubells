@@ -14,8 +14,7 @@ const { topic, title, excerpt, path } = Astro.props;
 
 <article class="resource">
   <div class="resource__meta">
-    <span class="chip">Recurso de muestra</span>
-    <span class="resource__topic">{topic}</span>
+    <span class="chip">{topic}</span>
   </div>
   <h3 class="resource__title">
     <a href={url(path)}>{title}</a>

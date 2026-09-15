@@ -55,12 +55,21 @@ const approach: { icon: IconName; title: string; text: string }[] = [
   <section class="section section--sage" aria-labelledby="datos">
     <div class="container split">
       <div class="split__aside">
-        <SectionHeader
-          id="datos"
-          eyebrow="Información profesional"
-          title="Datos profesionales"
-          intro="Información profesional separada del texto descriptivo de la consulta. Se ha tomado de la web actual y debe verificarse antes de publicar."
-        />
+        <div class="sticky">
+          <SectionHeader
+            id="datos"
+            eyebrow="Información profesional"
+            title="Datos profesionales"
+            intro="Información profesional separada del texto descriptivo de la consulta. Se ha tomado de la web actual y debe verificarse antes de publicar."
+          />
+          <p class="notice mt-32">
+            <Icon name="notes" />
+            <span>
+              <strong>Contenido sujeto a revisión profesional.</strong> Biografía, titulaciones, colegiación, mención a
+              los métodos y uso de las fotografías deben ser aprobados por la doctora antes de publicar.
+            </span>
+          </p>
+        </div>
       </div>
       <div class="split__main">
         <Credentials
@@ -69,13 +78,6 @@ const approach: { icon: IconName; title: string; text: string }[] = [
           variant="full"
           note="No se muestran años de experiencia, afiliaciones ni certificados que no estén documentados."
         />
-        <p class="notice mt-32">
-          <Icon name="notes" />
-          <span>
-            <strong>Contenido sujeto a revisión profesional.</strong> Biografía, titulaciones, número de colegiación,
-            mención a los métodos y uso de las fotografías deben ser aprobados por la doctora antes de publicar.
-          </span>
-        </p>
       </div>
     </div>
   </section>
@@ -88,7 +90,7 @@ const approach: { icon: IconName; title: string; text: string }[] = [
   <section class="section section--sage" aria-labelledby="enfoque">
     <div class="container">
       <div class="split split--even split--top">
-        <figure class="split__aside framed">
+        <figure class="split__aside framed framed--square">
           <img
             src={url(images.portrait.src)}
             alt={images.portrait.alt}

@@ -1844,15 +1844,23 @@ body.menu-open {
 @media (min-width: 1024px) {
   .contact-layout {
     grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-template-rows: auto 1fr;
     align-items: start;
   }
 
-  .contact-layout__info {
+  .contact-layout__phones {
     grid-column: 1 / span 5;
+    grid-row: 1;
+  }
+
+  .contact-layout__steps {
+    grid-column: 1 / span 5;
+    grid-row: 2;
   }
 
   .contact-layout__form {
     grid-column: 7 / -1;
+    grid-row: 1 / span 2;
     position: sticky;
     top: calc(var(--header-h) + 1.5rem);
   }
@@ -2410,6 +2418,78 @@ body.has-action-bar {
 .placeholder--band .icon {
   grid-row: span 2;
   margin: 0.2rem 0 0;
+}
+
+.timeline--vertical .timeline__marker::after {
+  display: none;
+}
+
+.timeline--compact {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+  gap: 0.75rem var(--gutter);
+}
+
+.timeline--compact .timeline__step {
+  grid-template-columns: 44px minmax(0, 1fr);
+  align-items: center;
+  padding: 0.9rem 1.25rem 0.9rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface-raised);
+}
+
+.timeline--compact .timeline__step::before,
+.timeline--compact .timeline__marker::after {
+  display: none;
+}
+
+.timeline--compact .timeline__title {
+  padding-top: 0;
+  font-size: 1.375rem;
+  line-height: 1.2;
+}
+
+.check-list--row {
+  gap: var(--space-32) var(--gutter);
+}
+
+.check-list--row li {
+  padding-top: 1.25rem;
+  border-top: 2px solid var(--clinic-900);
+}
+
+@media (min-width: 720px) {
+  .check-list--row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .check-list--row {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.framed--square img {
+  aspect-ratio: 1 / 1;
+  object-position: 55% 30%;
+}
+
+@media (max-width: 719px) {
+  .cta--dark::before {
+    top: -40%;
+    right: -4%;
+    height: 75%;
+  }
+}
+
+/* Oculta los lemas pequeños del logotipo sin tocar el archivo ni la diagonal de latón */
+.site-header__brand img {
+  clip-path: polygon(0 0, 100% 0, 100% 71%, 44% 71%, 44% 100%, 0 100%);
+}
+
+.site-footer__logo img {
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 60% 80%, 60% 100%, 0 100%);
 }
 
 .fact-card dd a {

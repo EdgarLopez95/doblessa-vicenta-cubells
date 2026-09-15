@@ -59,6 +59,28 @@ Layout SEO: `src/layouts/BaseLayout.astro` (title, description, canonical, Open 
 - Capturas revisadas en 390, 768, 1024 y 1440 px sin desbordamiento horizontal.
 - Formulario verificado en navegador: 4 errores en envío vacío, foco en el primero, mensaje demostrativo al enviar válido, sin navegación ni errores de consola.
 
+## Crítica y refinamiento
+
+- Ronda 1 de crítica independiente: 73.5/100, sin bloqueantes (`design/critiques/ronda-1.md`).
+- Refinamiento (`83c5852`):
+  - Nuevo componente `StatementBand` con bandas editoriales a todo el ancho.
+  - La diagonal de latón se aplica al timeline y a las fotos enmarcadas.
+  - Todo el texto de contenido sube a 17 px.
+  - Los avisos de revisión salen de los heroes y se compactan.
+  - Los placeholders se reducen a bandas bajas.
+  - Nueva maquetación de los pilares a 1024 px y en móvil.
+  - El hero del perfil usa la foto «en consulta» recortada en vertical.
+- Ronda 2: 78.3/100, sin bloqueantes (`design/critiques/ronda-2.md`).
+- Refinamiento de la ronda 3:
+  - En la home, "Quién te atiende" pasa a declaración a todo el ancho con los principios en fila.
+  - Nueva variante compacta del timeline, que solo aparece completo en la página de primera consulta.
+  - En contacto, el orden en móvil es teléfonos → formulario → pasos.
+  - Se ocultan con `clip-path` los lemas pequeños del logotipo en cabecera y pie; los archivos originales no se tocan.
+  - Todos los CTA finales van en verde.
+  - En el perfil, el aviso de revisión pasa a la columna izquierda (sticky).
+  - Recortes cuadrados en el segundo uso de cada foto.
+- Los textos de CTA se mantienen porque los fija el encargo por página.
+
 ## Próxima acción
 
 Revisión con la doctora de los contenidos marcados abajo, y crítica de diseño independiente para pulir detalles.

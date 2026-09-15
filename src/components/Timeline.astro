@@ -7,7 +7,7 @@ interface Step {
 
 interface Props {
   steps: Step[];
-  layout?: 'horizontal' | 'vertical';
+  layout?: 'horizontal' | 'vertical' | 'compact';
   headingLevel?: 'h3' | 'h4';
 }
 
@@ -27,7 +27,7 @@ const Heading = headingLevel;
             <span class="sr-only">Paso {i + 1}: </span>
             {step.title}
           </Heading>
-          <p>{step.text}</p>
+          {layout !== 'compact' && <p>{step.text}</p>}
           {step.detail && <p class="timeline__detail">{step.detail}</p>}
         </div>
       </li>

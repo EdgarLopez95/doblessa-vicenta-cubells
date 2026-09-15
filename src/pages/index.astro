@@ -142,16 +142,15 @@ const principles = [
         </a>
       </div>
       <div class="mt-56">
-        <Timeline steps={firstVisitSteps} />
+        <Timeline steps={firstVisitSteps} layout="compact" />
       </div>
     </div>
   </section>
 
   <section class="section section--brass" aria-labelledby="confianza">
-    <div class="container split split--even">
-      <div class="split__aside">
-        <p class="eyebrow">Quién te atiende</p>
-        <h2 id="confianza" class="statement">
+    <div class="container">
+      <div class="statement-band__inner">
+        <h2 id="confianza" class="statement-band__text">
           La valoración, el plan y el seguimiento pasan por el criterio de una médica.
         </h2>
         <a class="text-link mt-32" href={url('clinica/')}>
@@ -159,7 +158,7 @@ const principles = [
           <Icon name="arrow" size={20} />
         </a>
       </div>
-      <ul class="check-list split__main">
+      <ul class="check-list check-list--row mt-56">
         {
           principles.map((item) => (
             <li>
@@ -177,7 +176,7 @@ const principles = [
 
   <section class="section" aria-labelledby="doctora">
     <div class="container split split--even split--top">
-      <figure class="split__aside framed">
+      <figure class="split__aside framed framed--square">
         <img
           style="object-position: 47% 50%"
           src={url(images.inConsultation.src)}

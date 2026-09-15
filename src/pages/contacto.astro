@@ -28,24 +28,22 @@ const breadcrumbs = [{ label: 'Contacto', path: 'contacto/' }];
 
   <section class="section section--flush-top" aria-label="Formas de contacto">
     <div class="container contact-layout">
-      <div class="contact-layout__info">
-        <div class="contact-block">
-          <h2>Llama a la consulta</h2>
-          <PhoneList variant="cards" />
-        </div>
-
-        <div class="contact-block">
-          <h2>Cómo empieza la primera valoración</h2>
-          <Timeline steps={firstVisitSteps} layout="vertical" />
-          <a class="text-link mt-32" href={url('como-es-la-primera-consulta/')}>
-            <span>Conoce cómo es la primera consulta</span>
-            <Icon name="arrow" size={20} />
-          </a>
-        </div>
+      <div class="contact-block contact-layout__phones">
+        <h2>Llama a la consulta</h2>
+        <PhoneList variant="cards" />
       </div>
 
       <div class="contact-layout__form">
         <DemoForm />
+      </div>
+
+      <div class="contact-block contact-layout__steps">
+        <h2>Cómo empieza la primera valoración</h2>
+        <Timeline steps={firstVisitSteps} layout="compact" />
+        <a class="text-link mt-32" href={url('como-es-la-primera-consulta/')}>
+          <span>Conoce cómo es la primera consulta</span>
+          <Icon name="arrow" size={20} />
+        </a>
       </div>
     </div>
   </section>
