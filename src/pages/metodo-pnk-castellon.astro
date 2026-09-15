@@ -1,0 +1,167 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import PillarCard from '../components/PillarCard.astro';
+import Faq from '../components/Faq.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+import ReviewNote from '../components/ReviewNote.astro';
+import Icon from '../components/Icon.astro';
+import { pickFaqs } from '../data/faqs';
+import { url } from '../lib/url';
+
+const breadcrumbs = [{ label: 'El método', path: 'metodo-pnk-castellon/' }];
+const faqs = pickFaqs(['metodo-que-es', 'metodo-para-mi', 'metodo-ejercicio', 'metodo-web', 'medico-seguimiento']);
+
+const areas = [
+  { icon: 'nutrition', title: 'Nutrición', text: 'Pautas de alimentación explicadas y adaptadas a tu caso, que se revisan durante el seguimiento.' },
+  { icon: 'habits', title: 'Hábitos', text: 'Rutinas, descanso y organización del día: cambios que se trabajan de forma progresiva.' },
+  { icon: 'movement', title: 'Movimiento', text: 'Actividad física acorde a tu punto de partida, tu salud y tus preferencias.' },
+  { icon: 'followup', title: 'Seguimiento', text: 'Consultas de revisión para acompañarte, resolver dudas y ajustar el plan cuando es necesario.' },
+] as const;
+
+const questions = [
+  '¿Es este enfoque adecuado para mi situación de salud?',
+  '¿Cómo encaja con la medicación o los tratamientos que sigo?',
+  '¿Con qué frecuencia serían las revisiones?',
+  '¿Qué implicaría en mi día a día?',
+  '¿Qué alternativas hay si no es la opción indicada para mí?',
+];
+---
+
+<BaseLayout
+  title="Método PnK® en Castellón con seguimiento médico"
+  description="Información sobre el Método PnK® y el acompañamiento médico en la consulta de la Dra. Vicenta Cubells en Castellón."
+  breadcrumbs={breadcrumbs}
+  faqs={faqs}
+>
+  <Hero
+    eyebrow="El método"
+    title="Método PnK® con seguimiento médico en Castellón"
+    lead="El Método PnK® es el marco con el que la consulta organiza el acompañamiento. Se aplica dentro de una atención individual y siempre después de una valoración médica."
+    breadcrumbs={breadcrumbs}
+  >
+    <Fragment slot="actions">
+      <a class="btn btn--primary" href={url('contacto/')}>
+        Conocer si es para mí
+        <Icon name="arrow" size={20} />
+      </a>
+      <a class="btn btn--secondary" href={url('consulta-control-peso-castellon/')}>Ver cómo es la consulta</a>
+    </Fragment>
+    <ReviewNote slot="after" />
+    <aside slot="aside" class="notice" aria-label="Aviso sobre esta página">
+      <Icon name="notes" />
+      <span>
+        <strong>Sobre esta página.</strong> La descripción del método, el uso de la marca PnK® y cualquier afirmación
+        sanitaria están sujetos a validación clínica y legal antes de publicarse.
+      </span>
+    </aside>
+  </Hero>
+
+  <section class="section section--line" aria-labelledby="acompanamiento">
+    <div class="container split">
+      <div class="split__aside">
+        <SectionHeader id="acompanamiento" eyebrow="El marco" title="En qué consiste el acompañamiento" />
+      </div>
+      <div class="split__main prose-block">
+        <p class="lead">
+          El Método PnK® organiza el trabajo de la consulta en torno a cuatro áreas: control médico, nutrición, actividad
+          física y apoyo en los hábitos.
+        </p>
+        <p>
+          No es una pauta que se entrega y se sigue sola. Es una estructura que la doctora adapta a cada persona, a su
+          salud y a su contexto. Por eso no existe un punto de partida igual para todo el mundo.
+        </p>
+        <p>
+          La primera valoración determina si este enfoque es adecuado para ti y, si lo es, cómo se plantea y con qué
+          seguimiento. Si no lo es, también es una respuesta valiosa.
+        </p>
+        <p class="pullquote">El método es la estructura. La valoración y el seguimiento médico lo hacen individual.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--sage" aria-labelledby="control-medico">
+    <div class="container split">
+      <div class="split__aside">
+        <SectionHeader
+          id="control-medico"
+          eyebrow="Control médico"
+          title="El papel del control médico"
+          intro="No es un paso más del proceso: es lo que da sentido al resto."
+        />
+      </div>
+      <ol class="value-list split__main">
+        <li>
+          <span class="value-list__num" aria-hidden="true">01</span>
+          <h3>Antes de empezar</h3>
+          <p>Se valora tu estado de salud y si este enfoque es adecuado para ti.</p>
+        </li>
+        <li>
+          <span class="value-list__num" aria-hidden="true">02</span>
+          <h3>Durante el proceso</h3>
+          <p>Las revisiones permiten conocer cómo te encuentras y resolver dudas.</p>
+        </li>
+        <li>
+          <span class="value-list__num" aria-hidden="true">03</span>
+          <h3>Cuando hay que ajustar</h3>
+          <p>Cualquier cambio en el planteamiento se decide con criterio médico.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="areas">
+    <div class="container">
+      <SectionHeader
+        id="areas"
+        eyebrow="Áreas de trabajo"
+        title="Nutrición, hábitos, movimiento y seguimiento"
+        intro="Cuatro áreas que se coordinan desde la consulta. Aquí se explica su papel, no cómo aplicarlas: eso solo puede decidirse tras una valoración."
+      />
+      <div class="pillars pillars--four mt-56">
+        {areas.map((area, i) => <PillarCard icon={area.icon} index={i + 1} title={area.title} text={area.text} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--brass" aria-labelledby="dudas">
+    <div class="container split">
+      <div class="split__aside">
+        <SectionHeader
+          id="dudas"
+          eyebrow="Antes de decidir"
+          title="Qué dudas conviene resolver en una valoración"
+          intro="Llévalas anotadas. La valoración es el momento adecuado para plantearlas."
+        />
+      </div>
+      <ol class="question-list split__main">
+        {questions.map((question) => <li>{question}</li>)}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="faq-metodo">
+    <div class="container split">
+      <div class="split__aside">
+        <SectionHeader id="faq-metodo" eyebrow="Preguntas frecuentes" title="Dudas sobre el método">
+          <a class="text-link" href={url('preguntas-frecuentes/')}>
+            <span>Ver todas las preguntas</span>
+            <Icon name="arrow" size={20} />
+          </a>
+        </SectionHeader>
+      </div>
+      <div class="split__main">
+        <Faq items={faqs} />
+      </div>
+    </div>
+  </section>
+
+  <CtaBlock
+    eyebrow="¿Es para ti?"
+    title="Solo una valoración médica puede responderlo"
+    text="Pedirla no te compromete a empezar. Es la forma de saber, con información, si este enfoque tiene sentido en tu caso."
+    primary={{ label: 'Conocer si es para mí', path: 'contacto/' }}
+    secondary={{ label: 'Cómo es la primera consulta', path: 'como-es-la-primera-consulta/' }}
+  />
+</BaseLayout>

@@ -1,0 +1,282 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Timeline from '../components/Timeline.astro';
+import ResourceCard from '../components/ResourceCard.astro';
+import Faq from '../components/Faq.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+import PhoneList from '../components/PhoneList.astro';
+import ReviewNote from '../components/ReviewNote.astro';
+import Icon, { type IconName } from '../components/Icon.astro';
+import { firstVisitSteps } from '../data/site';
+import { pickFaqs } from '../data/faqs';
+import { url } from '../lib/url';
+
+const breadcrumbs = [{ label: 'La consulta', path: 'consulta-control-peso-castellon/' }];
+const faqs = pickFaqs([
+  'valoracion-que-es',
+  'valoracion-preparar',
+  'valoracion-duracion',
+  'medico-condicion',
+  'medico-resultados',
+]);
+
+const topics: { icon: IconName; title: string; text: string }[] = [
+  { icon: 'listen', title: 'Tu historia, con tus palabras', text: 'Cómo has llegado hasta aquí, qué te preocupa y qué te gustaría cambiar.' },
+  { icon: 'habits', title: 'Tus hábitos, sin juicios', text: 'Alimentación, descanso, actividad y horarios: el contexto real en el que tendría que encajar un plan.' },
+  { icon: 'followup', title: 'Experiencias anteriores', text: 'Qué has probado antes y qué te resultó difícil de mantener, para no repetir lo que no funcionó.' },
+  { icon: 'notes', title: 'Tu contexto de salud', text: 'La doctora te preguntará lo necesario sobre tu salud, tratamientos o informes previos, siempre dentro de la consulta.' },
+  { icon: 'question', title: 'Tus preguntas', text: 'Tiempo para resolver dudas sobre el enfoque, el seguimiento y lo que implicaría empezar.' },
+];
+
+const principles: { icon: IconName; title: string; text: string }[] = [
+  { icon: 'medical', title: 'Parte de una valoración', text: 'Cualquier propuesta nace de lo que se conoce en consulta, no de un plan estándar.' },
+  { icon: 'habits', title: 'Se adapta a tu vida real', text: 'Horarios, preferencias y posibilidades se tienen en cuenta para que el plan tenga sentido en tu día a día.' },
+  { icon: 'followup', title: 'Se revisa durante el proceso', text: 'El seguimiento permite ajustar el planteamiento con criterio médico cuando es necesario.' },
+];
+
+const expectations = [
+  { title: 'Escucha y tiempo para tus preguntas', text: 'La conversación va a tu ritmo.' },
+  { title: 'Explicaciones claras', text: 'Sobre las opciones que se valoran y el porqué de cada una.' },
+  { title: 'Objetivos realistas', text: 'Sin promesas de resultados ni plazos cerrados.' },
+  { title: 'Libertad para decidir', text: 'Pedir una valoración no te compromete a continuar.' },
+];
+
+const prepare = [
+  'Informes o analíticas recientes, si los tienes.',
+  'Una lista de la medicación o suplementos que tomas.',
+  'Tus dudas anotadas, para no olvidar ninguna.',
+  'Tus horarios habituales, para hablar de un plan realista.',
+];
+---
+
+<BaseLayout
+  title="Consulta médica para el control de peso en Castellón"
+  description="Conoce cómo es una primera valoración para el control de peso y solicita cita con la Dra. Vicenta Cubells."
+  breadcrumbs={breadcrumbs}
+  faqs={faqs}
+>
+  <Hero
+    eyebrow="La consulta"
+    title="Consulta médica para el control de peso en Castellón"
+    lead="Una consulta para entender tu situación con calma, valorar qué enfoque tiene sentido para ti y acompañarte durante el proceso."
+    breadcrumbs={breadcrumbs}
+  >
+    <Fragment slot="actions">
+      <a class="btn btn--primary" href={url('contacto/')}>
+        Pedir primera valoración
+        <Icon name="arrow" size={20} />
+      </a>
+      <a class="btn btn--secondary" href={url('como-es-la-primera-consulta/')}>Cómo es la primera consulta</a>
+    </Fragment>
+    <ReviewNote slot="after" />
+    <aside slot="aside" class="fact-card" aria-label="Datos de la consulta">
+      <dl>
+        <div class="fact-card__row">
+          <dt>Atiende</dt>
+          <dd><a href={url('dra-vicenta-cubells/')}>Dra. Vicenta Cubells</a>, médica</dd>
+        </div>
+        <div class="fact-card__row">
+          <dt>Dónde</dt>
+          <dd>Castellón · dirección pendiente de confirmar</dd>
+        </div>
+        <div class="fact-card__row">
+          <dt>Cómo empezar</dt>
+          <dd>Con una primera valoración</dd>
+        </div>
+      </dl>
+      <PhoneList label="Pedir cita por teléfono" />
+    </aside>
+  </Hero>
+
+  <section class="section section--line" aria-labelledby="conversacion">
+    <div class="container split">
+      <div class="split__aside">
+        <div class="sticky">
+          <SectionHeader
+            id="conversacion"
+            eyebrow="La conversación"
+            title="De qué se habla en la consulta"
+            intro="La primera consulta es, sobre todo, una conversación. Sirve para entender tu punto de partida antes de proponer nada."
+          />
+        </div>
+      </div>
+      <ul class="topic-list split__main">
+        {
+          topics.map((topic) => (
+            <li>
+              <span class="topic-list__icon"><Icon name={topic.icon} /></span>
+              <div>
+                <h3>{topic.title}</h3>
+                <p>{topic.text}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--sage" aria-labelledby="enfoque">
+    <div class="container">
+      <SectionHeader
+        id="enfoque"
+        eyebrow="Enfoque individual"
+        title="Cómo se define un enfoque individual"
+        intro="No hay un plan igual para todas las personas. Hay una forma de trabajar que parte siempre de ti."
+      />
+      <div class="principles mt-56">
+        {
+          principles.map((item) => (
+            <div class="principle">
+              <Icon name={item.icon} />
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+          ))
+        }
+      </div>
+      <p class="notice mt-56">
+        <Icon name="shield" />
+        <span>
+          <strong>Esta web no ofrece diagnósticos, prescripciones ni planes.</strong> Cualquier indicación se decide en
+          consulta, de forma individual.
+        </span>
+      </p>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="esperar">
+    <div class="container split split--even">
+      <div class="split__aside">
+        <SectionHeader
+          id="esperar"
+          eyebrow="Expectativas"
+          title="Qué puedes esperar"
+          intro="Una consulta médica honesta: información clara para que puedas decidir, sin presión."
+        />
+      </div>
+      <ul class="check-list split__main">
+        {
+          expectations.map((item) => (
+            <li>
+              <Icon name="check" />
+              <div>
+                <strong>{item.title}</strong>
+                <span>{item.text}</span>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--sage" aria-labelledby="paso-a-paso">
+    <div class="container split">
+      <div class="split__aside">
+        <div class="sticky">
+          <SectionHeader
+            id="paso-a-paso"
+            eyebrow="Primera valoración"
+            title="La primera valoración, paso a paso"
+            intro="Así empieza el proceso, desde que contactas hasta que decides si continuar."
+          >
+            <a class="text-link" href={url('como-es-la-primera-consulta/')}>
+              <span>Más detalle sobre la primera consulta</span>
+              <Icon name="arrow" size={20} />
+            </a>
+          </SectionHeader>
+        </div>
+      </div>
+      <div class="split__main">
+        <Timeline steps={firstVisitSteps} layout="vertical" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="preparar">
+    <div class="container split">
+      <div class="split__aside">
+        <SectionHeader
+          id="preparar"
+          eyebrow="Antes de venir"
+          title="Qué preparar para la consulta"
+          intro="No es obligatorio traer nada. Si te resulta cómodo, esto puede ayudar a aprovechar el tiempo."
+        />
+      </div>
+      <div class="split__main">
+        <ul class="check-list">
+          {
+            prepare.map((item) => (
+              <li>
+                <Icon name="check" />
+                <strong>{item}</strong>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="notice mt-32">
+          <Icon name="lock" />
+          <span>No envíes informes ni datos de salud por la web o el formulario: se revisan en la consulta.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--sage" aria-labelledby="recursos">
+    <div class="container">
+      <SectionHeader
+        id="recursos"
+        eyebrow="Recursos"
+        title="Para decidir con calma"
+        intro="Contenidos de ejemplo que la web podría ofrecer, siempre revisados por la doctora antes de publicarse."
+      />
+      <div class="resources mt-56">
+        <ResourceCard
+          topic="Primera consulta"
+          title="Cómo preparar tu primera valoración"
+          excerpt="Qué conviene tener a mano y qué preguntas pueden ayudarte a aprovechar la conversación."
+          path="como-es-la-primera-consulta/"
+        />
+        <ResourceCard
+          topic="Decidir"
+          title="Qué preguntar antes de empezar un plan"
+          excerpt="Preguntas útiles para entender cualquier propuesta de control de peso y decidir con información."
+          path="preguntas-frecuentes/"
+        />
+        <ResourceCard
+          topic="Enfoque"
+          title="Acompañamiento clínico frente a dietas genéricas"
+          excerpt="Por qué partir de una valoración individual cambia la forma de plantear el proceso."
+          path="metodo-pnk-castellon/"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="faq-consulta">
+    <div class="container split">
+      <div class="split__aside">
+        <SectionHeader id="faq-consulta" eyebrow="Preguntas frecuentes" title="Dudas sobre la consulta">
+          <a class="text-link" href={url('preguntas-frecuentes/')}>
+            <span>Ver todas las preguntas</span>
+            <Icon name="arrow" size={20} />
+          </a>
+        </SectionHeader>
+      </div>
+      <div class="split__main">
+        <Faq items={faqs} />
+      </div>
+    </div>
+  </section>
+
+  <CtaBlock
+    eyebrow="Primer paso"
+    title="Hablemos de tu situación con calma"
+    text="La primera valoración sirve para conocerte, explicarte el enfoque y responder a tus dudas. Después decides."
+    primary={{ label: 'Pedir primera valoración', path: 'contacto/' }}
+    secondary={{ label: 'Conocer a la doctora', path: 'dra-vicenta-cubells/' }}
+  />
+</BaseLayout>

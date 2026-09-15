@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Faq from '../components/Faq.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+import ReviewNote from '../components/ReviewNote.astro';
+import { faqGroups } from '../data/faqs';
+
+const breadcrumbs = [{ label: 'Preguntas frecuentes', path: 'preguntas-frecuentes/' }];
+const allFaqs = faqGroups.flatMap((group) => group.items);
+---
+
+<BaseLayout
+  title="Preguntas frecuentes sobre la consulta y el método | Dra. Vicenta Cubells"
+  description="Respuestas generales sobre la valoración médica, el enfoque de la consulta, el Método PnK® y la privacidad en la consulta de la Dra. Vicenta Cubells en Castellón."
+  pageType="FAQPage"
+  breadcrumbs={breadcrumbs}
+  faqs={allFaqs}
+>
+  <Hero
+    eyebrow="Preguntas frecuentes"
+    title="Preguntas frecuentes sobre la consulta y el método"
+    lead="Respuestas generales para entender cómo funciona la consulta. No sustituyen una valoración: si tu duda es sobre tu caso concreto, lo adecuado es comentarla con la doctora."
+    breadcrumbs={breadcrumbs}
+  >
+    <nav slot="after" aria-label="Categorías de preguntas">
+      <ul class="chip-nav">
+        {faqGroups.map((group) => <li><a href={`#${group.id}`}>{group.title}</a></li>)}
+      </ul>
+    </nav>
+  </Hero>
+
+  <section class="section section--line" aria-label="Listado de preguntas">
+    <div class="container">
+      {
+        faqGroups.map((group, i) => (
+          <div class="faq-group split" aria-labelledby={group.id}>
+            <div class="split__aside">
+              <div class="sticky section-header">
+                <p class="eyebrow">{String(i + 1).padStart(2, '0')} · Categoría</p>
+                <h2 id={group.id}>{group.title}</h2>
+                <p class="section-header__intro">{group.intro}</p>
+              </div>
+            </div>
+            <div class="split__main">
+              <Faq items={group.items} note={i === faqGroups.length - 1} />
+            </div>
+          </div>
+        ))
+      }
+      <div class="mt-56">
+        <ReviewNote />
+      </div>
+    </div>
+  </section>
+
+  <CtaBlock
+    variant="sage"
+    eyebrow="¿Te queda alguna duda?"
+    title="¿No encuentras tu pregunta?"
+    text="Puedes llamar a la consulta o dejar una solicitud de contacto. Las dudas sobre tu salud se resuelven en la valoración."
+    primary={{ label: 'Contactar', path: 'contacto/' }}
+    secondary={{ label: 'Cómo es la primera consulta', path: 'como-es-la-primera-consulta/' }}
+  />
+</BaseLayout>

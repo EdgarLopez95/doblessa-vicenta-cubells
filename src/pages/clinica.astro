@@ -1,0 +1,145 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+import PhoneList from '../components/PhoneList.astro';
+import Icon, { type IconName } from '../components/Icon.astro';
+import { url } from '../lib/url';
+
+const breadcrumbs = [{ label: 'La clínica', path: 'clinica/' }];
+
+const principles: { icon: IconName; title: string; text: string }[] = [
+  { icon: 'lock', title: 'Privacidad', text: 'Las conversaciones sobre tu salud se mantienen en la consulta. La web no pide información clínica.' },
+  { icon: 'listen', title: 'Escucha', text: 'Espacio para contar tu situación y resolver dudas, sin juicios sobre tu cuerpo ni sobre tu historia.' },
+  { icon: 'followup', title: 'Seguimiento', text: 'La relación no termina en la primera visita: el acompañamiento continúa si decides empezar.' },
+];
+---
+
+<BaseLayout
+  title="La clínica CLIN&DIET en Castellón | Dra. Vicenta Cubells"
+  description="CLIN&DIET, la consulta de la Dra. Vicenta Cubells en Castellón: principios de trabajo, experiencia de consulta y cómo pedir una primera valoración."
+  pageType="AboutPage"
+  breadcrumbs={breadcrumbs}
+>
+  <Hero
+    eyebrow="La clínica"
+    title="CLIN&DIET, la consulta de la Dra. Vicenta Cubells en Castellón"
+    lead="Un entorno de consulta pensado para hablar con calma de tu salud, con la privacidad, la escucha y el seguimiento como forma de trabajar."
+    breadcrumbs={breadcrumbs}
+  >
+    <Fragment slot="actions">
+      <a class="btn btn--primary" href={url('contacto/')}>
+        Pedir primera valoración
+        <Icon name="arrow" size={20} />
+      </a>
+    </Fragment>
+    <aside slot="aside" class="fact-card" aria-label="Datos prácticos">
+      <dl>
+        <div class="fact-card__row">
+          <dt>Responsable</dt>
+          <dd><a href={url('dra-vicenta-cubells/')}>Dra. Vicenta Cubells</a></dd>
+        </div>
+        <div class="fact-card__row">
+          <dt>Ciudad</dt>
+          <dd>Castellón</dd>
+        </div>
+        <div class="fact-card__row">
+          <dt>Dirección y horario</dt>
+          <dd>Pendientes de confirmar</dd>
+        </div>
+      </dl>
+      <PhoneList />
+    </aside>
+  </Hero>
+
+  <section class="section section--line" aria-labelledby="principios">
+    <div class="container">
+      <SectionHeader
+        id="principios"
+        eyebrow="Forma de trabajar"
+        title="Lo que guía cada consulta"
+        intro="Son principios de trabajo, no garantías de resultado. Describen cómo se entiende la relación con cada persona."
+      />
+      <div class="principles mt-56">
+        {
+          principles.map((item) => (
+            <div class="principle">
+              <Icon name={item.icon} />
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--sage" aria-labelledby="espacio">
+    <div class="container split split--even">
+      <div class="split__aside placeholder" role="img" aria-label="Espacio reservado para una fotografía de la consulta">
+        <div>
+          <Icon name="pin" size={28} />
+          <strong>Fotografía de la consulta</strong>
+          <p>Se incorporará una imagen real del espacio, con autorización, antes de publicar.</p>
+        </div>
+      </div>
+      <div class="split__main">
+        <SectionHeader
+          id="espacio"
+          eyebrow="El espacio"
+          title="Un lugar para conversar, no un escaparate"
+          intro="Esta página mostrará el entorno real de la consulta cuando haya fotografías autorizadas. Hasta entonces, no se describen instalaciones que no se han podido verificar."
+        >
+          <a class="text-link" href={url('como-es-la-primera-consulta/')}>
+            <span>Cómo es la primera consulta</span>
+            <Icon name="arrow" size={20} />
+          </a>
+        </SectionHeader>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="experiencia">
+    <div class="container split">
+      <div class="split__aside">
+        <SectionHeader
+          id="experiencia"
+          eyebrow="La experiencia"
+          title="Qué se vive en la consulta"
+          intro="Del primer contacto al seguimiento, cada momento tiene un propósito claro."
+        />
+      </div>
+      <ol class="value-list split__main">
+        <li>
+          <span class="value-list__num" aria-hidden="true">01</span>
+          <h3>Contactas</h3>
+          <p>Por teléfono o con una solicitud breve, sin compartir datos de salud.</p>
+        </li>
+        <li>
+          <span class="value-list__num" aria-hidden="true">02</span>
+          <h3>Conversas</h3>
+          <p>La doctora conoce tu situación y resuelve tus dudas.</p>
+        </li>
+        <li>
+          <span class="value-list__num" aria-hidden="true">03</span>
+          <h3>Decides</h3>
+          <p>Con una explicación clara de lo que se propone y por qué.</p>
+        </li>
+        <li>
+          <span class="value-list__num" aria-hidden="true">04</span>
+          <h3>Te acompañamos</h3>
+          <p>Si continúas, con un seguimiento profesional durante el proceso.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <CtaBlock
+    eyebrow="Primer paso"
+    title="Conoce la consulta en una primera valoración"
+    text="Es la mejor forma de saber si el enfoque encaja contigo, sin compromiso de continuar."
+    primary={{ label: 'Pedir primera valoración', path: 'contacto/' }}
+    secondary={{ label: 'Preguntas frecuentes', path: 'preguntas-frecuentes/' }}
+  />
+</BaseLayout>

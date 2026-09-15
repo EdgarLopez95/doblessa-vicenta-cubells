@@ -1,0 +1,68 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Icon from '../components/Icon.astro';
+import { url } from '../lib/url';
+
+const breadcrumbs = [{ label: 'Aviso legal', path: 'aviso-legal/' }];
+---
+
+<BaseLayout
+  title="Aviso legal | Dra. Vicenta Cubells"
+  description="Borrador del aviso legal de la web de la Dra. Vicenta Cubells, pendiente de revisión legal."
+  pageType="WebPage"
+  breadcrumbs={breadcrumbs}
+  noindex
+>
+  <Hero eyebrow="Legal" title="Aviso legal" breadcrumbs={breadcrumbs} />
+
+  <section class="section section--flush-top">
+    <div class="container">
+      <div class="prose">
+        <p class="notice">
+          <Icon name="notes" />
+          <span>
+            <strong>Texto provisional.</strong> Este aviso legal es un borrador estructural de la propuesta de diseño.
+            Requiere revisión y aprobación legal antes de cualquier publicación real.
+          </span>
+        </p>
+
+        <h2>Titular del sitio web</h2>
+        <p>Nombre o razón social, NIF y domicilio: <span class="pending">pendiente de completar</span>.</p>
+        <p>Datos de colegiación profesional: <span class="pending">pendiente de completar</span>.</p>
+
+        <h2>Objeto</h2>
+        <p>
+          Este sitio informa sobre la consulta médica de control de peso de la Dra. Vicenta Cubells en Castellón y facilita
+          el contacto para solicitar una valoración.
+        </p>
+
+        <h2>Información sanitaria</h2>
+        <p>
+          Los contenidos de esta web son generales y orientativos. No constituyen un diagnóstico ni una prescripción, y no
+          sustituyen la valoración individual de un profesional sanitario.
+        </p>
+
+        <h2>Marcas</h2>
+        <p>
+          Las denominaciones PnK®, Pronokal y Diaprokal pertenecen a sus respectivos titulares. Su mención y uso en esta web
+          están <span class="pending">pendientes de validación con el titular de la marca</span>.
+        </p>
+
+        <h2>Propiedad intelectual e imágenes</h2>
+        <p>
+          Los textos, logotipos y fotografías pertenecen a sus titulares. El uso de las fotografías de la doctora está
+          <span class="pending">pendiente de confirmar</span>.
+        </p>
+
+        <h2>Responsabilidad y enlaces</h2>
+        <p>Condiciones de responsabilidad y política de enlaces: <span class="pending">pendiente de completar</span>.</p>
+
+        <h2>Legislación aplicable</h2>
+        <p>Legislación y jurisdicción aplicables: <span class="pending">pendiente de completar</span>.</p>
+
+        <p>Consulta también la <a href={url('politica-de-privacidad/')}>política de privacidad</a>.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

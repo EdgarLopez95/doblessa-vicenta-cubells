@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Icon from '../components/Icon.astro';
+import { url } from '../lib/url';
+
+const breadcrumbs = [{ label: 'Política de privacidad', path: 'politica-de-privacidad/' }];
+---
+
+<BaseLayout
+  title="Política de privacidad | Dra. Vicenta Cubells"
+  description="Borrador de la política de privacidad de la web de la Dra. Vicenta Cubells, pendiente de revisión legal."
+  pageType="WebPage"
+  breadcrumbs={breadcrumbs}
+  noindex
+>
+  <Hero eyebrow="Legal" title="Política de privacidad" breadcrumbs={breadcrumbs} />
+
+  <section class="section section--flush-top">
+    <div class="container">
+      <div class="prose">
+        <p class="notice">
+          <Icon name="notes" />
+          <span>
+            <strong>Texto provisional.</strong> Esta política es un borrador estructural de la propuesta de diseño. Requiere
+            revisión y aprobación legal antes de cualquier publicación real.
+          </span>
+        </p>
+
+        <h2>Responsable del tratamiento</h2>
+        <p>Titular: <span class="pending">pendiente de completar</span>.</p>
+        <p>NIF, domicilio y datos de contacto a efectos de protección de datos: <span class="pending">pendiente de completar</span>.</p>
+
+        <h2>Qué datos se tratarían</h2>
+        <p>
+          En la web real, el formulario de contacto recogería únicamente nombre, teléfono o email, un motivo general de
+          consulta y la preferencia de contacto.
+        </p>
+        <p>
+          La web no está pensada para recoger datos de salud. La información clínica se trata exclusivamente en la consulta.
+        </p>
+
+        <h2>Finalidad</h2>
+        <p>Responder a las solicitudes de contacto y gestionar la cita de primera valoración.</p>
+
+        <h2>Base jurídica</h2>
+        <p>
+          Consentimiento de la persona interesada al enviar la solicitud. <span class="pending">Pendiente de validación legal</span>.
+        </p>
+
+        <h2>Conservación de los datos</h2>
+        <p>Plazo de conservación: <span class="pending">pendiente de definir</span>.</p>
+
+        <h2>Destinatarios</h2>
+        <p>Posibles destinatarios o encargados del tratamiento: <span class="pending">pendiente de definir</span>.</p>
+
+        <h2>Derechos</h2>
+        <p>
+          La persona interesada podrá ejercer sus derechos de acceso, rectificación, supresión, oposición, limitación del
+          tratamiento y portabilidad, conforme a la normativa de protección de datos aplicable.
+        </p>
+        <p>Canal para ejercerlos: <span class="pending">pendiente de completar</span>.</p>
+
+        <h2>Esta versión de demostración</h2>
+        <ul>
+          <li>El formulario de esta propuesta no envía, almacena ni transmite los datos que se escriben en él.</li>
+          <li>No se utilizan herramientas de analítica ni de seguimiento.</li>
+          <li>Las tipografías se cargan desde Google Fonts.</li>
+        </ul>
+        <p>Consulta también el <a href={url('aviso-legal/')}>aviso legal</a>.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

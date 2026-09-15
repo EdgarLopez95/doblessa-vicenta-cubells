@@ -1,0 +1,87 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import Timeline from '../components/Timeline.astro';
+import DemoForm from '../components/DemoForm.astro';
+import PhoneList from '../components/PhoneList.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Icon from '../components/Icon.astro';
+import { firstVisitSteps } from '../data/site';
+import { url } from '../lib/url';
+
+const breadcrumbs = [{ label: 'Contacto', path: 'contacto/' }];
+---
+
+<BaseLayout
+  title="Contacto y valoración | Dra. Vicenta Cubells"
+  description="Solicita una valoración médica en Castellón. Consulta teléfonos, proceso de primera cita y datos de contacto."
+  pageType="ContactPage"
+  breadcrumbs={breadcrumbs}
+  showActionBar={false}
+>
+  <Hero
+    eyebrow="Contacto"
+    title="Solicita una valoración"
+    lead="Llama a la consulta o deja una solicitud de contacto. Solo hace falta saber cómo localizarte: los datos de salud se tratan en consulta."
+    breadcrumbs={breadcrumbs}
+  />
+
+  <section class="section section--flush-top" aria-label="Formas de contacto">
+    <div class="container contact-layout">
+      <div class="contact-layout__info">
+        <div class="contact-block">
+          <h2>Llama a la consulta</h2>
+          <PhoneList variant="cards" />
+        </div>
+
+        <div class="contact-block">
+          <h2>Cómo empieza la primera valoración</h2>
+          <Timeline steps={firstVisitSteps} layout="vertical" />
+          <a class="text-link mt-32" href={url('como-es-la-primera-consulta/')}>
+            <span>Conoce cómo es la primera consulta</span>
+            <Icon name="arrow" size={20} />
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-layout__form">
+        <DemoForm />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--sage" aria-labelledby="ubicacion">
+    <div class="container split split--even">
+      <div class="split__aside placeholder" role="img" aria-label="Espacio reservado para el mapa de ubicación">
+        <div>
+          <Icon name="pin" size={28} />
+          <strong>Castellón</strong>
+          <p>La dirección exacta y el mapa se añadirán cuando estén confirmados por la consulta.</p>
+        </div>
+      </div>
+      <div class="split__main">
+        <SectionHeader
+          id="ubicacion"
+          eyebrow="Ubicación y privacidad"
+          title="Datos de contacto y uso de tu información"
+          intro="Esta propuesta no muestra dirección ni horario porque aún no están verificados. Antes de enviar cualquier dato, consulta cómo se tratará."
+        >
+          <ul class="link-list">
+            <li>
+              <a class="text-link" href={url('politica-de-privacidad/')}>
+                <span>Política de privacidad</span>
+                <Icon name="arrow" size={20} />
+              </a>
+            </li>
+            <li>
+              <a class="text-link" href={url('aviso-legal/')}>
+                <span>Aviso legal</span>
+                <Icon name="arrow" size={20} />
+              </a>
+            </li>
+          </ul>
+        </SectionHeader>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

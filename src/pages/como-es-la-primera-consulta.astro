@@ -1,0 +1,147 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Timeline from '../components/Timeline.astro';
+import Faq from '../components/Faq.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+import PhoneList from '../components/PhoneList.astro';
+import Icon from '../components/Icon.astro';
+import { firstVisitSteps } from '../data/site';
+import { pickFaqs } from '../data/faqs';
+import { url } from '../lib/url';
+
+const breadcrumbs = [{ label: 'Primera consulta', path: 'como-es-la-primera-consulta/' }];
+const faqs = pickFaqs(['valoracion-preparar', 'valoracion-compromiso', 'privacidad-telefono']);
+
+const details = [
+  'Puedes hacerlo por teléfono o con el formulario de contacto. Solo se piden un nombre, un medio de contacto y un motivo general.',
+  'Es un contacto breve y práctico: resolver dudas iniciales y encontrar un momento que te venga bien.',
+  'Se habla de tu historia, tus hábitos, tu salud y lo que esperas. Es el momento de preguntar todo lo que necesites.',
+  'Recibes una explicación clara de lo que se propone y por qué. Decides con calma si quieres continuar.',
+];
+const steps = firstVisitSteps.map((step, i) => ({ ...step, detail: details[i] }));
+
+const canPrepare = [
+  { title: 'Informes o analíticas recientes', text: 'Si los tienes a mano. Los verá la doctora en la consulta.' },
+  { title: 'Tu medicación habitual', text: 'Una lista sencilla de lo que tomas, incluidos suplementos.' },
+  { title: 'Tus dudas por escrito', text: 'Para que no se quede ninguna pregunta sin plantear.' },
+];
+
+const noNeed = [
+  { title: 'Enviar datos de salud por la web', text: 'Ni informes, ni diagnósticos, ni medicación a través del formulario.' },
+  { title: 'Tener todo decidido', text: 'Para eso está la valoración: para decidir con información.' },
+  { title: 'Comprometerte a empezar', text: 'La primera valoración no te obliga a continuar.' },
+];
+---
+
+<BaseLayout
+  title="Cómo es la primera valoración médica | Dra. Vicenta Cubells"
+  description="Qué ocurre en la primera valoración para el control de peso en Castellón: cómo pedirla, qué preparar y qué no necesitas enviar por la web."
+  breadcrumbs={breadcrumbs}
+  faqs={faqs}
+>
+  <Hero
+    eyebrow="Primera consulta"
+    title="Cómo es la primera valoración médica"
+    lead="Pedir una valoración es sencillo, no te compromete a nada y no necesitas compartir datos de salud por la web. Así empieza."
+    breadcrumbs={breadcrumbs}
+  >
+    <Fragment slot="actions">
+      <a class="btn btn--primary" href={url('contacto/')}>
+        Solicitar cita
+        <Icon name="arrow" size={20} />
+      </a>
+    </Fragment>
+    <aside slot="aside" class="fact-card" aria-label="Teléfonos de la consulta">
+      <PhoneList variant="cards" label="Pide tu valoración por teléfono" />
+    </aside>
+  </Hero>
+
+  <section class="section section--line" aria-labelledby="pasos">
+    <div class="container split">
+      <div class="split__aside">
+        <div class="sticky">
+          <SectionHeader
+            id="pasos"
+            eyebrow="El proceso"
+            title="Cuatro pasos para empezar"
+            intro="Cada paso tiene un objetivo sencillo. Ninguno exige que decidas nada antes de tiempo."
+          />
+        </div>
+      </div>
+      <div class="split__main">
+        <Timeline steps={steps} layout="vertical" />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--sage" aria-labelledby="preparar">
+    <div class="container">
+      <SectionHeader
+        id="preparar"
+        eyebrow="Preparación"
+        title="Qué puedes preparar y qué no necesitas"
+        intro="La historia clínica se trata en consulta, nunca a través de la web."
+      />
+      <div class="split split--halves mt-56">
+        <div class="split__aside">
+          <h3>Puedes preparar, si quieres</h3>
+          <ul class="check-list mt-32">
+            {
+              canPrepare.map((item) => (
+                <li>
+                  <Icon name="check" />
+                  <div>
+                    <strong>{item.title}</strong>
+                    <span>{item.text}</span>
+                  </div>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div class="split__main">
+          <h3>No necesitas</h3>
+          <ul class="check-list check-list--muted mt-32">
+            {
+              noNeed.map((item) => (
+                <li>
+                  <Icon name="close" />
+                  <div>
+                    <strong>{item.title}</strong>
+                    <span>{item.text}</span>
+                  </div>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="faq-primera">
+    <div class="container split">
+      <div class="split__aside">
+        <SectionHeader id="faq-primera" eyebrow="Preguntas frecuentes" title="Antes de pedir cita">
+          <a class="text-link" href={url('preguntas-frecuentes/')}>
+            <span>Ver todas las preguntas</span>
+            <Icon name="arrow" size={20} />
+          </a>
+        </SectionHeader>
+      </div>
+      <div class="split__main">
+        <Faq items={faqs} />
+      </div>
+    </div>
+  </section>
+
+  <CtaBlock
+    variant="sage"
+    eyebrow="Cuando quieras"
+    title="Solicita tu valoración cuando te venga bien"
+    text="Llama a la consulta o deja una solicitud de contacto con tus datos básicos."
+    primary={{ label: 'Solicitar cita', path: 'contacto/' }}
+  />
+</BaseLayout>

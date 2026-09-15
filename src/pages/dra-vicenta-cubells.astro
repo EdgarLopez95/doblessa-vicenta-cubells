@@ -1,0 +1,143 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import Credentials from '../components/Credentials.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+import Icon, { type IconName } from '../components/Icon.astro';
+import { credentials, images } from '../data/site';
+import { url } from '../lib/url';
+
+const breadcrumbs = [{ label: 'Dra. Vicenta Cubells', path: 'dra-vicenta-cubells/' }];
+
+const profile = [
+  { label: 'Nombre completo', value: 'Vicenta Cubells Santaolaria' },
+  ...credentials,
+  { label: 'Nº de colegiación', value: 'Pendiente de aportar por la doctora' },
+  { label: 'Consulta', value: 'CLIN&DIET, Castellón' },
+];
+
+const approach: { icon: IconName; title: string; text: string }[] = [
+  { icon: 'listen', title: 'Humano', text: 'Escucha sin juicios y un trato que respeta el ritmo y la historia de cada persona.' },
+  { icon: 'medical', title: 'Médico', text: 'Las decisiones se toman con criterio clínico, a partir de una valoración individual.' },
+  { icon: 'followup', title: 'De acompañamiento', text: 'Seguimiento durante el proceso, para que nadie tenga que resolverlo en solitario.' },
+];
+---
+
+<BaseLayout
+  title="Dra. Vicenta Cubells | Médica en Castellón"
+  description="Perfil profesional de la Dra. Vicenta Cubells Santaolaria, médica en Castellón: formación, enfoque de consulta y acompañamiento en el control de peso."
+  pageType="ProfilePage"
+  breadcrumbs={breadcrumbs}
+  preloadImage={images.portrait.src}
+>
+  <Hero
+    eyebrow="Perfil profesional"
+    title="Dra. Vicenta Cubells"
+    lead="Médica en Castellón y responsable de la consulta CLIN&DIET. Acompaña a personas que quieren cuidar su salud desde una valoración individual, con escucha y seguimiento profesional."
+    breadcrumbs={breadcrumbs}
+    image={{ ...images.portrait, caption: '<strong>Vicenta Cubells Santaolaria</strong><br />Médica · Castellón' }}
+  >
+    <Fragment slot="actions">
+      <a class="btn btn--primary" href={url('contacto/')}>
+        Solicitar valoración
+        <Icon name="arrow" size={20} />
+      </a>
+      <a class="btn btn--secondary" href={url('consulta-control-peso-castellon/')}>Conocer la consulta</a>
+    </Fragment>
+  </Hero>
+
+  <section class="section section--sage" aria-labelledby="datos">
+    <div class="container split">
+      <div class="split__aside">
+        <SectionHeader
+          id="datos"
+          eyebrow="Información profesional"
+          title="Datos profesionales"
+          intro="Esta sección recoge solo información profesional, separada del texto descriptivo de la consulta. Se ha tomado de la web actual y debe verificarse antes de publicar."
+        />
+      </div>
+      <div class="split__main">
+        <Credentials
+          items={profile}
+          title="Formación y trayectoria"
+          variant="full"
+          note="No se muestran años de experiencia, afiliaciones ni certificados que no estén documentados."
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="enfoque">
+    <div class="container">
+      <div class="split split--even">
+        <figure class="split__aside">
+          <img
+            class="photo"
+            src={url(images.inConsultation.src)}
+            alt={images.inConsultation.alt}
+            width={images.inConsultation.width}
+            height={images.inConsultation.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </figure>
+        <div class="split__main">
+          <SectionHeader id="enfoque" eyebrow="Enfoque de consulta" title="Una forma de acompañar">
+            <div class="prose-block section-header__intro">
+              <p>
+                La consulta parte de una idea sencilla: antes de proponer cualquier cambio, hay que conocer a la persona.
+                Por eso la primera valoración dedica tiempo a escuchar, entender el contexto y explicar las opciones con
+                claridad.
+              </p>
+              <p>
+                El acompañamiento continúa después, con un seguimiento que permite resolver dudas y ajustar el plan con
+                criterio médico.
+              </p>
+            </div>
+          </SectionHeader>
+        </div>
+      </div>
+      <div class="principles mt-56">
+        {
+          approach.map((item) => (
+            <div class="principle">
+              <Icon name={item.icon} />
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--brass" aria-labelledby="revision">
+    <div class="container split">
+      <div class="split__aside">
+        <p class="eyebrow">Antes de publicar</p>
+        <h2 id="revision" class="statement">Contenido sujeto a revisión profesional</h2>
+      </div>
+      <div class="split__main prose-block">
+        <p>
+          Los textos de esta página describen el enfoque de la consulta dentro de una propuesta de diseño. Antes de
+          publicarse, la Dra. Vicenta Cubells debe revisar y aprobar:
+        </p>
+        <ul class="check-list mt-32">
+          <li><Icon name="check" /><strong>La biografía y el texto descriptivo del enfoque.</strong></li>
+          <li><Icon name="check" /><strong>Las titulaciones, la especialidad y el número de colegiación.</strong></li>
+          <li><Icon name="check" /><strong>La mención a los métodos Pronokal, PnK y Diaprokal.</strong></li>
+          <li><Icon name="check" /><strong>La vigencia y el permiso de uso de sus fotografías.</strong></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <CtaBlock
+    eyebrow="Primer paso"
+    title="Empezamos con una valoración médica"
+    text="Conoce el enfoque en persona, resuelve tus dudas y decide después si quieres continuar."
+    primary={{ label: 'Solicitar valoración', path: 'contacto/' }}
+    secondary={{ label: 'Cómo es la primera consulta', path: 'como-es-la-primera-consulta/' }}
+  />
+</BaseLayout>

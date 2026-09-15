@@ -1,4 +1,227 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import PillarCard from '../components/PillarCard.astro';
+import Timeline from '../components/Timeline.astro';
+import Credentials from '../components/Credentials.astro';
+import Faq from '../components/Faq.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+import PhoneList from '../components/PhoneList.astro';
+import Icon from '../components/Icon.astro';
+import { credentials, firstVisitSteps, images } from '../data/site';
+import { pickFaqs } from '../data/faqs';
+import { url } from '../lib/url';
+
+const faqs = pickFaqs(['valoracion-que-es', 'medico-diferencia', 'metodo-para-mi', 'valoracion-compromiso']);
+
+const pillars = [
+  {
+    icon: 'medical',
+    title: 'Control médico',
+    text: 'La doctora valora tu estado de salud y revisa la evolución durante el proceso. Es la base de cualquier decisión.',
+  },
+  {
+    icon: 'nutrition',
+    title: 'Plan nutricional',
+    text: 'Pautas de alimentación planteadas para tu caso, con explicaciones claras para que entiendas el porqué de cada paso.',
+  },
+  {
+    icon: 'movement',
+    title: 'Actividad física',
+    text: 'Movimiento adaptado a tu punto de partida, a tu salud y a lo que te resulta posible mantener en tu día a día.',
+  },
+  {
+    icon: 'coaching',
+    title: 'Acompañamiento y coaching',
+    text: 'Apoyo en hábitos, motivación y dudas cotidianas, para que el proceso no se viva en solitario.',
+  },
+] as const;
+
+const principles = [
+  { title: 'Valoración médica antes de cualquier plan', text: 'No se plantean pautas sin conocer antes tu contexto de salud.' },
+  { title: 'Seguimiento con criterio profesional', text: 'El proceso se revisa y se ajusta durante las consultas.' },
+  { title: 'Información clara, sin promesas', text: 'Se habla de objetivos realistas, nunca de resultados garantizados.' },
+  { title: 'Tus datos de salud, solo en consulta', text: 'La web y el formulario no piden información clínica.' },
+];
 ---
-<BaseLayout><main><p>Base técnica preparada para el rediseño de la Dra. Vicenta Cubells.</p></main></BaseLayout>
+
+<BaseLayout
+  title="Control de peso médico en Castellón | Dra. Vicenta Cubells"
+  description="Consulta médica en Castellón para acompañar tu proceso de control de peso con valoración, plan y seguimiento personalizado."
+  faqs={faqs}
+  preloadImage={images.portrait.src}
+>
+  <Hero
+    variant="home"
+    eyebrow="Consulta médica · Castellón"
+    title="Control de peso con acompañamiento médico en Castellón"
+    lead="Empezamos con una valoración médica para conocer tu contexto. Después, si es adecuado para ti, un plan individual y un seguimiento profesional durante el proceso."
+    image={{
+      ...images.portrait,
+      caption: '<strong>Dra. Vicenta Cubells Santaolaria</strong><br />Médica · CLIN&amp;DIET, Castellón',
+    }}
+  >
+    <Fragment slot="actions">
+      <a class="btn btn--primary" href={url('contacto/')}>
+        Solicitar valoración
+        <Icon name="arrow" size={20} />
+      </a>
+      <a class="btn btn--secondary" href={url('metodo-pnk-castellon/')}>Conocer el método</a>
+    </Fragment>
+    <div slot="after" class="hero__phones">
+      <PhoneList label="¿Prefieres llamar a la consulta?" />
+    </div>
+  </Hero>
+
+  <section class="section section--flush-top" aria-labelledby="propuesta">
+    <div class="container split">
+      <div class="split__aside">
+        <SectionHeader
+          id="propuesta"
+          eyebrow="La propuesta"
+          title="Salud con criterio, cambio acompañado."
+          intro="La consulta no empieza por una dieta. Empieza por conocerte."
+        />
+      </div>
+      <ol class="value-list split__main">
+        <li>
+          <span class="value-list__num" aria-hidden="true">01</span>
+          <h3>Evaluación</h3>
+          <p>Una valoración médica individual antes de plantear cualquier cambio.</p>
+        </li>
+        <li>
+          <span class="value-list__num" aria-hidden="true">02</span>
+          <h3>Plan individual</h3>
+          <p>Un plan que entiende tu contexto: tus hábitos, tus horarios y tu estado de salud.</p>
+        </li>
+        <li>
+          <span class="value-list__num" aria-hidden="true">03</span>
+          <h3>Seguimiento</h3>
+          <p>Acompañamiento durante el proceso, con revisiones y ajustes profesionales.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--sage" aria-labelledby="pilares">
+    <div class="container split split--wide-aside">
+      <div class="split__aside">
+        <div class="sticky">
+          <SectionHeader
+            id="pilares"
+            eyebrow="Cuatro áreas de trabajo"
+            title="Una misma consulta, cuatro formas de acompañarte"
+            intro="Cada área tiene su papel, pero ninguna funciona por separado: se coordinan a partir de la valoración médica."
+          >
+            <a class="text-link" href={url('metodo-pnk-castellon/')}>
+              <span>Ver cómo se integran en el método</span>
+              <Icon name="arrow" size={20} />
+            </a>
+          </SectionHeader>
+        </div>
+      </div>
+      <div class="split__main pillars">
+        {pillars.map((pillar, i) => <PillarCard icon={pillar.icon} index={i + 1} title={pillar.title} text={pillar.text} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="empezar">
+    <div class="container">
+      <div class="section-row">
+        <SectionHeader
+          id="empezar"
+          eyebrow="Cómo empezar"
+          title="Conoce cómo es la primera consulta"
+          intro="Cuatro pasos sencillos, sin compromiso de continuar y sin compartir datos de salud por la web."
+        />
+        <a class="text-link" href={url('como-es-la-primera-consulta/')}>
+          <span>Ver la primera consulta en detalle</span>
+          <Icon name="arrow" size={20} />
+        </a>
+      </div>
+      <div class="mt-56">
+        <Timeline steps={firstVisitSteps} />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--brass" aria-labelledby="confianza">
+    <div class="container split split--even">
+      <div class="split__aside">
+        <p class="eyebrow">Quién te atiende</p>
+        <h2 id="confianza" class="statement">
+          La valoración, el plan y el seguimiento pasan por el criterio de una médica.
+        </h2>
+        <a class="text-link mt-32" href={url('clinica/')}>
+          <span>Conocer la consulta CLIN&amp;DIET</span>
+          <Icon name="arrow" size={20} />
+        </a>
+      </div>
+      <ul class="check-list split__main">
+        {
+          principles.map((item) => (
+            <li>
+              <Icon name="check" />
+              <div>
+                <strong>{item.title}</strong>
+                <span>{item.text}</span>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="doctora">
+    <div class="container split split--even">
+      <figure class="split__aside">
+        <img
+          class="photo"
+          src={url(images.inConsultation.src)}
+          alt={images.inConsultation.alt}
+          width={images.inConsultation.width}
+          height={images.inConsultation.height}
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
+      <div class="split__main">
+        <SectionHeader
+          id="doctora"
+          eyebrow="Tu médica"
+          title="Conoce a la Dra. Vicenta Cubells"
+          intro="Médica en Castellón y responsable de la consulta CLIN&DIET. Acompaña a cada persona desde la valoración médica, con escucha, explicaciones claras y seguimiento."
+        />
+        <Credentials items={credentials} />
+        <a class="btn btn--secondary mt-32" href={url('dra-vicenta-cubells/')}>Ver perfil profesional</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--sage" aria-labelledby="faq-inicio">
+    <div class="container split">
+      <div class="split__aside">
+        <SectionHeader id="faq-inicio" eyebrow="Preguntas frecuentes" title="Dudas habituales antes de empezar">
+          <a class="text-link" href={url('preguntas-frecuentes/')}>
+            <span>Ver todas las preguntas</span>
+            <Icon name="arrow" size={20} />
+          </a>
+        </SectionHeader>
+      </div>
+      <div class="split__main">
+        <Faq items={faqs} />
+      </div>
+    </div>
+  </section>
+
+  <CtaBlock
+    eyebrow="Primer paso"
+    title="Empezamos con una valoración médica"
+    text="Pedir una valoración no te obliga a empezar nada. Es el momento de conocer el enfoque, resolver tus dudas y decidir con calma."
+    primary={{ label: 'Solicitar valoración', path: 'contacto/' }}
+    secondary={{ label: 'Conoce cómo es la primera consulta', path: 'como-es-la-primera-consulta/' }}
+  />
+</BaseLayout>
