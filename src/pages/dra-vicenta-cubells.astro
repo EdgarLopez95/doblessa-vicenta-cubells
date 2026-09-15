@@ -4,7 +4,6 @@ import Hero from '../components/Hero.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import Credentials from '../components/Credentials.astro';
 import CtaBlock from '../components/CtaBlock.astro';
-import StatementBand from '../components/StatementBand.astro';
 import Icon, { type IconName } from '../components/Icon.astro';
 import { credentials, images } from '../data/site';
 import { url } from '../lib/url';
@@ -81,11 +80,6 @@ const approach: { icon: IconName; title: string; text: string }[] = [
       </div>
     </div>
   </section>
-
-  <StatementBand
-    text="Antes de proponer cualquier cambio, hay que conocer a la persona."
-    caption="Así entiende la consulta el acompañamiento en el control de peso."
-  />
 
   <section class="section section--sage" aria-labelledby="enfoque">
     <div class="container">

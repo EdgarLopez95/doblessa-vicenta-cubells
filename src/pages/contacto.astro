@@ -50,14 +50,7 @@ const breadcrumbs = [{ label: 'Contacto', path: 'contacto/' }];
 
   <section class="section section--sage" aria-labelledby="ubicacion">
     <div class="container split split--halves">
-      <div class="split__aside placeholder placeholder--band" role="note">
-        <div>
-          <Icon name="pin" size={28} />
-          <strong>Castellón</strong>
-          <p>La dirección exacta y el mapa se añadirán cuando estén confirmados por la consulta.</p>
-        </div>
-      </div>
-      <div class="split__main">
+      <div class="split__aside">
         <SectionHeader
           id="ubicacion"
           eyebrow="Ubicación y privacidad"
@@ -79,6 +72,13 @@ const breadcrumbs = [{ label: 'Contacto', path: 'contacto/' }];
             </li>
           </ul>
         </SectionHeader>
+      </div>
+      <div class="split__main placeholder placeholder--band" role="note">
+        <div>
+          <Icon name="pin" size={28} />
+          <strong>Castellón</strong>
+          <p>La dirección exacta y el mapa se añadirán cuando estén confirmados por la consulta.</p>
+        </div>
       </div>
     </div>
   </section>

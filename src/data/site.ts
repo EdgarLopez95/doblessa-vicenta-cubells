@@ -53,6 +53,7 @@ export const firstVisitSteps = [
   },
   {
     title: 'Siguientes pasos personalizados',
+    short: 'Siguientes pasos',
     text: 'Si decides continuar, se plantea un plan individual y cómo será el seguimiento. Si no, te vas con tus dudas resueltas.',
   },
 ];

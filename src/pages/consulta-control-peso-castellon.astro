@@ -2,15 +2,12 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import SectionHeader from '../components/SectionHeader.astro';
-import Timeline from '../components/Timeline.astro';
 import ResourceCard from '../components/ResourceCard.astro';
 import Faq from '../components/Faq.astro';
 import CtaBlock from '../components/CtaBlock.astro';
 import PhoneList from '../components/PhoneList.astro';
 import ReviewNote from '../components/ReviewNote.astro';
-import StatementBand from '../components/StatementBand.astro';
 import Icon, { type IconName } from '../components/Icon.astro';
-import { firstVisitSteps } from '../data/site';
 import { pickFaqs } from '../data/faqs';
 import { url } from '../lib/url';
 
@@ -142,34 +139,6 @@ const prepare = [
     </div>
   </section>
 
-  <StatementBand
-    text="Un plan que entiende tu contexto empieza por escucharlo."
-    caption="Por eso la primera valoración dedica tiempo a conocerte antes de proponer ningún cambio."
-  />
-
-  <section class="section section--sage" aria-labelledby="paso-a-paso">
-    <div class="container split">
-      <div class="split__aside">
-        <div class="sticky">
-          <SectionHeader
-            id="paso-a-paso"
-            eyebrow="Primera valoración"
-            title="La primera valoración, paso a paso"
-            intro="Así empieza el proceso, desde que contactas hasta que decides si continuar."
-          >
-            <a class="text-link" href={url('como-es-la-primera-consulta/')}>
-              <span>Más detalle sobre la primera consulta</span>
-              <Icon name="arrow" size={20} />
-            </a>
-          </SectionHeader>
-        </div>
-      </div>
-      <div class="split__main">
-        <Timeline steps={firstVisitSteps} layout="compact" />
-      </div>
-    </div>
-  </section>
-
   <section class="section" aria-labelledby="esperar">
     <div class="container">
       <SectionHeader
@@ -177,7 +146,12 @@ const prepare = [
         eyebrow="Antes de venir"
         title="Qué puedes esperar y qué preparar"
         intro="Una consulta honesta, con información clara para decidir y sin presión. No es obligatorio traer nada."
-      />
+      >
+        <a class="text-link" href={url('como-es-la-primera-consulta/')}>
+          <span>Más detalle sobre la primera consulta</span>
+          <Icon name="arrow" size={20} />
+        </a>
+      </SectionHeader>
       <div class="split split--halves mt-56">
         <div class="split__aside">
           <h3>Qué puedes esperar</h3>

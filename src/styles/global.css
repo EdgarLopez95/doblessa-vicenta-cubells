@@ -876,7 +876,7 @@ body.menu-open {
   }
 
   .hero--aside .hero__grid {
-    align-items: end;
+    align-items: start;
   }
 
   .hero--media .hero__content,
@@ -2495,6 +2495,28 @@ body.menu-open {
 
 .topic-list--grid li:last-child {
   border-bottom: 0;
+}
+
+.question-list--grid {
+  display: grid;
+}
+
+.action-bar {
+  transition:
+    transform var(--dur) var(--ease),
+    visibility 0s linear var(--dur);
+}
+
+.js .action-bar:not(.is-visible) {
+  transform: translateY(110%);
+  visibility: hidden;
+}
+
+.action-bar.is-visible {
+  visibility: visible;
+  transition:
+    transform var(--dur) var(--ease),
+    visibility 0s;
 }
 
 .question-list--grid li {

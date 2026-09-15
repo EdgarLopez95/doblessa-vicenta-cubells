@@ -90,10 +90,20 @@ Layout SEO: `src/layouts/BaseLayout.astro` (title, description, canonical, Open 
   - Radios en columna en móvil.
   - Logo más grande.
   - Se elimina la franja bajo el pie en móvil.
+- **Ronda 4 (final): 83.75/100.** Todas las categorías ≥8 y sin bloqueantes, pero no llega al umbral de 85 (`design/critiques/ronda-4.md`). Evolución: 73.5 → 78.3 → 81.25 → 83.75.
+- Correcciones posteriores a la ronda 4 (sin nueva puntuación, se agotaron las rondas):
+  - La banda de declaración queda solo en inicio y método.
+  - Se elimina la sección vacía "El espacio" de clínica y su estado pasa a la ficha del hero.
+  - Corregido un bug: faltaba la rejilla de 2 columnas de las preguntas de método.
+  - Se retiran los pasos compactos de consulta.
+  - Orden móvil corregido en ubicación de contacto.
+  - La barra de acciones móvil aparece solo cuando los CTA del hero salen de pantalla; sin JS se ve siempre.
+  - Ficha lateral del hero alineada arriba.
+  - Logo del pie sin carga diferida.
 
 ## Próxima acción
 
-Revisión con la doctora de los contenidos marcados abajo, y crítica de diseño independiente para pulir detalles.
+Presentar el mockup al cliente y revisar con la doctora los contenidos marcados abajo. Si se quiere superar el 85 de la crítica, lo siguiente sería incorporar fotografías reales y autorizadas de la consulta: con solo dos fotos, la variedad visual tiene un techo.
 
 ## Validación pendiente (doctora, legal, marca)
 

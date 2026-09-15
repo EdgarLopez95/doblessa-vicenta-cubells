@@ -3,7 +3,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import CtaBlock from '../components/CtaBlock.astro';
-import StatementBand from '../components/StatementBand.astro';
 import PhoneList from '../components/PhoneList.astro';
 import Icon, { type IconName } from '../components/Icon.astro';
 import { url } from '../lib/url';
@@ -49,6 +48,10 @@ const principles: { icon: IconName; title: string; text: string }[] = [
           <dt>Dirección y horario</dt>
           <dd>Pendientes de confirmar</dd>
         </div>
+        <div class="fact-card__row">
+          <dt>Fotografías del espacio</dt>
+          <dd>Pendientes de autorización</dd>
+        </div>
       </dl>
       <PhoneList />
     </aside>
@@ -61,7 +64,12 @@ const principles: { icon: IconName; title: string; text: string }[] = [
         eyebrow="Forma de trabajar"
         title="Lo que guía cada consulta"
         intro="Son principios de trabajo, no garantías de resultado. Describen cómo se entiende la relación con cada persona."
-      />
+      >
+        <a class="text-link" href={url('como-es-la-primera-consulta/')}>
+          <span>Cómo es la primera consulta</span>
+          <Icon name="arrow" size={20} />
+        </a>
+      </SectionHeader>
       <div class="principles mt-56">
         {
           principles.map((item) => (
@@ -76,35 +84,6 @@ const principles: { icon: IconName; title: string; text: string }[] = [
     </div>
   </section>
 
-  <section class="section section--sage" aria-labelledby="espacio">
-    <div class="container">
-      <div>
-        <SectionHeader
-          id="espacio"
-          eyebrow="El espacio"
-          title="Un lugar para conversar, no un escaparate"
-          intro="Esta página mostrará el entorno real de la consulta cuando haya fotografías autorizadas. Hasta entonces, no se describen instalaciones que no se han podido verificar."
-        >
-          <a class="text-link" href={url('como-es-la-primera-consulta/')}>
-            <span>Cómo es la primera consulta</span>
-            <Icon name="arrow" size={20} />
-          </a>
-        </SectionHeader>
-      </div>
-      <div class="placeholder placeholder--band mt-56" role="note">
-        <div>
-          <Icon name="pin" size={28} />
-          <strong>Fotografía de la consulta</strong>
-          <p>Se incorporará una imagen real del espacio, con autorización, antes de publicar.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <StatementBand
-    text="Una consulta para hablar de tu salud con calma, y un seguimiento para no hacerlo en solitario."
-    caption="Si quieres saber cómo empieza, consulta la página de la primera valoración."
-  />
 
   <CtaBlock
     eyebrow="Primer paso"

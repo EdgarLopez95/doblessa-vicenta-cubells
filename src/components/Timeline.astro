@@ -4,6 +4,7 @@ interface Step {
   text: string;
   detail?: string;
   detailLabel?: string;
+  short?: string;
 }
 
 interface Props {
@@ -27,7 +28,7 @@ const Heading = headingLevel;
         <div class="timeline__body">
           <Heading class="timeline__title">
             <span class="sr-only">Paso {i + 1}: </span>
-            {step.title}
+            {layout === 'compact' && step.short ? step.short : step.title}
           </Heading>
           {layout !== 'compact' && <p>{step.text}</p>}
           {
