@@ -1,0 +1,25 @@
+---
+import { url } from '../lib/url';
+import Icon from './Icon.astro';
+
+interface Props {
+  topic: string;
+  title: string;
+  excerpt: string;
+  path: string;
+}
+
+const { topic, title, excerpt, path } = Astro.props;
+---
+
+<article class="resource">
+  <div class="resource__meta">
+    <span class="chip">Recurso de muestra</span>
+    <span class="resource__topic">{topic}</span>
+  </div>
+  <h3 class="resource__title">
+    <a href={url(path)}>{title}</a>
+  </h3>
+  <p class="resource__excerpt">{excerpt}</p>
+  <span class="resource__more" aria-hidden="true">Leer <Icon name="arrow" size={18} /></span>
+</article>

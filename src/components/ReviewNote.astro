@@ -1,0 +1,17 @@
+---
+import { site } from '../data/site';
+import Icon from './Icon.astro';
+
+interface Props {
+  text?: string;
+}
+
+const {
+  text = `Contenido informativo actualizado en ${site.contentUpdated}. Pendiente de revisión médica por la ${site.name} antes de su publicación.`,
+} = Astro.props;
+---
+
+<p class="review-note">
+  <Icon name="notes" size={20} />
+  <span>{text}</span>
+</p>

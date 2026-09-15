@@ -1,0 +1,21 @@
+---
+import Icon, { type IconName } from './Icon.astro';
+
+interface Props {
+  icon: IconName;
+  index: number;
+  title: string;
+  text: string;
+}
+
+const { icon, index, title, text } = Astro.props;
+---
+
+<article class="pillar">
+  <div class="pillar__top">
+    <span class="pillar__icon"><Icon name={icon} /></span>
+    <span class="pillar__index" aria-hidden="true">{String(index).padStart(2, '0')}</span>
+  </div>
+  <h3 class="pillar__title">{title}</h3>
+  <p class="pillar__text">{text}</p>
+</article>

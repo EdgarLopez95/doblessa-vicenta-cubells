@@ -1,0 +1,13 @@
+---
+import { site } from '../data/site';
+import { url } from '../lib/url';
+import Icon from './Icon.astro';
+---
+
+<div class="action-bar" role="region" aria-label="Acciones rápidas">
+  <a class="action-bar__call" href={site.phones[0].href}>
+    <Icon name="phone" size={20} />
+    <span>Llamar</span>
+  </a>
+  <a class="btn btn--primary action-bar__cta" href={url('contacto/')}>Solicitar valoración</a>
+</div>

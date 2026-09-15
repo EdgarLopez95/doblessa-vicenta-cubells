@@ -1,0 +1,60 @@
+---
+import Breadcrumbs, { type Crumb } from './Breadcrumbs.astro';
+import { url } from '../lib/url';
+
+interface HeroImage {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  caption?: string;
+}
+
+interface Props {
+  variant?: 'home' | 'interior';
+  eyebrow?: string;
+  title: string;
+  lead?: string;
+  breadcrumbs?: Crumb[];
+  image?: HeroImage;
+}
+
+const { variant = 'interior', eyebrow, title, lead, breadcrumbs, image } = Astro.props;
+const hasAside = Astro.slots.has('aside');
+---
+
+<section
+  class:list={['hero', `hero--${variant}`, { 'hero--media': image, 'hero--aside': hasAside && !image }]}
+  aria-labelledby="titulo-pagina"
+>
+  <div class="container">
+    {breadcrumbs && <Breadcrumbs items={breadcrumbs} />}
+    <div class="hero__grid">
+      <div class="hero__content">
+        {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+        <h1 id="titulo-pagina" class="hero__title">{title}</h1>
+        {lead && <p class="lead hero__lead">{lead}</p>}
+        {Astro.slots.has('actions') && <div class="hero__actions"><slot name="actions" /></div>}
+        <slot name="after" />
+      </div>
+      {
+        image && (
+          <figure class="hero__figure">
+            <div class="hero__frame">
+              <img
+                src={url(image.src)}
+                alt={image.alt}
+                width={image.width}
+                height={image.height}
+                fetchpriority="high"
+                decoding="async"
+              />
+            </div>
+            {image.caption && <figcaption set:html={image.caption} />}
+          </figure>
+        )
+      }
+      {hasAside && !image && <div class="hero__aside"><slot name="aside" /></div>}
+    </div>
+  </div>
+</section>

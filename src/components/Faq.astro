@@ -1,0 +1,35 @@
+---
+import type { FaqItem } from '../data/faqs';
+import { url } from '../lib/url';
+
+interface Props {
+  items: FaqItem[];
+  note?: boolean;
+}
+
+const { items, note = true } = Astro.props;
+---
+
+<div class="faq">
+  {
+    items.map((item) => (
+      <details class="faq__item" id={`faq-${item.id}`}>
+        <summary class="faq__summary">
+          <span class="faq__question">{item.q}</span>
+          <span class="faq__icon" aria-hidden="true" />
+        </summary>
+        <div class="faq__answer">
+          <p>{item.a}</p>
+        </div>
+      </details>
+    ))
+  }
+  {
+    note && (
+      <p class="faq__note">
+        Estas respuestas orientan de forma general. Si tu duda es sobre tu caso concreto, lo adecuado es comentarla en
+        una <a href={url('contacto/')}>valoración médica</a>.
+      </p>
+    )
+  }
+</div>

@@ -1,0 +1,36 @@
+---
+interface Step {
+  title: string;
+  text: string;
+  detail?: string;
+}
+
+interface Props {
+  steps: Step[];
+  layout?: 'horizontal' | 'vertical';
+  headingLevel?: 'h3' | 'h4';
+}
+
+const { steps, layout = 'horizontal', headingLevel = 'h3' } = Astro.props;
+const Heading = headingLevel;
+---
+
+<ol class:list={['timeline', `timeline--${layout}`]}>
+  {
+    steps.map((step, i) => (
+      <li class="timeline__step">
+        <span class="timeline__marker" aria-hidden="true">
+          {String(i + 1).padStart(2, '0')}
+        </span>
+        <div class="timeline__body">
+          <Heading class="timeline__title">
+            <span class="sr-only">Paso {i + 1}: </span>
+            {step.title}
+          </Heading>
+          <p>{step.text}</p>
+          {step.detail && <p class="timeline__detail">{step.detail}</p>}
+        </div>
+      </li>
+    ))
+  }
+</ol>

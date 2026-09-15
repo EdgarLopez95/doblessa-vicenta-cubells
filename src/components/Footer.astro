@@ -1,0 +1,64 @@
+---
+import { nav, site, images } from '../data/site';
+import { url } from '../lib/url';
+import PhoneList from './PhoneList.astro';
+
+const more = [
+  { label: 'Cómo es la primera consulta', path: 'como-es-la-primera-consulta/' },
+  { label: 'La clínica', path: 'clinica/' },
+];
+---
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="site-footer__grid">
+      <div class="site-footer__brand">
+        <a href={url('')} class="site-footer__logo">
+          <img
+            src={url(images.logoLight.src)}
+            alt="Dra. Vicenta Cubells"
+            width={images.logoLight.width}
+            height={images.logoLight.height}
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
+        <p>Consulta médica para el control de peso en {site.city}, con valoración individual y seguimiento profesional.</p>
+      </div>
+
+      <nav class="site-footer__col" aria-label="Pie de página">
+        <p class="site-footer__title">Navegación</p>
+        <ul>
+          {nav.map((item) => <li><a href={url(item.path)}>{item.label}</a></li>)}
+          {more.map((item) => <li><a href={url(item.path)}>{item.label}</a></li>)}
+        </ul>
+      </nav>
+
+      <div class="site-footer__col">
+        <p class="site-footer__title">Contacto</p>
+        <PhoneList tone="light" />
+        <p class="site-footer__muted">Dirección y horario pendientes de confirmar.</p>
+      </div>
+
+      <div class="site-footer__col">
+        <p class="site-footer__title">Legal</p>
+        <ul>
+          <li><a href={url('politica-de-privacidad/')}>Política de privacidad</a></li>
+          <li><a href={url('aviso-legal/')}>Aviso legal</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="site-footer__notice">
+      <p>
+        <strong>Aviso médico.</strong> La información de esta web es general y orientativa. No sustituye una valoración
+        médica individual ni permite diagnosticar o indicar tratamientos a distancia.
+      </p>
+    </div>
+
+    <div class="site-footer__bottom">
+      <p>© 2026 {site.fullName} · {site.brand}</p>
+      <p>Propuesta de rediseño · contenido pendiente de validación profesional y legal.</p>
+    </div>
+  </div>
+</footer>

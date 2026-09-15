@@ -1,0 +1,31 @@
+---
+import { site } from '../data/site';
+import Icon from './Icon.astro';
+
+interface Props {
+  variant?: 'inline' | 'cards';
+  tone?: 'default' | 'light';
+  label?: string;
+}
+
+const { variant = 'inline', tone = 'default', label } = Astro.props;
+---
+
+<div class:list={['phones', `phones--${variant}`, `phones--${tone}`]}>
+  {label && <p class="phones__label">{label}</p>}
+  <ul>
+    {
+      site.phones.map((phone) => (
+        <li>
+          <a class="phones__link" href={phone.href}>
+            <Icon name="phone" size={20} />
+            <span>
+              <span class="sr-only">Llamar al </span>
+              {phone.label}
+            </span>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>

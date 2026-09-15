@@ -1,0 +1,115 @@
+---
+import { nav, images } from '../data/site';
+import { url } from '../lib/url';
+import Icon from './Icon.astro';
+import PhoneList from './PhoneList.astro';
+
+const current = Astro.url.pathname.replace(/\/?$/, '/');
+const isCurrent = (path: string) => current === url(path);
+---
+
+<header class="site-header" data-header>
+  <div class="container site-header__inner">
+    <a class="site-header__brand" href={url('')}>
+      <img
+        src={url(images.logoDark.src)}
+        alt="Dra. Vicenta Cubells"
+        width={images.logoDark.width}
+        height={images.logoDark.height}
+      />
+    </a>
+
+    <nav class="site-nav" aria-label="Principal">
+      <ul>
+        {
+          nav.map((item) => (
+            <li>
+              <a href={url(item.path)} aria-current={isCurrent(item.path) ? 'page' : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+
+    <div class="site-header__actions">
+      <a class="btn btn--primary btn--sm site-header__cta" href={url('contacto/')}>Solicitar valoración</a>
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="menu-movil"
+        data-menu-toggle
+      >
+        <Icon name="menu" class="menu-toggle__open" />
+        <Icon name="close" class="menu-toggle__close" />
+        <span class="sr-only" data-menu-label>Abrir menú</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="menu-movil" data-menu hidden>
+    <div class="container">
+      <nav aria-label="Menú móvil">
+        <ul class="mobile-menu__list">
+          {
+            nav.map((item) => (
+              <li>
+                <a href={url(item.path)} aria-current={isCurrent(item.path) ? 'page' : undefined}>
+                  {item.label}
+                  <Icon name="arrow" size={20} />
+                </a>
+              </li>
+            ))
+          }
+          <li>
+            <a href={url('como-es-la-primera-consulta/')} aria-current={isCurrent('como-es-la-primera-consulta/') ? 'page' : undefined}>
+              Cómo es la primera consulta
+              <Icon name="arrow" size={20} />
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <a class="btn btn--primary btn--block" href={url('contacto/')}>Solicitar valoración</a>
+      <PhoneList label="O llama a la consulta" />
+    </div>
+  </div>
+</header>
+
+<script>
+  const header = document.querySelector<HTMLElement>('[data-header]');
+  const toggle = document.querySelector<HTMLButtonElement>('[data-menu-toggle]');
+  const menu = document.querySelector<HTMLElement>('[data-menu]');
+  const label = document.querySelector<HTMLElement>('[data-menu-label]');
+
+  if (header && toggle && menu && label) {
+    const setOpen = (open: boolean) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      label.textContent = open ? 'Cerrar menú' : 'Abrir menú';
+      menu.hidden = !open;
+      document.body.classList.toggle('menu-open', open);
+    };
+
+    toggle.addEventListener('click', () => setOpen(toggle.getAttribute('aria-expanded') !== 'true'));
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !menu.hidden) {
+        setOpen(false);
+        toggle.focus();
+      }
+    });
+
+    menu.addEventListener('click', (event) => {
+      if ((event.target as HTMLElement).closest('a')) setOpen(false);
+    });
+
+    window.matchMedia('(min-width: 1180px)').addEventListener('change', (event) => {
+      if (event.matches) setOpen(false);
+    });
+
+    const onScroll = () => header.toggleAttribute('data-scrolled', window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+  }
+</script>

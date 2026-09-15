@@ -1,0 +1,205 @@
+---
+import { url } from '../lib/url';
+import Icon from './Icon.astro';
+
+const reasons = [
+  'Primera valoración médica',
+  'Información sobre el Método PnK®',
+  'Dudas sobre cómo funciona la consulta',
+  'Otra consulta general',
+];
+---
+
+<form class="demo-form" novalidate data-demo-form aria-labelledby="form-titulo" aria-describedby="form-aviso">
+  <div class="demo-form__head">
+    <h2 id="form-titulo" class="demo-form__title">Solicitud de contacto</h2>
+    <p class="demo-form__notice" id="form-aviso">
+      <Icon name="lock" size={20} />
+      <span><strong>Formulario demostrativo.</strong> No envía ni guarda ningún dato. Para pedir cita hoy, llama a la consulta.</span>
+    </p>
+  </div>
+
+  <div class="field">
+    <label class="field__label" for="f-nombre">Nombre</label>
+    <input
+      class="field__input"
+      id="f-nombre"
+      type="text"
+      autocomplete="given-name"
+      required
+      aria-describedby="f-nombre-error"
+      data-validate="name"
+    />
+    <p class="field__error" id="f-nombre-error" data-error></p>
+  </div>
+
+  <fieldset class="field">
+    <legend class="field__label">Medio de contacto preferido</legend>
+    <div class="choices">
+      <label class="choice">
+        <input type="radio" name="demo-medio" value="telefono" checked data-contact-mode />
+        <span>Teléfono</span>
+      </label>
+      <label class="choice">
+        <input type="radio" name="demo-medio" value="email" data-contact-mode />
+        <span>Email</span>
+      </label>
+    </div>
+  </fieldset>
+
+  <div class="field">
+    <label class="field__label" for="f-contacto" data-contact-label>Teléfono</label>
+    <p class="field__hint" id="f-contacto-hint" data-contact-hint>Un número en el que la consulta pueda localizarte.</p>
+    <input
+      class="field__input"
+      id="f-contacto"
+      type="tel"
+      inputmode="tel"
+      autocomplete="tel"
+      required
+      aria-describedby="f-contacto-hint f-contacto-error"
+      data-validate="contact"
+    />
+    <p class="field__error" id="f-contacto-error" data-error></p>
+  </div>
+
+  <div class="field">
+    <label class="field__label" for="f-motivo">Motivo general</label>
+    <p class="field__hint" id="f-motivo-hint">Elige una opción general. No incluyas datos de salud.</p>
+    <div class="field__select">
+      <select
+        class="field__input"
+        id="f-motivo"
+        required
+        aria-describedby="f-motivo-hint f-motivo-error"
+        data-validate="select"
+      >
+        <option value="">Selecciona una opción</option>
+        {reasons.map((reason) => <option value={reason}>{reason}</option>)}
+      </select>
+    </div>
+    <p class="field__error" id="f-motivo-error" data-error></p>
+  </div>
+
+  <fieldset class="field">
+    <legend class="field__label">¿Cuándo prefieres que te contacten?</legend>
+    <div class="choices">
+      <label class="choice">
+        <input type="radio" name="demo-franja" value="manana" />
+        <span>Por la mañana</span>
+      </label>
+      <label class="choice">
+        <input type="radio" name="demo-franja" value="tarde" />
+        <span>Por la tarde</span>
+      </label>
+      <label class="choice">
+        <input type="radio" name="demo-franja" value="indiferente" checked />
+        <span>Sin preferencia</span>
+      </label>
+    </div>
+  </fieldset>
+
+  <p class="demo-form__privacy">
+    <Icon name="shield" size={20} />
+    <span>No pedimos peso, altura, historial médico, diagnósticos ni medicación. Esa información se trata únicamente en consulta.</span>
+  </p>
+
+  <div class="field field--check">
+    <div class="check">
+      <input
+        id="f-privacidad"
+        type="checkbox"
+        required
+        aria-describedby="f-privacidad-error"
+        data-validate="consent"
+      />
+      <label for="f-privacidad">
+        He leído la <a href={url('politica-de-privacidad/')}>política de privacidad</a> y acepto que mis datos se usen
+        solo para responder a esta solicitud.
+      </label>
+    </div>
+    <p class="field__error" id="f-privacidad-error" data-error></p>
+  </div>
+
+  <button class="btn btn--primary btn--block" type="submit">Enviar solicitud de valoración</button>
+
+  <div class="demo-form__status" role="status" aria-live="polite" data-form-status></div>
+</form>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>('[data-demo-form]');
+
+  if (form) {
+    const contact = form.querySelector<HTMLInputElement>('#f-contacto')!;
+    const contactLabel = form.querySelector<HTMLElement>('[data-contact-label]')!;
+    const contactHint = form.querySelector<HTMLElement>('[data-contact-hint]')!;
+    const status = form.querySelector<HTMLElement>('[data-form-status]')!;
+    const fields = Array.from(form.querySelectorAll<HTMLInputElement | HTMLSelectElement>('[data-validate]'));
+    let attempted = false;
+
+    const mode = () => form.querySelector<HTMLInputElement>('[data-contact-mode]:checked')?.value ?? 'telefono';
+
+    const messages = {
+      name: (el: HTMLInputElement) => (el.value.trim() ? '' : 'Escribe tu nombre para saber cómo dirigirnos a ti.'),
+      contact: (el: HTMLInputElement) => {
+        const value = el.value.trim();
+        if (mode() === 'email') {
+          if (!value) return 'Escribe un email para que la consulta pueda responderte.';
+          return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(value) ? '' : 'Revisa el email; por ejemplo: nombre@correo.es';
+        }
+        if (!value) return 'Escribe un teléfono para que la consulta pueda llamarte.';
+        return value.replace(/\D/g, '').length >= 9 ? '' : 'Revisa el teléfono: debe tener al menos 9 cifras.';
+      },
+      select: (el: HTMLSelectElement) => (el.value ? '' : 'Elige un motivo general.'),
+      consent: (el: HTMLInputElement) => (el.checked ? '' : 'Para continuar, acepta la política de privacidad.'),
+    } as const;
+
+    const validate = (el: HTMLInputElement | HTMLSelectElement) => {
+      const kind = el.dataset.validate as keyof typeof messages;
+      const message = (messages[kind] as (e: typeof el) => string)(el);
+      const error = form.querySelector<HTMLElement>(`#${el.id}-error`)!;
+      error.textContent = message;
+      el.setAttribute('aria-invalid', String(Boolean(message)));
+      el.closest('.field')?.classList.toggle('field--invalid', Boolean(message));
+      return !message;
+    };
+
+    form.querySelectorAll<HTMLInputElement>('[data-contact-mode]').forEach((radio) => {
+      radio.addEventListener('change', () => {
+        const email = mode() === 'email';
+        contact.type = email ? 'email' : 'tel';
+        contact.inputMode = email ? 'email' : 'tel';
+        contact.autocomplete = email ? 'email' : 'tel';
+        contactLabel.textContent = email ? 'Email' : 'Teléfono';
+        contactHint.textContent = email
+          ? 'Una dirección en la que la consulta pueda responderte.'
+          : 'Un número en el que la consulta pueda localizarte.';
+        contact.value = '';
+        if (attempted) validate(contact);
+      });
+    });
+
+    fields.forEach((el) => {
+      el.addEventListener(el instanceof HTMLInputElement && el.type === 'checkbox' ? 'change' : 'blur', () => {
+        if (attempted) validate(el);
+      });
+      el.addEventListener('input', () => {
+        if (attempted && el.getAttribute('aria-invalid') === 'true') validate(el);
+      });
+    });
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      attempted = true;
+      status.textContent = '';
+      status.classList.remove('is-visible');
+      const invalid = fields.filter((el) => !validate(el));
+      if (invalid.length) {
+        invalid[0].focus();
+        return;
+      }
+      status.textContent = 'Solicitud demostrativa: en la web real este formulario conectará con la consulta.';
+      status.classList.add('is-visible');
+    });
+  }
+</script>
