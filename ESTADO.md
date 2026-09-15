@@ -2,7 +2,7 @@
 
 ## Estado actual
 
-Mockup estático completo del rediseño: 10 pantallas, sistema visual propio, componentes reutilizables, SEO técnico y formulario demostrativo. Presentable al cliente; contenido pendiente de validación clínica, legal y de marca.
+Mockup estático completo del rediseño: 10 pantallas, sistema visual propio, componentes reutilizables, SEO técnico y formulario demostrativo. Huecos de confianza y SEO cerrados: schema FAQPage retirado a propósito de JSON-LD, directiva `noindex,follow` global en todas las pantallas por prudencia YMYL (mockup en github.io + inyecciones de casino en dominio legacy), fecha de revisión médica visible en el pie de todas las páginas, avisos normativos de NAP, tarifas y marca PnK®, y navegación móvil completada con «La clínica». Documentados `GAPS.md` y `BUGS.md`. Presentable al cliente; contenido pendiente de validación clínica, legal y de marca.
 
 ## Base técnica
 
@@ -10,28 +10,29 @@ Mockup estático completo del rediseño: 10 pantallas, sistema visual propio, co
 - `base`: `/doblessa-vicenta-cubells` (configuración original de `astro.config.mjs` sin cambios).
 - GitHub Pages: `https://edgarlopez95.github.io/doblessa-vicenta-cubells/`.
 - Validación: `npm run build`.
+- Meta robots: `noindex, follow` en todas las páginas por prudencia YMYL hasta el despliegue en dominio canónico limpio.
 
 ## Rutas creadas
 
-| Ruta | Página | Indexable |
+| Ruta | Página | Robots |
 |---|---|---|
-| `/` | Inicio | Sí |
-| `/consulta-control-peso-castellon/` | Consulta (servicio principal) | Sí |
-| `/metodo-pnk-castellon/` | Método PnK® | Sí |
-| `/como-es-la-primera-consulta/` | Primera valoración | Sí |
-| `/dra-vicenta-cubells/` | Perfil profesional | Sí |
-| `/clinica/` | La clínica CLIN&DIET | Sí |
-| `/preguntas-frecuentes/` | FAQ extensa (4 categorías) | Sí |
-| `/contacto/` | Solicita una valoración | Sí |
-| `/politica-de-privacidad/` | Legal (borrador) | `noindex`, fuera del sitemap |
-| `/aviso-legal/` | Legal (borrador) | `noindex`, fuera del sitemap |
+| `/` | Inicio | `noindex, follow` |
+| `/consulta-control-peso-castellon/` | Consulta (servicio principal) | `noindex, follow` |
+| `/metodo-pnk-castellon/` | Método PnK® | `noindex, follow` |
+| `/como-es-la-primera-consulta/` | Primera valoración | `noindex, follow` |
+| `/dra-vicenta-cubells/` | Perfil profesional | `noindex, follow` |
+| `/clinica/` | La clínica CLIN&DIET | `noindex, follow` |
+| `/preguntas-frecuentes/` | FAQ extensa (4 categorías) | `noindex, follow` |
+| `/contacto/` | Solicita una valoración | `noindex, follow` |
+| `/politica-de-privacidad/` | Legal (borrador) | `noindex, follow` (fuera del sitemap) |
+| `/aviso-legal/` | Legal (borrador) | `noindex, follow` (fuera del sitemap) |
 | `/sitemap.xml`, `/robots.txt` | Endpoints estáticos | — |
 
 ## Componentes construidos (`src/components/`)
 
-`Header` (sticky, navegación, CTA persistente, menú móvil accesible con Escape y `aria-expanded`) · `Footer` (navegación, teléfonos, legal, aviso médico) · `MobileActionBar` (Llamar + Solicitar valoración en <720 px; oculta en contacto) · `Hero` (inicio / interior, con imagen o ficha lateral) · `Breadcrumbs` · `SectionHeader` · `PillarCard` · `Timeline` (horizontal / vertical) · `Credentials` (compacto / completo, con aviso de verificación) · `ResourceCard` (recurso de muestra) · `Faq` (`<details>` nativo) · `DemoForm` · `CtaBlock` (oscuro / sage) · `PhoneList` · `ReviewNote` · `Icon` (iconos lineales SVG) · `SectionNav` (navegación local de la rama «La consulta») · `StatementBand` (banda editorial a todo el ancho).
+`Header` (sticky, navegación, CTA persistente, sublista móvil para «La consulta» con «Cómo es la primera consulta» y «La clínica», menú accesible con Escape y `aria-expanded` sin duplicar `aria-current`) · `Footer` (navegación, teléfonos, legal, aviso médico, nota de revisión médica con fecha y aviso de NAP pendiente) · `MobileActionBar` (Llamar + Solicitar valoración en <720 px; oculta en contacto) · `Hero` (inicio / interior, con imagen o ficha lateral) · `Breadcrumbs` · `SectionHeader` · `PillarCard` · `Timeline` (horizontal / vertical) · `Credentials` (compacto / completo, con aviso de verificación) · `ResourceCard` (recurso de muestra) · `Faq` (`<details>` nativo) · `DemoForm` (sin atributos name, seguro contra envíos GET) · `CtaBlock` (oscuro / sage) · `PhoneList` · `ReviewNote` · `Icon` (iconos lineales SVG) · `SectionNav` (navegación local de la rama «La consulta») · `StatementBand` (banda editorial a todo el ancho).
 
-Layout SEO: `src/layouts/BaseLayout.astro` (title, description, canonical, Open Graph, `noindex` opcional, preload del hero y JSON-LD). Datos: `src/data/site.ts` y `src/data/faqs.ts`. Rutas: `src/lib/url.ts` (`url()` y `absoluteUrl()` sobre `import.meta.env.BASE_URL`).
+Layout SEO: `src/layouts/BaseLayout.astro` (title, description, canonical, Open Graph, `noindex,follow` global, preload del hero y JSON-LD sin FAQPage). Datos: `src/data/site.ts` y `src/data/faqs.ts`. Rutas: `src/lib/url.ts` (`url()` y `absoluteUrl()` sobre `import.meta.env.BASE_URL`).
 
 ## Imágenes copiadas (`public/images/`)
 
@@ -44,15 +45,14 @@ Layout SEO: `src/layouts/BaseLayout.astro` (title, description, canonical, Open 
 
 - Elemento memorable: la barra diagonal de latón del logotipo CLIN&DIET reutilizada en etiquetas, hero, timeline y CTA.
 - Tokens obligatorios en `:root`; derivados semánticos mínimos (líneas, borde de controles y `--error-700` para errores de formulario).
-- Navegación completa desde 1180 px; por debajo, menú móvil con CTA y teléfonos.
-- Jerarquía de navegación (`e44eee1`): `/como-es-la-primera-consulta/` y `/clinica/` son hijas de «La consulta». El menú de escritorio marca la sección padre, el menú móvil solo la coincidencia exacta (para no señalar dos elementos), los breadcrumbs tienen tres niveles y las tres páginas comparten una navegación local. El menú principal sigue con los 5 elementos del encargo.
-- El pie usa un verde más profundo (`--clinic-950`) con filete de latón para no fundirse con el CTA final, navegación en dos columnas y enlaces legales en la franja inferior (`d19209b`).
-- Formulario sin atributos `name` y con `preventDefault`: incluso sin JavaScript no serializa datos en la URL. Valida junto a cada campo, enfoca el primer error y muestra el mensaje demostrativo exigido.
-- JSON-LD prudente: `WebSite`, `Person` (nombre, «Médica», teléfonos públicos e imagen), `MedicalWebPage` / `ProfilePage` / `AboutPage` / `ContactPage` / `FAQPage`, `BreadcrumbList` y `FAQPage` solo con las FAQs visibles en cada página. Sin dirección, reseñas, ofertas ni resultados.
-- La foto «en consulta» no muestra la clínica: en `/clinica/` hay un bloque neutro reservado para una fotografía autorizada, en lugar de presentarla como el espacio.
+- Navegación completa desde 1180 px; por debajo, menú móvil con CTA, teléfonos y sublista de «La consulta» (`como-es-la-primera-consulta/` y `clinica/`).
+- Jerarquía de navegación: `/como-es-la-primera-consulta/` y `/clinica/` son hijas de «La consulta». El menú de escritorio marca la sección padre, el menú móvil muestra la sublista y solo la coincidencia exacta recibe `aria-current="page"`. Los breadcrumbs tienen tres niveles y las tres páginas comparten SectionNav local.
+- El pie usa un verde más profundo (`--clinic-950`) con filete de latón, navegación en dos columnas, enlaces legales y bloque persistente de revisión médica fechada en septiembre de 2026.
+- Formulario 100% libre de atributos `name`, con exclusión mutua de radios vía `data-group`, `preventDefault`, `action="javascript:void(0);"` y `onsubmit="return false;"`: imposible serializar datos en la URL ni aun desactivando JavaScript.
+- JSON-LD prudente: `WebSite`, `Person` (nombre, «Médica», teléfonos públicos e imagen, sin address), `MedicalWebPage` / `ProfilePage` / `AboutPage` / `ContactPage`, `BreadcrumbList`. **Se eliminó a propósito el schema `@type: FAQPage`** (Google ha limitado los rich snippets de FAQ y el contenido está pendiente de revisión clínica). Sin dirección, reseñas, ofertas ni resultados.
+- La foto «en consulta» no muestra la clínica: en `/clinica/` hay un bloque neutro reservado con el texto explícito *«Falta una fotografía autorizada de la consulta CLIN&DIET»*, en lugar de presentarla como el espacio.
 - Se descartó el revelado al hacer scroll: ocultaba pasos del timeline en capturas y herramientas que no desplazan. Solo hay transiciones de 200 ms en hover, foco y acordeón, anuladas con `prefers-reduced-motion`.
-- No se generan variantes WebP/AVIF: las imágenes se sirven desde `public/` tal y como se pidió.
-- Documentos de diseño en `design/brief.md` y `design/direction.md`. Las capturas de QA (`design/qa/`) quedan fuera de git.
+- Documentación de control y auditoría: `GAPS.md` para elementos pendientes del cliente/médica/legal y `BUGS.md` para registro de correcciones técnicas. Documentos de diseño en `design/brief.md` y `design/direction.md`.
 
 ## Resultado de build y QA
 
