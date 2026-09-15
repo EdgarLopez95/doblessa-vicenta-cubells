@@ -75,16 +75,14 @@ const principles = [
   </Hero>
 
   <section class="section section--flush-top" aria-labelledby="propuesta">
-    <div class="container split">
-      <div class="split__aside">
-        <SectionHeader
-          id="propuesta"
-          eyebrow="La propuesta"
-          title="Salud con criterio, cambio acompañado."
-          intro="La consulta no empieza por una dieta. Empieza por conocerte."
-        />
-      </div>
-      <ol class="value-list split__main">
+    <div class="container">
+      <SectionHeader
+        id="propuesta"
+        eyebrow="La propuesta"
+        title="Salud con criterio, cambio acompañado."
+        intro="La consulta no empieza por una dieta. Empieza por conocerte."
+      />
+      <ol class="value-cols mt-56">
         <li>
           <span class="value-list__num" aria-hidden="true">01</span>
           <h3>Evaluación</h3>
@@ -142,7 +140,7 @@ const principles = [
         </a>
       </div>
       <div class="mt-56">
-        <Timeline steps={firstVisitSteps} layout="compact" />
+        <Timeline steps={firstVisitSteps} layout="compact" columns={4} />
       </div>
     </div>
   </section>

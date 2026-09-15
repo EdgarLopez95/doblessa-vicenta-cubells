@@ -80,6 +80,16 @@ Layout SEO: `src/layouts/BaseLayout.astro` (title, description, canonical, Open 
   - En el perfil, el aviso de revisión pasa a la columna izquierda (sticky).
   - Recortes cuadrados en el segundo uso de cada foto.
 - Los textos de CTA se mantienen porque los fija el encargo por página.
+- Ronda 3: 81.25/100, todas las categorías ≥7.5, sin bloqueantes (`design/critiques/ronda-3.md`).
+- Refinamiento de la ronda 4 (última):
+  - Nuevas composiciones en páginas interiores: preguntas en rejilla con numerales, temas de consulta en 2×2 y banda de declaración en clínica.
+  - "La propuesta" pasa a 3 columnas.
+  - Las cajas de detalle de la primera consulta aportan información nueva.
+  - Rejillas fijas para los pasos compactos.
+  - Hero en dos columnas a 768px.
+  - Radios en columna en móvil.
+  - Logo más grande.
+  - Se elimina la franja bajo el pie en móvil.
 
 ## Próxima acción
 

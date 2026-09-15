@@ -15,12 +15,12 @@ const breadcrumbs = [{ label: 'Primera consulta', path: 'como-es-la-primera-cons
 const faqs = pickFaqs(['valoracion-preparar', 'valoracion-compromiso', 'privacidad-telefono']);
 
 const details = [
-  'Puedes hacerlo por teléfono o con el formulario de contacto. Solo se piden un nombre, un medio de contacto y un motivo general.',
-  'Es un contacto breve y práctico: resolver dudas iniciales y encontrar un momento que te venga bien.',
-  'Se habla de tu historia, tus hábitos, tu salud y lo que esperas. Es el momento de preguntar todo lo que necesites.',
-  'Recibes una explicación clara de lo que se propone y por qué. Decides con calma si quieres continuar.',
+  { label: 'Qué necesitas', text: 'Un nombre, un teléfono o email y un motivo general. Nada sobre tu salud.' },
+  { label: 'Qué se acuerda', text: 'El momento de la valoración y los detalles prácticos para acudir a la consulta.' },
+  { label: 'Qué te llevas', text: 'Respuestas a tus dudas y una explicación de las opciones que se valoran en tu caso.' },
+  { label: 'Qué decides', text: 'Si quieres continuar y cuándo. Pedir la valoración no te compromete a nada.' },
 ];
-const steps = firstVisitSteps.map((step, i) => ({ ...step, detail: details[i] }));
+const steps = firstVisitSteps.map((step, i) => ({ ...step, detail: details[i].text, detailLabel: details[i].label }));
 
 const canPrepare = [
   { title: 'Informes o analíticas recientes', text: 'Si los tienes a mano. Los verá la doctora en la consulta.' },

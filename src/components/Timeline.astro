@@ -3,19 +3,21 @@ interface Step {
   title: string;
   text: string;
   detail?: string;
+  detailLabel?: string;
 }
 
 interface Props {
   steps: Step[];
   layout?: 'horizontal' | 'vertical' | 'compact';
+  columns?: 2 | 4;
   headingLevel?: 'h3' | 'h4';
 }
 
-const { steps, layout = 'horizontal', headingLevel = 'h3' } = Astro.props;
+const { steps, layout = 'horizontal', columns = 2, headingLevel = 'h3' } = Astro.props;
 const Heading = headingLevel;
 ---
 
-<ol class:list={['timeline', `timeline--${layout}`]}>
+<ol class:list={['timeline', `timeline--${layout}`, { 'timeline--cols-4': columns === 4 }]}>
   {
     steps.map((step, i) => (
       <li class="timeline__step">
@@ -28,7 +30,14 @@ const Heading = headingLevel;
             {step.title}
           </Heading>
           {layout !== 'compact' && <p>{step.text}</p>}
-          {step.detail && <p class="timeline__detail">{step.detail}</p>}
+          {
+            step.detail && (
+              <p class="timeline__detail">
+                {step.detailLabel && <strong>{step.detailLabel}</strong>}
+                {step.detail}
+              </p>
+            )
+          }
         </div>
       </li>
     ))

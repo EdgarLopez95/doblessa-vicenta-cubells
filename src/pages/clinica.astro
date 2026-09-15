@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import CtaBlock from '../components/CtaBlock.astro';
+import StatementBand from '../components/StatementBand.astro';
 import PhoneList from '../components/PhoneList.astro';
 import Icon, { type IconName } from '../components/Icon.astro';
 import { url } from '../lib/url';
@@ -100,40 +101,10 @@ const principles: { icon: IconName; title: string; text: string }[] = [
     </div>
   </section>
 
-  <section class="section" aria-labelledby="experiencia">
-    <div class="container split">
-      <div class="split__aside">
-        <SectionHeader
-          id="experiencia"
-          eyebrow="La experiencia"
-          title="Qué se vive en la consulta"
-          intro="Del primer contacto al seguimiento, cada momento tiene un propósito claro."
-        />
-      </div>
-      <ol class="value-list split__main">
-        <li>
-          <span class="value-list__num" aria-hidden="true">01</span>
-          <h3>Contactas</h3>
-          <p>Por teléfono o con una solicitud breve, sin compartir datos de salud.</p>
-        </li>
-        <li>
-          <span class="value-list__num" aria-hidden="true">02</span>
-          <h3>Conversas</h3>
-          <p>La doctora conoce tu situación y resuelve tus dudas.</p>
-        </li>
-        <li>
-          <span class="value-list__num" aria-hidden="true">03</span>
-          <h3>Decides</h3>
-          <p>Con una explicación clara de lo que se propone y por qué.</p>
-        </li>
-        <li>
-          <span class="value-list__num" aria-hidden="true">04</span>
-          <h3>Te acompañamos</h3>
-          <p>Si continúas, con un seguimiento profesional durante el proceso.</p>
-        </li>
-      </ol>
-    </div>
-  </section>
+  <StatementBand
+    text="Una consulta para hablar de tu salud con calma, y un seguimiento para no hacerlo en solitario."
+    caption="Si quieres saber cómo empieza, consulta la página de la primera valoración."
+  />
 
   <CtaBlock
     eyebrow="Primer paso"

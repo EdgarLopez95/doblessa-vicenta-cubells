@@ -28,7 +28,6 @@ const topics: { icon: IconName; title: string; text: string }[] = [
   { icon: 'habits', title: 'Tus hábitos, sin juicios', text: 'Alimentación, descanso, actividad y horarios: el contexto real en el que tendría que encajar un plan.' },
   { icon: 'followup', title: 'Experiencias anteriores', text: 'Qué has probado antes y qué te resultó difícil de mantener, para no repetir lo que no funcionó.' },
   { icon: 'notes', title: 'Tu contexto de salud', text: 'La doctora te preguntará lo necesario sobre tu salud, tratamientos o informes previos, siempre dentro de la consulta.' },
-  { icon: 'question', title: 'Tus preguntas', text: 'Tiempo para resolver dudas sobre el enfoque, el seguimiento y lo que implicaría empezar.' },
 ];
 
 const principles: { icon: IconName; title: string; text: string }[] = [
@@ -91,18 +90,14 @@ const prepare = [
   </Hero>
 
   <section class="section section--line" aria-labelledby="conversacion">
-    <div class="container split">
-      <div class="split__aside">
-        <div class="sticky">
-          <SectionHeader
-            id="conversacion"
-            eyebrow="La conversación"
-            title="De qué se habla en la consulta"
-            intro="La primera consulta es, sobre todo, una conversación. Sirve para entender tu punto de partida antes de proponer nada."
-          />
-        </div>
-      </div>
-      <ul class="topic-list split__main">
+    <div class="container">
+      <SectionHeader
+        id="conversacion"
+        eyebrow="La conversación"
+        title="De qué se habla en la consulta"
+        intro="La primera consulta es, sobre todo, una conversación. Sirve para entender tu punto de partida antes de proponer nada."
+      />
+      <ul class="topic-list topic-list--grid mt-56">
         {
           topics.map((topic) => (
             <li>

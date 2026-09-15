@@ -123,16 +123,14 @@ const questions = [
   </section>
 
   <section class="section section--brass" aria-labelledby="dudas">
-    <div class="container split">
-      <div class="split__aside">
-        <SectionHeader
-          id="dudas"
-          eyebrow="Antes de decidir"
-          title="Qué dudas conviene resolver en una valoración"
-          intro="Llévalas anotadas. La valoración es el momento adecuado para plantearlas."
-        />
-      </div>
-      <ol class="question-list split__main">
+    <div class="container">
+      <SectionHeader
+        id="dudas"
+        eyebrow="Antes de decidir"
+        title="Qué dudas conviene resolver en una valoración"
+        intro="Llévalas anotadas. La valoración es el momento adecuado para plantearlas."
+      />
+      <ol class="question-list question-list--grid mt-56">
         {questions.map((question) => <li>{question}</li>)}
       </ol>
     </div>
