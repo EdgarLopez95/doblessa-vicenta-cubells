@@ -7,17 +7,17 @@ import PhoneList from './PhoneList.astro';
 const current = Astro.url.pathname.replace(/\/?$/, '/');
 const isExact = (path: string) => current === url(path);
 
-// Si la página es hija de una sección, el menú marca la sección padre.
+// Si la página es hija de una sección, el menú de escritorio marca la sección padre.
 const childPath = Object.keys(sectionParents).find((child) => isExact(child));
 const parentPath = childPath ? sectionParents[childPath] : undefined;
 
-// El menú móvil sí lista "Cómo es la primera consulta": ahí solo se marca la coincidencia exacta
-// para no señalar dos elementos a la vez.
-const mobilePaths = [...nav.map((item) => item.path), 'como-es-la-primera-consulta/'];
-const currentInMobile = mobilePaths.some((path) => isExact(path));
+// El menú móvil lista las páginas hijas de "La consulta": "Cómo es la primera consulta" y "La clínica".
+// En móvil solo se marca la coincidencia exacta para no señalar dos elementos a la vez (evita doble aria-current).
+const mobileSubPaths = ['como-es-la-primera-consulta/', 'clinica/'];
+const currentInSub = mobileSubPaths.some((path) => isExact(path));
 
 const isDesktopCurrent = (path: string) => isExact(path) || path === parentPath;
-const isMobileCurrent = (path: string) => isExact(path) || (path === parentPath && !currentInMobile);
+const isMobileCurrent = (path: string) => isExact(path) && !currentInSub;
 ---
 
 <header class="site-header" data-header>
@@ -72,18 +72,31 @@ const isMobileCurrent = (path: string) => isExact(path) || (path === parentPath 
                   {item.label}
                   <Icon name="arrow" size={20} />
                 </a>
+                {item.path === 'consulta-control-peso-castellon/' && (
+                  <ul class="mobile-menu__sublist" aria-label="Páginas de La consulta">
+                    <li>
+                      <a
+                        href={url('como-es-la-primera-consulta/')}
+                        aria-current={isExact('como-es-la-primera-consulta/') ? 'page' : undefined}
+                      >
+                        <span>Cómo es la primera consulta</span>
+                        <Icon name="arrow" size={18} />
+                      </a>
+                    </li>
+                    <li>
+                      <a
+                        href={url('clinica/')}
+                        aria-current={isExact('clinica/') ? 'page' : undefined}
+                      >
+                        <span>La clínica</span>
+                        <Icon name="arrow" size={18} />
+                      </a>
+                    </li>
+                  </ul>
+                )}
               </li>
             ))
           }
-          <li>
-            <a
-              href={url('como-es-la-primera-consulta/')}
-              aria-current={isExact('como-es-la-primera-consulta/') ? 'page' : undefined}
-            >
-              Cómo es la primera consulta
-              <Icon name="arrow" size={20} />
-            </a>
-          </li>
         </ul>
       </nav>
       <a class="btn btn--primary btn--block" href={url('contacto/')}>Solicitar valoración</a>

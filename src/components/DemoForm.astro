@@ -10,7 +10,15 @@ const reasons = [
 ];
 ---
 
-<form class="demo-form" novalidate data-demo-form aria-labelledby="form-titulo" aria-describedby="form-aviso">
+<form
+  class="demo-form"
+  novalidate
+  data-demo-form
+  aria-labelledby="form-titulo"
+  aria-describedby="form-aviso"
+  action="javascript:void(0);"
+  onsubmit="return false;"
+>
   <div class="demo-form__head">
     <h2 id="form-titulo" class="demo-form__title">Solicitud de contacto</h2>
     <p class="demo-form__notice" id="form-aviso">
@@ -37,11 +45,11 @@ const reasons = [
     <legend class="field__label">Medio de contacto preferido</legend>
     <div class="choices">
       <label class="choice">
-        <input type="radio" name="demo-medio" value="telefono" checked data-contact-mode />
+        <input type="radio" data-group="demo-medio" value="telefono" checked data-contact-mode />
         <span>Teléfono</span>
       </label>
       <label class="choice">
-        <input type="radio" name="demo-medio" value="email" data-contact-mode />
+        <input type="radio" data-group="demo-medio" value="email" data-contact-mode />
         <span>Email</span>
       </label>
     </div>
@@ -85,15 +93,15 @@ const reasons = [
     <legend class="field__label">¿Cuándo prefieres que te contacten?</legend>
     <div class="choices">
       <label class="choice">
-        <input type="radio" name="demo-franja" value="indiferente" checked />
+        <input type="radio" data-group="demo-franja" value="indiferente" checked />
         <span>Sin preferencia</span>
       </label>
       <label class="choice">
-        <input type="radio" name="demo-franja" value="manana" />
+        <input type="radio" data-group="demo-franja" value="manana" />
         <span>Por la mañana</span>
       </label>
       <label class="choice">
-        <input type="radio" name="demo-franja" value="tarde" />
+        <input type="radio" data-group="demo-franja" value="tarde" />
         <span>Por la tarde</span>
       </label>
     </div>
@@ -163,6 +171,17 @@ const reasons = [
       el.closest('.field')?.classList.toggle('field--invalid', Boolean(message));
       return !message;
     };
+
+    form.querySelectorAll<HTMLInputElement>('input[type="radio"][data-group]').forEach((radio) => {
+      radio.addEventListener('change', () => {
+        if (radio.checked) {
+          const group = radio.dataset.group;
+          form.querySelectorAll<HTMLInputElement>(`input[type="radio"][data-group="${group}"]`).forEach((other) => {
+            if (other !== radio) other.checked = false;
+          });
+        }
+      });
+    });
 
     form.querySelectorAll<HTMLInputElement>('[data-contact-mode]').forEach((radio) => {
       radio.addEventListener('change', () => {
