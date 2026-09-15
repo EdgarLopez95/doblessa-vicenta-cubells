@@ -8,6 +8,7 @@ interface HeroImage {
   width: number;
   height: number;
   caption?: string;
+  position?: string;
 }
 
 interface Props {
@@ -46,6 +47,7 @@ const hasAside = Astro.slots.has('aside');
                 alt={image.alt}
                 width={image.width}
                 height={image.height}
+                style={image.position ? `object-position: ${image.position}` : undefined}
                 fetchpriority="high"
                 decoding="async"
               />

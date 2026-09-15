@@ -8,6 +8,7 @@ import Faq from '../components/Faq.astro';
 import CtaBlock from '../components/CtaBlock.astro';
 import PhoneList from '../components/PhoneList.astro';
 import ReviewNote from '../components/ReviewNote.astro';
+import StatementBand from '../components/StatementBand.astro';
 import Icon, { type IconName } from '../components/Icon.astro';
 import { firstVisitSteps } from '../data/site';
 import { pickFaqs } from '../data/faqs';
@@ -44,10 +45,10 @@ const expectations = [
 ];
 
 const prepare = [
-  'Informes o analíticas recientes, si los tienes.',
-  'Una lista de la medicación o suplementos que tomas.',
-  'Tus dudas anotadas, para no olvidar ninguna.',
-  'Tus horarios habituales, para hablar de un plan realista.',
+  { title: 'Informes o analíticas recientes', text: 'Si los tienes a mano.' },
+  { title: 'Tu medicación habitual', text: 'Una lista sencilla, incluidos suplementos.' },
+  { title: 'Tus dudas anotadas', text: 'Para no olvidar ninguna.' },
+  { title: 'Tus horarios habituales', text: 'Para hablar de un plan realista.' },
 ];
 ---
 
@@ -70,7 +71,6 @@ const prepare = [
       </a>
       <a class="btn btn--secondary" href={url('como-es-la-primera-consulta/')}>Cómo es la primera consulta</a>
     </Fragment>
-    <ReviewNote slot="after" />
     <aside slot="aside" class="fact-card" aria-label="Datos de la consulta">
       <dl>
         <div class="fact-card__row">
@@ -147,31 +147,10 @@ const prepare = [
     </div>
   </section>
 
-  <section class="section" aria-labelledby="esperar">
-    <div class="container split split--even">
-      <div class="split__aside">
-        <SectionHeader
-          id="esperar"
-          eyebrow="Expectativas"
-          title="Qué puedes esperar"
-          intro="Una consulta médica honesta: información clara para que puedas decidir, sin presión."
-        />
-      </div>
-      <ul class="check-list split__main">
-        {
-          expectations.map((item) => (
-            <li>
-              <Icon name="check" />
-              <div>
-                <strong>{item.title}</strong>
-                <span>{item.text}</span>
-              </div>
-            </li>
-          ))
-        }
-      </ul>
-    </div>
-  </section>
+  <StatementBand
+    text="Un plan que entiende tu contexto empieza por escucharlo."
+    caption="Por eso la primera valoración dedica tiempo a conocerte antes de proponer ningún cambio."
+  />
 
   <section class="section section--sage" aria-labelledby="paso-a-paso">
     <div class="container split">
@@ -196,31 +175,51 @@ const prepare = [
     </div>
   </section>
 
-  <section class="section" aria-labelledby="preparar">
-    <div class="container split">
-      <div class="split__aside">
-        <SectionHeader
-          id="preparar"
-          eyebrow="Antes de venir"
-          title="Qué preparar para la consulta"
-          intro="No es obligatorio traer nada. Si te resulta cómodo, esto puede ayudar a aprovechar el tiempo."
-        />
-      </div>
-      <div class="split__main">
-        <ul class="check-list">
-          {
-            prepare.map((item) => (
-              <li>
-                <Icon name="check" />
-                <strong>{item}</strong>
-              </li>
-            ))
-          }
-        </ul>
-        <p class="notice mt-32">
-          <Icon name="lock" />
-          <span>No envíes informes ni datos de salud por la web o el formulario: se revisan en la consulta.</span>
-        </p>
+  <section class="section" aria-labelledby="esperar">
+    <div class="container">
+      <SectionHeader
+        id="esperar"
+        eyebrow="Antes de venir"
+        title="Qué puedes esperar y qué preparar"
+        intro="Una consulta honesta, con información clara para decidir y sin presión. No es obligatorio traer nada."
+      />
+      <div class="split split--halves mt-56">
+        <div class="split__aside">
+          <h3>Qué puedes esperar</h3>
+          <ul class="check-list mt-32">
+            {
+              expectations.map((item) => (
+                <li>
+                  <Icon name="check" />
+                  <div>
+                    <strong>{item.title}</strong>
+                    <span>{item.text}</span>
+                  </div>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+        <div class="split__main">
+          <h3>Qué puedes preparar, si quieres</h3>
+          <ul class="check-list mt-32">
+            {
+              prepare.map((item) => (
+                <li>
+                  <Icon name="notes" />
+                  <div>
+                    <strong>{item.title}</strong>
+                    <span>{item.text}</span>
+                  </div>
+                </li>
+              ))
+            }
+          </ul>
+          <p class="notice mt-32">
+            <Icon name="lock" />
+            <span>No envíes informes ni datos de salud por la web o el formulario: se revisan en la consulta.</span>
+          </p>
+        </div>
       </div>
     </div>
   </section>
@@ -268,6 +267,7 @@ const prepare = [
       </div>
       <div class="split__main">
         <Faq items={faqs} />
+        <div class="mt-56"><ReviewNote /></div>
       </div>
     </div>
   </section>

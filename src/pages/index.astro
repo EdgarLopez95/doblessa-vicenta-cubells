@@ -13,7 +13,7 @@ import { credentials, firstVisitSteps, images } from '../data/site';
 import { pickFaqs } from '../data/faqs';
 import { url } from '../lib/url';
 
-const faqs = pickFaqs(['valoracion-que-es', 'medico-diferencia', 'metodo-para-mi', 'valoracion-compromiso']);
+const faqs = pickFaqs(['valoracion-que-es', 'medico-diferencia', 'valoracion-compromiso']);
 
 const pillars = [
   {
@@ -176,10 +176,10 @@ const principles = [
   </section>
 
   <section class="section" aria-labelledby="doctora">
-    <div class="container split split--even">
-      <figure class="split__aside">
+    <div class="container split split--even split--top">
+      <figure class="split__aside framed">
         <img
-          class="photo"
+          style="object-position: 47% 50%"
           src={url(images.inConsultation.src)}
           alt={images.inConsultation.alt}
           width={images.inConsultation.width}

@@ -76,15 +76,8 @@ const principles: { icon: IconName; title: string; text: string }[] = [
   </section>
 
   <section class="section section--sage" aria-labelledby="espacio">
-    <div class="container split split--even">
-      <div class="split__aside placeholder" role="img" aria-label="Espacio reservado para una fotografía de la consulta">
-        <div>
-          <Icon name="pin" size={28} />
-          <strong>Fotografía de la consulta</strong>
-          <p>Se incorporará una imagen real del espacio, con autorización, antes de publicar.</p>
-        </div>
-      </div>
-      <div class="split__main">
+    <div class="container">
+      <div>
         <SectionHeader
           id="espacio"
           eyebrow="El espacio"
@@ -96,6 +89,13 @@ const principles: { icon: IconName; title: string; text: string }[] = [
             <Icon name="arrow" size={20} />
           </a>
         </SectionHeader>
+      </div>
+      <div class="placeholder placeholder--band mt-56" role="note">
+        <div>
+          <Icon name="pin" size={28} />
+          <strong>Fotografía de la consulta</strong>
+          <p>Se incorporará una imagen real del espacio, con autorización, antes de publicar.</p>
+        </div>
       </div>
     </div>
   </section>

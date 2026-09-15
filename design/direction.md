@@ -48,7 +48,15 @@ VERDE: CTA final + teléfonos
 Interiores: breadcrumbs → hero (8 col texto + 4 col ficha, o 7/5 con retrato) → secciones editoriales de dos columnas alternando ivory/sage → FAQ → CTA.
 
 ## Motion
-Transiciones 180–220 ms en hover/foco/acordeón/menú. Único revelado: los pasos del timeline (opacidad + 8 px, 220 ms, escalonado 60 ms). `prefers-reduced-motion` desactiva todo. Sin contadores, sin autoplay, sin animaciones de éxito.
+Transiciones 180–220 ms en hover/foco/acordeón/menú y en flechas de enlaces. `prefers-reduced-motion` desactiva todo. Sin contadores, sin autoplay, sin animaciones de éxito.
+
+Decisión tras QA: se retiró el revelado del timeline al hacer scroll porque ocultaba pasos en capturas y herramientas que no desplazan; en una web médica el contenido debe estar siempre visible.
+
+## Refinamiento ronda 1
+- La diagonal de latón pasa a ser sistema: primer tramo de cada conector del timeline, fotos enmarcadas (`.framed`) y bandas de declaración a todo el ancho (`StatementBand`).
+- Bandas de declaración para romper la repetición de columnas en consulta, método y perfil.
+- Avisos de revisión fuera de los heroes y compactados.
+- Placeholders de foto/mapa reducidos a bandas bajas.
 
 ## Autocrítica anti-plantilla
 - Evitado hero centrado con 3 features: hero asimétrico con panel verde que sangra a la derecha.

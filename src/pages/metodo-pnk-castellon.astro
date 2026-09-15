@@ -6,6 +6,7 @@ import PillarCard from '../components/PillarCard.astro';
 import Faq from '../components/Faq.astro';
 import CtaBlock from '../components/CtaBlock.astro';
 import ReviewNote from '../components/ReviewNote.astro';
+import StatementBand from '../components/StatementBand.astro';
 import Icon from '../components/Icon.astro';
 import { pickFaqs } from '../data/faqs';
 import { url } from '../lib/url';
@@ -48,14 +49,6 @@ const questions = [
       </a>
       <a class="btn btn--secondary" href={url('consulta-control-peso-castellon/')}>Ver cómo es la consulta</a>
     </Fragment>
-    <ReviewNote slot="after" />
-    <aside slot="aside" class="notice" aria-label="Aviso sobre esta página">
-      <Icon name="notes" />
-      <span>
-        <strong>Sobre esta página.</strong> La descripción del método, el uso de la marca PnK® y cualquier afirmación
-        sanitaria están sujetos a validación clínica y legal antes de publicarse.
-      </span>
-    </aside>
   </Hero>
 
   <section class="section section--line" aria-labelledby="acompanamiento">
@@ -76,12 +69,16 @@ const questions = [
           La primera valoración determina si este enfoque es adecuado para ti y, si lo es, cómo se plantea y con qué
           seguimiento. Si no lo es, también es una respuesta valiosa.
         </p>
-        <p class="pullquote">El método es la estructura. La valoración y el seguimiento médico lo hacen individual.</p>
       </div>
     </div>
   </section>
 
-  <section class="section section--sage" aria-labelledby="control-medico">
+  <StatementBand
+    tone="sage"
+    text="El método es la estructura. La valoración y el seguimiento médico lo hacen individual."
+  />
+
+  <section class="section" aria-labelledby="control-medico">
     <div class="container split">
       <div class="split__aside">
         <SectionHeader
@@ -111,7 +108,7 @@ const questions = [
     </div>
   </section>
 
-  <section class="section" aria-labelledby="areas">
+  <section class="section section--sage" aria-labelledby="areas">
     <div class="container">
       <SectionHeader
         id="areas"
@@ -153,6 +150,11 @@ const questions = [
       </div>
       <div class="split__main">
         <Faq items={faqs} />
+        <div class="mt-56">
+          <ReviewNote
+            text="La descripción del método, el uso de la marca PnK® y cualquier afirmación sanitaria de esta página están pendientes de validación clínica y legal antes de publicarse."
+          />
+        </div>
       </div>
     </div>
   </section>

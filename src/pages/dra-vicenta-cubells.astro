@@ -4,6 +4,7 @@ import Hero from '../components/Hero.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import Credentials from '../components/Credentials.astro';
 import CtaBlock from '../components/CtaBlock.astro';
+import StatementBand from '../components/StatementBand.astro';
 import Icon, { type IconName } from '../components/Icon.astro';
 import { credentials, images } from '../data/site';
 import { url } from '../lib/url';
@@ -29,14 +30,18 @@ const approach: { icon: IconName; title: string; text: string }[] = [
   description="Perfil profesional de la Dra. Vicenta Cubells Santaolaria, médica en Castellón: formación, enfoque de consulta y acompañamiento en el control de peso."
   pageType="ProfilePage"
   breadcrumbs={breadcrumbs}
-  preloadImage={images.portrait.src}
+  preloadImage={images.inConsultation.src}
 >
   <Hero
     eyebrow="Perfil profesional"
     title="Dra. Vicenta Cubells"
     lead="Médica en Castellón y responsable de la consulta CLIN&DIET. Acompaña a personas que quieren cuidar su salud desde una valoración individual, con escucha y seguimiento profesional."
     breadcrumbs={breadcrumbs}
-    image={{ ...images.portrait, caption: '<strong>Vicenta Cubells Santaolaria</strong><br />Médica · Castellón' }}
+    image={{
+      ...images.inConsultation,
+      position: '47% 50%',
+      caption: '<strong>Vicenta Cubells Santaolaria</strong><br />Médica · Castellón',
+    }}
   >
     <Fragment slot="actions">
       <a class="btn btn--primary" href={url('contacto/')}>
@@ -54,7 +59,7 @@ const approach: { icon: IconName; title: string; text: string }[] = [
           id="datos"
           eyebrow="Información profesional"
           title="Datos profesionales"
-          intro="Esta sección recoge solo información profesional, separada del texto descriptivo de la consulta. Se ha tomado de la web actual y debe verificarse antes de publicar."
+          intro="Información profesional separada del texto descriptivo de la consulta. Se ha tomado de la web actual y debe verificarse antes de publicar."
         />
       </div>
       <div class="split__main">
@@ -64,20 +69,31 @@ const approach: { icon: IconName; title: string; text: string }[] = [
           variant="full"
           note="No se muestran años de experiencia, afiliaciones ni certificados que no estén documentados."
         />
+        <p class="notice mt-32">
+          <Icon name="notes" />
+          <span>
+            <strong>Contenido sujeto a revisión profesional.</strong> Biografía, titulaciones, número de colegiación,
+            mención a los métodos y uso de las fotografías deben ser aprobados por la doctora antes de publicar.
+          </span>
+        </p>
       </div>
     </div>
   </section>
 
-  <section class="section" aria-labelledby="enfoque">
+  <StatementBand
+    text="Antes de proponer cualquier cambio, hay que conocer a la persona."
+    caption="Así entiende la consulta el acompañamiento en el control de peso."
+  />
+
+  <section class="section section--sage" aria-labelledby="enfoque">
     <div class="container">
-      <div class="split split--even">
-        <figure class="split__aside">
+      <div class="split split--even split--top">
+        <figure class="split__aside framed">
           <img
-            class="photo"
-            src={url(images.inConsultation.src)}
-            alt={images.inConsultation.alt}
-            width={images.inConsultation.width}
-            height={images.inConsultation.height}
+            src={url(images.portrait.src)}
+            alt={images.portrait.alt}
+            width={images.portrait.width}
+            height={images.portrait.height}
             loading="lazy"
             decoding="async"
           />
@@ -86,9 +102,8 @@ const approach: { icon: IconName; title: string; text: string }[] = [
           <SectionHeader id="enfoque" eyebrow="Enfoque de consulta" title="Una forma de acompañar">
             <div class="prose-block section-header__intro">
               <p>
-                La consulta parte de una idea sencilla: antes de proponer cualquier cambio, hay que conocer a la persona.
-                Por eso la primera valoración dedica tiempo a escuchar, entender el contexto y explicar las opciones con
-                claridad.
+                La primera valoración dedica tiempo a escuchar, entender el contexto de cada persona y explicar las
+                opciones con claridad.
               </p>
               <p>
                 El acompañamiento continúa después, con un seguimiento que permite resolver dudas y ajustar el plan con
@@ -96,39 +111,18 @@ const approach: { icon: IconName; title: string; text: string }[] = [
               </p>
             </div>
           </SectionHeader>
+          <div class="principles principles--stacked mt-56">
+            {
+              approach.map((item) => (
+                <div class="principle">
+                  <Icon name={item.icon} />
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </div>
+              ))
+            }
+          </div>
         </div>
-      </div>
-      <div class="principles mt-56">
-        {
-          approach.map((item) => (
-            <div class="principle">
-              <Icon name={item.icon} />
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </div>
-          ))
-        }
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--brass" aria-labelledby="revision">
-    <div class="container split">
-      <div class="split__aside">
-        <p class="eyebrow">Antes de publicar</p>
-        <h2 id="revision" class="statement">Contenido sujeto a revisión profesional</h2>
-      </div>
-      <div class="split__main prose-block">
-        <p>
-          Los textos de esta página describen el enfoque de la consulta dentro de una propuesta de diseño. Antes de
-          publicarse, la Dra. Vicenta Cubells debe revisar y aprobar:
-        </p>
-        <ul class="check-list mt-32">
-          <li><Icon name="check" /><strong>La biografía y el texto descriptivo del enfoque.</strong></li>
-          <li><Icon name="check" /><strong>Las titulaciones, la especialidad y el número de colegiación.</strong></li>
-          <li><Icon name="check" /><strong>La mención a los métodos Pronokal, PnK y Diaprokal.</strong></li>
-          <li><Icon name="check" /><strong>La vigencia y el permiso de uso de sus fotografías.</strong></li>
-        </ul>
       </div>
     </div>
   </section>
