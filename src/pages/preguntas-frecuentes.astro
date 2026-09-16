@@ -7,7 +7,6 @@ import ReviewNote from '../components/ReviewNote.astro';
 import { faqGroups } from '../data/faqs';
 
 const breadcrumbs = [{ label: 'Preguntas frecuentes', path: 'preguntas-frecuentes/' }];
-const allFaqs = faqGroups.flatMap((group) => group.items);
 ---
 
 <BaseLayout
@@ -15,7 +14,6 @@ const allFaqs = faqGroups.flatMap((group) => group.items);
   description="Respuestas generales sobre la valoración médica, el enfoque de la consulta, el Método PnK® y la privacidad en la consulta de la Dra. Vicenta Cubells en Castellón."
   pageType="MedicalWebPage"
   breadcrumbs={breadcrumbs}
-  faqs={allFaqs}
 >
   <Hero
     eyebrow="Preguntas frecuentes"
