@@ -2,15 +2,16 @@
 
 ## Estado actual
 
-Mockup estático completo del rediseño: 10 pantallas, sistema visual propio, componentes reutilizables, SEO técnico y formulario demostrativo. Huecos de confianza y SEO cerrados: schema FAQPage retirado a propósito de JSON-LD, directiva `noindex,follow` global en todas las pantallas por prudencia YMYL (mockup en github.io + inyecciones de casino en dominio legacy), fecha de revisión médica visible en el pie de todas las páginas, avisos normativos de NAP, tarifas y marca PnK®, y navegación móvil completada con «La clínica». Documentados `GAPS.md` y `BUGS.md`. Presentable al cliente; contenido pendiente de validación clínica, legal y de marca.
+Mockup estático completo del rediseño: 10 pantallas, sistema visual propio, componentes reutilizables, SEO técnico y formulario demostrativo. Huecos de confianza y SEO cerrados al 100% en el alcance del mockup: tipografías autoalojadas localmente en WOFF2 (sin llamadas externas a Google Fonts), erradicación total del schema FAQPage y de la prop muerta `faqs`, directiva `noindex,follow` global en todas las pantallas por prudencia YMYL (mockup en github.io + inyecciones de casino en dominio legacy), fecha de revisión médica visible en el pie de todas las páginas, avisos normativos de NAP, tarifas y marca PnK®, y navegación móvil completada con «La clínica». Documentados `GAPS.md` (formato cuestionario de cliente) y `BUGS.md` (BUG-01 a BUG-09). Mockup listo para presentación al cliente; los huecos restantes quedan exclusivamente del lado del cliente/doctora/legal.
 
 ## Base técnica
 
 - Framework: Astro 7 + TypeScript + CSS nativo (sin Tailwind ni dependencias nuevas).
+- Tipografías: Cormorant Garamond y DM Sans autoalojadas en formato WOFF2 en `public/fonts/`, servidas mediante `@font-face` con `font-display: swap` y fallbacks nativos (`Georgia, serif` y `system-ui, sans-serif`), con preloads en `BaseLayout.astro`. Cero dependencias externas de Google Fonts (`fonts.googleapis.com` / `fonts.gstatic.com`).
 - `base`: `/doblessa-vicenta-cubells` (configuración original de `astro.config.mjs` sin cambios).
 - GitHub Pages: `https://edgarlopez95.github.io/doblessa-vicenta-cubells/`.
-- Validación: `npm run build`.
-- Meta robots: `noindex, follow` en todas las páginas por prudencia YMYL hasta el despliegue en dominio canónico limpio.
+- Validación: `npm run build` sin errores ni advertencias.
+- Meta robots: `noindex, follow` incondicional en todas las páginas por prudencia YMYL hasta el despliegue en dominio canónico limpio y saneado.
 
 ## Rutas creadas
 
@@ -49,10 +50,11 @@ Layout SEO: `src/layouts/BaseLayout.astro` (title, description, canonical, Open 
 - Jerarquía de navegación: `/como-es-la-primera-consulta/` y `/clinica/` son hijas de «La consulta». El menú de escritorio marca la sección padre, el menú móvil muestra la sublista y solo la coincidencia exacta recibe `aria-current="page"`. Los breadcrumbs tienen tres niveles y las tres páginas comparten SectionNav local.
 - El pie usa un verde más profundo (`--clinic-950`) con filete de latón, navegación en dos columnas, enlaces legales y bloque persistente de revisión médica fechada en septiembre de 2026.
 - Formulario 100% libre de atributos `name`, con exclusión mutua de radios vía `data-group`, `preventDefault`, `action="javascript:void(0);"` y `onsubmit="return false;"`: imposible serializar datos en la URL ni aun desactivando JavaScript.
-- JSON-LD prudente: `WebSite`, `Person` (nombre, «Médica», teléfonos públicos e imagen, sin address), `MedicalWebPage` / `ProfilePage` / `AboutPage` / `ContactPage`, `BreadcrumbList`. **Se eliminó a propósito el schema `@type: FAQPage`** (Google ha limitado los rich snippets de FAQ y el contenido está pendiente de revisión clínica). Sin dirección, reseñas, ofertas ni resultados.
+- Tipografías autoalojadas: Cormorant Garamond y DM Sans servidas íntegramente en WOFF2 local desde `public/fonts/`, erradicando peticiones de terceros a Google Fonts y garantizando cumplimiento RGPD estricto y carga instantánea con preloads en `BaseLayout.astro`.
+- JSON-LD prudente: `WebSite`, `Person` (nombre, «Médica», teléfonos públicos e imagen, sin address), `MedicalWebPage` / `ProfilePage` / `AboutPage` / `ContactPage`, `BreadcrumbList`. **Se erradicó por completo el schema `@type: FAQPage`** (Google ha limitado los rich snippets de FAQ y el contenido está pendiente de revisión clínica) y se eliminó la prop muerta `faqs` en `BaseLayout.astro`. Sin dirección, reseñas, ofertas ni resultados.
 - La foto «en consulta» no muestra la clínica: en `/clinica/` hay un bloque neutro reservado con el texto explícito *«Falta una fotografía autorizada de la consulta CLIN&DIET»*, en lugar de presentarla como el espacio.
 - Se descartó el revelado al hacer scroll: ocultaba pasos del timeline en capturas y herramientas que no desplazan. Solo hay transiciones de 200 ms en hover, foco y acordeón, anuladas con `prefers-reduced-motion`.
-- Documentación de control y auditoría: `GAPS.md` para elementos pendientes del cliente/médica/legal y `BUGS.md` para registro de correcciones técnicas. Documentos de diseño en `design/brief.md` y `design/direction.md`.
+- Documentación de control y auditoría: `GAPS.md` como cuestionario estructurado de cliente (clasificando huecos pendientes de doctora/legal vs. cerrados en el frontend) y `BUGS.md` para registro pormenorizado de correcciones técnicas (BUG-01 a BUG-09). Documentos de diseño en `design/brief.md` y `design/direction.md`.
 
 ## Resultado de build y QA
 
@@ -119,7 +121,7 @@ Presentar el mockup al cliente y revisar con la doctora los contenidos marcados 
 - **Textos**: copy de enfoque, FAQs y proceso de primera consulta (incluido que «la consulta te contacta») pendientes de revisión médica.
 - **Legal**: privacidad y aviso legal son borradores con campos pendientes (titular, NIF, conservación, destinatarios, canal de derechos).
 - **Formulario real**: requiere solución segura de envío y consentimiento antes de publicar.
-- **Indexación**: el mockup es indexable en github.io con el nombre de la doctora; valorar `noindex` global hasta tener los contenidos aprobados.
+- **Indexación protegida**: el mockup cuenta con directiva global e incondicional `<meta name="robots" content="noindex, follow" />` en todas las páginas (`BaseLayout.astro`) para blindar contra indexación prematura YMYL en `github.io`. Solo se retirará cuando se configure el dominio canónico definitivo limpio y el cliente apruebe la publicación.
 - **Web antigua**: sigue pendiente limpiar el contenido de casino inyectado antes de migrar o redirigir.
 
 ## Límites y bloqueos
