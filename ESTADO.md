@@ -2,22 +2,22 @@
 
 ## Estado actual
 
-Mockup estático completo del rediseño tras la auditoría de herencia y sustento del 25 de septiembre de 2026. Se aplica la regla central del proyecto: **lo publicado en la web original se hereda y rediseña**, registrando en `GAPS.md` la verificación de vigencia antes de una publicación real.
+Mockup estático completo del rediseño tras la auditoría de herencia y sustento del 25 de septiembre de 2026. Se aplica la regla central del proyecto: **lo publicado en la web original se hereda y rediseña**, registrando en `GAPS.md` la verificación de vigencia antes de una publicación real. La revisión posterior corrigió la secuencia del Método PnK® y retiró afirmaciones no acreditadas sobre funciones profesionales, tarifas y titularidad legal.
 
 - **Ubicación y contacto**: Rectificada la inferencia errónea que situaba la consulta en Castellón de la Plana. La consulta está documentada en **Nules (provincia de Castellón)**, con dirección física en **C/ Faustino Valentín 9, 12520 Nules**, correo **hola@vicentacubells.com** y **médica colegiada nº 2664**, junto con los dos teléfonos públicos (964 671 300 y 616 42 43 25).
-- **Método PnK® recuperado**: Reconstruido con los elementos propios publicados en la web original: control médico prescriptor en CLIN&DIET diferenciado del ecosistema de apoyo PnK® (dietistas-coach, técnicos y Club PnK®), abordaje de la **lipoinflamación**, formulación **ProteinDHA®**, suplementación con **DHA**, y la estructura documentada de **dos momentos y cinco pasos**. Todo redactado con prudencia sanitaria y sin promesas de eficacia garantizada.
+- **Método PnK® recuperado**: Reconstruido con los elementos publicados en la web original: control médico, dietistas-coach, técnicos y Club PnK®, **lipoinflamación**, **ProteinDHA®**, **DHA** y **dos momentos**. Los cinco pasos pertenecen al primer momento y se presentan en los grupos 1–3 y 4–5, sin inventar instrucciones alimentarias por paso. El segundo momento comienza después del paso 5. No se atribuye una relación contractual o presencia física concreta al equipo.
 - **CLIN&DIET**: Recuperada la trayectoria histórica con inicio de actividad documentado en 2007 y un inventario claro y compacto de la oferta publicada (tratamiento médico y dietético, consejo nutricional, actividad física, apoyo emocional, dietas adaptadas y actividades grupales como alimentación consciente, sofrología, cocina y salidas), distinguiendo la oferta histórica de la confirmación de disponibilidad actual en consulta. Se mantiene la reserva para fotografía autorizada del espacio real.
 - **Perfil profesional**: Incorporados los estudios de Sofrología Médica, Diplomatura en Traumatología Laboral, charlas de alimentación saludable y preparación al parto, la colegiación nº 2664 y la contextualización de los «más de 30 años de experiencia» como declaración histórica fechada.
 - **Primera consulta**: Desacopladas las promesas operativas y protocolos cerrados; presentada de forma transparente como una **propuesta orientativa de experiencia**, preservando la mención documentada de «cita sin compromiso» (sin equipararla a gratuidad).
-- **Preguntas frecuentes**: Incorporadas preguntas procedentes de la FAQ original (lipoinflamación, ProteinDHA®, DHA, etapas del método, equipo prescriptor vs. soporte), con respuestas prudentes y sin atribución de prácticas no sustentadas.
-- **Textos legales y privacidad**: Corregida la contradicción sobre fuentes (se especifica el autoalojamiento local en WOFF2) e incorporados los datos de titularidad, sede en Nules y colegiación documentados, dejando los campos sin fuente (NIF, condiciones RGPD definitivas) marcados honestamente como pendientes de la asesoría legal.
+- **Preguntas frecuentes**: Incorporadas preguntas sobre lipoinflamación, ProteinDHA®, DHA, etapas del método y equipo, con respuestas alineadas con lo publicado y sin prometer un canal concreto para comunicar tarifas.
+- **Textos legales y privacidad**: Se distinguen los datos de la profesional y de la consulta publicados en la web original de la identidad aún no acreditada del titular legal y del responsable del tratamiento. Los textos siguen siendo borradores pendientes de revisión legal.
 
 ## Base técnica
 
 - Framework: Astro 7 + TypeScript + CSS nativo (sin dependencias adicionales).
 - Tipografías: Cormorant Garamond y DM Sans autoalojadas localmente en WOFF2 en `public/fonts/`, servidas mediante `@font-face` con `font-display: swap` y fallbacks del sistema (`Georgia, serif` y `system-ui, sans-serif`), con preloads en `BaseLayout.astro`. Cero llamadas a Google Fonts.
 - Base GitHub Pages: `/doblessa-vicenta-cubells/` (`https://edgarlopez95.github.io/doblessa-vicenta-cubells/`).
-- Validación: `npm run build` genera 10 páginas estáticas + `robots.txt` + `sitemap.xml` sin errores ni advertencias.
+- Validación: `node --test tests/content-fidelity.test.mjs` (2 pruebas) y `npm run build` (10 páginas estáticas + `robots.txt` + `sitemap.xml`). El build concluye sin errores; Vite emite advertencias de resolución de fuentes locales en tiempo de compilación, aunque los archivos están presentes en `public/fonts/`.
 - Meta robots: `<meta name="robots" content="noindex, follow" />` incondicional en todas las páginas por prudencia YMYL.
 - Datos estructurados: JSON-LD con `WebSite`, `Person` (nombre, colegiación, teléfonos, email, dirección en Nules), `MedicalWebPage` / `ProfilePage` / `AboutPage` / `ContactPage` y `BreadcrumbList`. Cero schemas de `FAQPage`.
 

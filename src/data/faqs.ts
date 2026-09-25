@@ -30,7 +30,7 @@ export const faqGroups: FaqGroup[] = [
       {
         id: 'valoracion-compromiso',
         q: '¿Pedir cita me compromete a iniciar un tratamiento?',
-        a: 'No. Como se recogía en la web original, el contacto y la cita se realizan sin compromiso de contratación. La valoración médica sirve para orientarte y resolver dudas clínicas; después decides con total libertad si deseas comenzar.',
+        a: 'La web original invita a pedir una cita «sin compromiso». No especifica aquí las condiciones de una posible consulta o tratamiento posterior; conviene consultarlas directamente antes de reservar.',
       },
       {
         id: 'valoracion-duracion',
@@ -40,7 +40,7 @@ export const faqGroups: FaqGroup[] = [
       {
         id: 'valoracion-precio',
         q: '¿Cuánto cuesta la consulta y el tratamiento?',
-        a: 'Esta web no publica tarifas ni precios cerrados. Las condiciones económicas y tarifas vigentes se informan directamente por teléfono al concertar la cita o en la propia consulta médica.',
+        a: 'La web original no publica tarifas de consulta ni del tratamiento. Para conocer los importes y condiciones vigentes, contacta con la consulta antes de concertar la cita.',
       },
     ],
   },
@@ -57,7 +57,7 @@ export const faqGroups: FaqGroup[] = [
       {
         id: 'medico-seguimiento',
         q: '¿Por qué es importante el seguimiento médico?',
-        a: 'El seguimiento clínico permite vigilar la seguridad metabólica, monitorizar la evolución, prevenir carencias nutricionales y ajustar las pautas según tu respuesta individual.',
+        a: 'La web original presenta el seguimiento médico y analítico periódico como parte del método. La frecuencia y el alcance de las revisiones se determinan en la consulta según cada caso.',
       },
       {
         id: 'medico-condicion',
@@ -94,12 +94,12 @@ export const faqGroups: FaqGroup[] = [
       {
         id: 'metodo-pasos',
         q: '¿En qué consisten los dos momentos y cinco pasos del método?',
-        a: 'El método documenta dos etapas: Momento 1 (pérdida de peso y abordaje de la lipoinflamación mediante cetosis controlada en pasos 1, 2 y 3) y Momento 2 (estabilización y nuevo estilo de vida, reintroduciendo progresivamente todos los grupos de alimentos en los pasos 4 y 5 con seguimiento a largo plazo).',
+        a: 'La web original describe un primer momento de pérdida de peso con cinco pasos: agrupa los pasos 1, 2 y 3 como etapa inicial, y los pasos 4 y 5 como transición hacia el equilibrio dietético. Después de completar el paso 5 comienza el segundo momento, «Mi nuevo estilo de vida», centrado en afianzar los hábitos.',
       },
       {
         id: 'metodo-equipo',
         q: '¿Quién forma el equipo de acompañamiento del Método PnK®?',
-        a: 'La Dra. Vicenta Cubells realiza el diagnóstico, prescripción y supervisión médica directa en CLIN&DIET. El método cuenta además con recursos externos de asesoramiento nutricional (dietistas-coach), actividad física y coaching a distancia que completan el abordaje multidisciplinar.',
+        a: 'La web original presenta a la Dra. Vicenta Cubells como médica formadora en estos métodos y describe la función del médico prescriptor. También menciona dietistas-coach, profesionales de actividad física y apoyo de coaching. No especifica qué integrantes atienden presencialmente en Nules.',
       },
       {
         id: 'metodo-para-mi',

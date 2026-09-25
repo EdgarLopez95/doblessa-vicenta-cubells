@@ -27,7 +27,7 @@ const fourPillars = [
   {
     icon: 'medical',
     title: 'Control médico prescriptor',
-    text: 'Realizado directamente por la Dra. Vicenta Cubells en CLIN&DIET: valoración de analíticas, indicación clínica, prescripción y seguimiento de seguridad.',
+    text: 'La web original presenta a la Dra. Vicenta Cubells como médica vinculada al método y describe el control facultativo como parte del tratamiento.',
   },
   {
     icon: 'nutrition',
@@ -37,7 +37,7 @@ const fourPillars = [
   {
     icon: 'movement',
     title: 'Actividad física progresiva',
-    text: 'Pautas de ejercicio adaptadas a tu punto de partida para favorecer la función metabólica y preservar la masa muscular.',
+    text: 'El método incluye pautas de actividad física como parte de su abordaje multidisciplinar.',
   },
   {
     icon: 'coaching',
@@ -46,34 +46,14 @@ const fourPillars = [
   },
 ] as const;
 
-const stepsMomento1 = [
+const stepGroups = [
   {
-    step: 'Paso 1',
-    title: 'Cetosis controlada y ProteinDHA®',
-    text: 'Fase inicial bajo supervisión médica estricta, combinando productos de la gama ProteinDHA® con verduras y suplementación de DHA para inducir cetosis controlada.',
+    title: 'Pasos 1, 2 y 3',
+    text: 'La web original agrupa aquí la etapa inicial de pérdida de peso: describe una dieta cetogénica ProteinDHA®, aporte de DHA, actividad física y apoyo de coaching.',
   },
   {
-    step: 'Paso 2',
-    title: 'Alimento natural en una comida',
-    text: 'Se sustituye uno de los productos proteicos por una ración de proteína natural (carne magra, pescado o huevos) en una de las comidas principales.',
-  },
-  {
-    step: 'Paso 3',
-    title: 'Proteína natural en almuerzo y cena',
-    text: 'Ambas comidas principales pasan a componerse de alimentos naturales pautados, adaptando el desayuno y las tomas intermedias.',
-  },
-];
-
-const stepsMomento2 = [
-  {
-    step: 'Paso 4',
-    title: 'Reintroducción gradual de alimentos',
-    text: 'Transición paulatina en la que se reintroducen hidratos de carbono complejos, legumbres y frutas, acompañada de reeducación nutricional.',
-  },
-  {
-    step: 'Paso 5',
-    title: 'Mantenimiento y consolidación',
-    text: 'Etapa de seguimiento periódico a largo plazo para acompañar la estabilización del peso y consolidar los nuevos hábitos adquiridos.',
+    title: 'Pasos 4 y 5',
+    text: 'Los dos pasos finales del primer momento se describen como una evolución hacia el equilibrio dietético, con reintroducción progresiva de alimentos y nuevos hábitos.',
   },
 ];
 
@@ -131,7 +111,7 @@ const questions = [
           En la literatura divulgativa del método, la <strong>lipoinflamación</strong> se define como una respuesta inflamatoria de bajo grado que se produce en el tejido adiposo al aumentar de volumen las células grasas. Para combatirla, el protocolo incorpora pautas de cetosis controlada junto a la administración pautada de <strong>DHA</strong> (ácido docosahexaenoico, omega-3).
         </p>
         <p>
-          No se trata de una dieta libre ni autogestionada: la pauta exige evaluación previa de analíticas, monitorización continua y prescripción facultativa exclusiva por una médica formada en el método.
+          No se presenta como una dieta para seguir por cuenta propia: la web original describe valoración y seguimiento médico dentro del método. La pauta individual corresponde a la consulta.
         </p>
       </div>
     </div>
@@ -162,16 +142,16 @@ const questions = [
         id="fases-metodo"
         eyebrow="Estructura del tratamiento"
         title="Dos momentos y cinco pasos"
-        intro="El Método PnK® divide su intervención en dos grandes etapas: la pérdida de peso con resolución lipoinflamatoria y la estabilización posterior con reeducación alimentaria."
+        intro="La web original sitúa los cinco pasos dentro del momento de pérdida de peso. El momento «Mi nuevo estilo de vida» comienza después del paso 5."
       />
 
       <div class="split split--halves mt-56">
         <div class="split__aside">
-          <h3>Momento 1: Pérdida y resolución lipoinflamatoria</h3>
-          <p class="text-muted mt-8">Etapa de intervención activa orientada a reducir el exceso ponderal y abordar la inflamación celular del tejido adiposo bajo cetosis controlada.</p>
+          <h3>Momento 1: Pérdida de peso (cinco pasos)</h3>
+          <p class="text-muted mt-8">La fuente describe los cinco pasos en dos grupos, sin detallar una pauta alimentaria para cada paso.</p>
           <ol class="value-list mt-32">
             {
-              stepsMomento1.map((item, i) => (
+              stepGroups.map((item, i) => (
                 <li>
                   <span class="value-list__num" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
                   <h3>{item.title}</h3>
@@ -183,19 +163,8 @@ const questions = [
         </div>
 
         <div class="split__main">
-          <h3>Momento 2: Nuevo estilo de vida y mantenimiento</h3>
-          <p class="text-muted mt-8">Fase de consolidación en la que se reincorporan ordenadamente todos los nutrientes naturales y se realiza el seguimiento a largo plazo.</p>
-          <ol class="value-list mt-32">
-            {
-              stepsMomento2.map((item, i) => (
-                <li>
-                  <span class="value-list__num" aria-hidden="true">{String(i + 4).padStart(2, '0')}</span>
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                </li>
-              ))
-            }
-          </ol>
+          <h3>Momento 2: Mi nuevo estilo de vida</h3>
+          <p class="text-muted mt-8">Comienza después de completar el paso 5, una vez alcanzado el peso objetivo. La web original lo describe como un periodo para afianzar los cambios de hábitos, con apoyo de asesoría dietética, actividad física y coaching.</p>
         </div>
       </div>
 
@@ -221,7 +190,7 @@ const questions = [
       <div class="split__main prose-block">
         <h3>La Dra. Vicenta Cubells en CLIN&DIET (Nules)</h3>
         <p>
-          Como médica prescriptora acreditada, la Dra. Vicenta Cubells asume en exclusiva la responsabilidad clínica presencial: realiza la valoración previa, solicita e interpreta los análisis de sangre, comprueba la ausencia de contraindicaciones, prescribe el tratamiento y supervisa tu evolución médica en cada visita.
+          La web original presenta a la Dra. Vicenta Cubells como médica formadora en los métodos PronoKal, PnK y Diaprokal. También describe la valoración, la prescripción y el seguimiento médico como componentes del método, sin detallar aquí el reparto de funciones de cada profesional en la consulta de Nules.
         </p>
 
         <h3 class="mt-32">El soporte del ecosistema PnK®</h3>
@@ -249,7 +218,7 @@ const questions = [
           </li>
         </ul>
         <p class="credentials__note mt-16">
-          Nota informativa: estos profesionales y herramientas forman parte de los servicios centrales del método PnK®; no constituyen personal contratado que atienda físicamente en la consulta de Nules.
+          La web original no precisa qué profesionales del método atienden presencialmente en Nules ni su relación contractual con CLIN&amp;DIET.
         </p>
       </div>
     </div>

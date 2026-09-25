@@ -58,7 +58,7 @@ export const credentials = [
   { label: 'Nutrición', value: 'Máster en Nutrición y Dietética' },
   { label: 'Medicina laboral', value: 'Especialista en Medicina del Trabajo y Diplomada en Traumatología Laboral' },
   { label: 'Sofrología', value: 'Formación en Sofrología Médica' },
-  { label: 'Método PnK®', value: 'Médica prescriptora y formadora acreditada en métodos PronoKal / PnK / Diaprokal' },
+  { label: 'Método PnK®', value: 'Médico Formador en métodos PronoKal / PnK / Diaprokal, según la web original' },
   { label: 'Divulgación', value: 'Charlas de alimentación saludable y cursos de preparación al parto' },
   { label: 'Trayectoria', value: '«Más de 30 años de experiencia» según declaración histórica de la web original' },
 ];
