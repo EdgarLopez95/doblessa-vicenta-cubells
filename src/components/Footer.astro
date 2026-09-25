@@ -2,7 +2,6 @@
 import { nav, site, images } from '../data/site';
 import { url } from '../lib/url';
 import PhoneList from './PhoneList.astro';
-import ReviewNote from './ReviewNote.astro';
 
 const more = [
   { label: 'Cómo es la primera consulta', path: 'como-es-la-primera-consulta/' },
@@ -45,10 +44,6 @@ const more = [
       </div>
     </div>
 
-    <div class="site-footer__review">
-      <ReviewNote />
-    </div>
-
     <div class="site-footer__notice">
       <p>
         <strong>Aviso médico.</strong> La información de esta web es general y orientativa. No sustituye una valoración
@@ -62,7 +57,6 @@ const more = [
         <li><a href={url('politica-de-privacidad/')}>Política de privacidad</a></li>
         <li><a href={url('aviso-legal/')}>Aviso legal</a></li>
       </ul>
-      <p class="site-footer__draft">Propuesta de rediseño · contenido pendiente de validación profesional y legal.</p>
     </div>
   </div>
 </footer>

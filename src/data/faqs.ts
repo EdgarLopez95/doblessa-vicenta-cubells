@@ -141,12 +141,12 @@ export const faqGroups: FaqGroup[] = [
       {
         id: 'privacidad-demo',
         q: '¿El formulario de esta web envía solicitudes reales?',
-        a: 'No. En este mockup demostrativo el formulario es una maqueta de diseño estática que no almacena ni procesa datos. Para concertar cita médica real, contacta por teléfono.',
+        a: 'No. El formulario de esta web no envía ni almacena datos. Para concertar una cita, contacta por teléfono.',
       },
       {
         id: 'privacidad-tratamiento',
         q: '¿Cómo se protege la privacidad de la información?',
-        a: 'Toda la atención médica cumple con el secreto profesional facultativo. Los textos legales del sitio se encuentran en fase de borrador a la espera de validación legal definitiva para la futura web de producción.',
+        a: 'El formulario de esta web no recoge información clínica. Para comentar cuestiones de salud, contacta directamente con la consulta.',
       },
     ],
   },

@@ -6,7 +6,6 @@ import ResourceCard from '../components/ResourceCard.astro';
 import Faq from '../components/Faq.astro';
 import CtaBlock from '../components/CtaBlock.astro';
 import PhoneList from '../components/PhoneList.astro';
-import ReviewNote from '../components/ReviewNote.astro';
 import SectionNav from '../components/SectionNav.astro';
 import Icon, { type IconName } from '../components/Icon.astro';
 import { consultaSection, site } from '../data/site';
@@ -30,7 +29,7 @@ const topics: { icon: IconName; title: string; text: string }[] = [
 ];
 
 const principles: { icon: IconName; title: string; text: string }[] = [
-  { icon: 'medical', title: 'Parte de una valoración', text: 'Cualquier propuesta nace de lo que se conoce en consulta, no de un plan estándar.' },
+  { icon: 'medical', title: 'Parte de una valoración', text: 'El plan nace de lo que se conoce en consulta, no de un esquema estándar.' },
   { icon: 'habits', title: 'Se adapta a tu vida real', text: 'Horarios, preferencias y posibilidades se tienen en cuenta para que el plan tenga sentido en tu día a día.' },
   { icon: 'followup', title: 'Se revisa durante el proceso', text: 'El seguimiento permite ajustar el planteamiento con criterio médico cuando es necesario.' },
 ];
@@ -202,7 +201,7 @@ const prepare = [
         id="recursos"
         eyebrow="Recursos"
         title="Para decidir con calma"
-        intro="Recursos de muestra: contenidos que la web podría ofrecer, siempre revisados por la doctora antes de publicarse."
+        intro="Lecturas para conocer la valoración médica, el método y la consulta."
       />
       <div class="resources mt-56">
         <ResourceCard
@@ -214,7 +213,7 @@ const prepare = [
         <ResourceCard
           topic="Decidir"
           title="Qué preguntar antes de empezar un plan"
-          excerpt="Preguntas útiles para entender cualquier propuesta de control de peso y decidir con información."
+          excerpt="Preguntas útiles para entender un plan de control de peso y decidir con información."
           path="preguntas-frecuentes/"
         />
         <ResourceCard
@@ -239,7 +238,6 @@ const prepare = [
       </div>
       <div class="split__main">
         <Faq items={faqs} />
-        <div class="mt-56"><ReviewNote /></div>
       </div>
     </div>
   </section>

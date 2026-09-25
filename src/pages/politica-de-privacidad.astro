@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
-import Icon from '../components/Icon.astro';
 import { url } from '../lib/url';
 
 const breadcrumbs = [{ label: 'Política de privacidad', path: 'politica-de-privacidad/' }];
@@ -9,7 +8,7 @@ const breadcrumbs = [{ label: 'Política de privacidad', path: 'politica-de-priv
 
 <BaseLayout
   title="Política de privacidad | Dra. Vicenta Cubells"
-  description="Borrador de la política de privacidad de la web de la Dra. Vicenta Cubells, pendiente de revisión legal."
+  description="Información sobre los datos que se envían al usar este sitio y sus formularios de contacto."
   pageType="WebPage"
   breadcrumbs={breadcrumbs}
   noindex
@@ -19,55 +18,13 @@ const breadcrumbs = [{ label: 'Política de privacidad', path: 'politica-de-priv
   <section class="section section--flush-top">
     <div class="container">
       <div class="prose">
-        <p class="notice">
-          <Icon name="notes" />
-          <span>
-            <strong>Texto provisional.</strong> Esta política es un borrador estructural de la propuesta de diseño. Requiere
-            revisión y aprobación legal antes de cualquier publicación real.
-          </span>
-        </p>
+        <h2>Formulario de contacto</h2>
+        <p>El formulario de esta web no envía, almacena ni transmite la información que se introduce. Para solicitar una cita, contacta directamente con la consulta por teléfono.</p>
 
-        <h2>Datos publicados de la consulta</h2>
-        <p><strong>Profesional mencionada:</strong> Dra. Vicenta Cubells Santaolaria (CLIN&amp;DIET). La web original no identifica formalmente al responsable del tratamiento de datos de esta propuesta.</p>
-        <p><strong>Responsable y NIF / CIF:</strong> <span class="pending">pendientes de confirmación por el titular y revisión legal</span>.</p>
-        <p><strong>Domicilio de consulta documentado:</strong> C/ Faustino Valentín 9, 12520 Nules (Castellón).</p>
-        <p><strong>Contacto publicado en la web original:</strong> <a href="mailto:hola@vicentacubells.com">hola@vicentacubells.com</a> · Teléfonos 964 671 300 / 616 42 43 25. El canal formal para ejercer derechos de privacidad está pendiente de definir.</p>
-
-        <h2>Qué datos se tratarían</h2>
-        <p>
-          En la web real, el formulario de contacto recogería únicamente nombre, teléfono o email, un motivo general de
-          consulta y la preferencia de contacto.
-        </p>
-        <p>
-          Esta maqueta no recoge datos de salud ni transmite la información introducida en el formulario. Los canales y el tratamiento de información clínica de una futura web real requieren definición y revisión legal.
-        </p>
-
-        <h2>Finalidad</h2>
-        <p>Atender las solicitudes de contacto y coordinar la cita de primera valoración médica.</p>
-
-        <h2>Base jurídica</h2>
-        <p>
-          Consentimiento de la persona interesada al solicitar información o cita previa. <span class="pending">Pendiente de redacción legal formal</span>.
-        </p>
-
-        <h2>Conservación de los datos</h2>
-        <p>Plazos y criterios de conservación: <span class="pending">pendiente de definir por asesoría legal</span>.</p>
-
-        <h2>Destinatarios</h2>
-        <p>Posibles encargados del tratamiento (alojamiento seguro, soporte informático): <span class="pending">pendiente de definir por asesoría legal</span>.</p>
-
-        <h2>Derechos</h2>
-        <p>
-          La persona interesada podrá ejercer sus derechos de acceso, rectificación, supresión, oposición, limitación del
-          tratamiento y portabilidad, conforme a la normativa aplicable de protección de datos (RGPD).
-        </p>
-        <p>Canal y procedimiento para ejercerlos: <span class="pending">pendiente de completar</span>.</p>
-
-        <h2>Esta versión de demostración</h2>
+        <h2>Navegación y recursos</h2>
         <ul>
-          <li>El formulario de esta propuesta es puramente demostrativo: no envía, almacena ni transmite ningún dato a servidores externos.</li>
-          <li>No se utilizan cookies de seguimiento, herramientas analíticas de terceros ni píxeles de rastreo.</li>
-          <li>Las tipografías (Cormorant Garamond y DM Sans) se alojan y sirven localmente en formato WOFF2, eliminando cualquier conexión externa a Google Fonts y garantizando la privacidad de los usuarios.</li>
+          <li>El sitio no utiliza cookies de seguimiento, herramientas analíticas de terceros ni píxeles de rastreo.</li>
+          <li>Las tipografías se sirven desde el propio sitio.</li>
         </ul>
         <p>Consulta también el <a href={url('aviso-legal/')}>aviso legal</a>.</p>
       </div>

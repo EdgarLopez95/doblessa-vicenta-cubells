@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
-import Icon from '../components/Icon.astro';
 import { url } from '../lib/url';
 
 const breadcrumbs = [{ label: 'Aviso legal', path: 'aviso-legal/' }];
@@ -9,7 +8,7 @@ const breadcrumbs = [{ label: 'Aviso legal', path: 'aviso-legal/' }];
 
 <BaseLayout
   title="Aviso legal | Dra. Vicenta Cubells"
-  description="Borrador del aviso legal de la web de la Dra. Vicenta Cubells, pendiente de revisión legal."
+  description="Información sobre el sitio web de la Dra. Vicenta Cubells, la consulta CLIN&DIET y sus contenidos."
   pageType="WebPage"
   breadcrumbs={breadcrumbs}
   noindex
@@ -19,20 +18,11 @@ const breadcrumbs = [{ label: 'Aviso legal', path: 'aviso-legal/' }];
   <section class="section section--flush-top">
     <div class="container">
       <div class="prose">
-        <p class="notice">
-          <Icon name="notes" />
-          <span>
-            <strong>Texto provisional.</strong> Este aviso legal es un borrador estructural de la propuesta de diseño.
-            Requiere revisión y aprobación legal antes de cualquier publicación real.
-          </span>
-        </p>
-
         <h2>Datos publicados de la consulta</h2>
-        <p><strong>Profesional mencionada:</strong> Dra. Vicenta Cubells Santaolaria (CLIN&amp;DIET). La titularidad legal del sitio definitivo requiere confirmación.</p>
-        <p><strong>Titular y NIF / CIF:</strong> <span class="pending">pendientes de confirmación por el titular y revisión legal</span>.</p>
+        <p><strong>Profesional:</strong> Dra. Vicenta Cubells Santaolaria (CLIN&amp;DIET).</p>
         <p><strong>Domicilio de consulta documentado:</strong> C/ Faustino Valentín 9, 12520 Nules (Castellón).</p>
         <p><strong>Datos de contacto:</strong> Correo <a href="mailto:hola@vicentacubells.com">hola@vicentacubells.com</a> · Teléfonos 964 671 300 / 616 42 43 25.</p>
-        <p><strong>Colegiación profesional:</strong> Médica colegiada nº 2664 según publicación en la web original (<span class="pending">identificación del colegio oficial y vigencia administrativa pendientes de confirmación formal</span>).</p>
+        <p><strong>Colegiación profesional:</strong> Médica colegiada nº 2664.</p>
 
         <h2>Objeto</h2>
         <p>
@@ -45,21 +35,10 @@ const breadcrumbs = [{ label: 'Aviso legal', path: 'aviso-legal/' }];
         </p>
 
         <h2>Marcas</h2>
-        <p>
-          Las marcas y denominaciones CLIN&amp;DIET, PronoKal®, PnK®, ProteinDHA® y Diaprokal proceden de la web original de la doctora y pertenecen a sus respectivos titulares. Su uso formal en el entorno definitivo de producción está <span class="pending">pendiente de confirmación con el titular de la marca</span>.
-        </p>
+        <p>CLIN&amp;DIET, PronoKal®, PnK®, ProteinDHA® y Diaprokal son denominaciones que aparecen en la web de la consulta.</p>
 
         <h2>Propiedad intelectual e imágenes</h2>
-        <p>
-          Los textos, logotipos y fotografías pertenecen a sus titulares. El uso de las fotografías de la doctora está
-          <span class="pending">pendiente de confirmar</span>.
-        </p>
-
-        <h2>Responsabilidad y enlaces</h2>
-        <p>Condiciones de responsabilidad y política de enlaces: <span class="pending">pendiente de completar</span>.</p>
-
-        <h2>Legislación aplicable</h2>
-        <p>Legislación y jurisdicción aplicables: <span class="pending">pendiente de completar</span>.</p>
+        <p>Los textos, logotipos y fotografías se muestran con fines informativos y corresponden a sus respectivos titulares.</p>
 
         <p>Consulta también la <a href={url('politica-de-privacidad/')}>política de privacidad</a>.</p>
       </div>

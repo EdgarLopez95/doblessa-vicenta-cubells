@@ -3,7 +3,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import Faq from '../components/Faq.astro';
 import CtaBlock from '../components/CtaBlock.astro';
-import ReviewNote from '../components/ReviewNote.astro';
 import { faqGroups } from '../data/faqs';
 
 const breadcrumbs = [{ label: 'Preguntas frecuentes', path: 'preguntas-frecuentes/' }];
@@ -18,7 +17,7 @@ const breadcrumbs = [{ label: 'Preguntas frecuentes', path: 'preguntas-frecuente
   <Hero
     eyebrow="Preguntas frecuentes"
     title="Preguntas frecuentes sobre la consulta y el método"
-    lead="Respuestas informativas sobre la consulta médica, la propuesta orientativa de valoración y los conceptos del Método PnK® documentados en la web original (ProteinDHA®, DHA y lipoinflamación). Sujetas a confirmación clínica antes de una web definitiva."
+    lead="Respuestas sobre la consulta médica, el Método PnK® (ProteinDHA®, DHA y lipoinflamación) y los datos de contacto en Nules (Castellón)."
     breadcrumbs={breadcrumbs}
   >
     <nav slot="after" aria-label="Categorías de preguntas">
@@ -46,9 +45,6 @@ const breadcrumbs = [{ label: 'Preguntas frecuentes', path: 'preguntas-frecuente
           </div>
         ))
       }
-      <div class="mt-56">
-        <ReviewNote />
-      </div>
     </div>
   </section>
 

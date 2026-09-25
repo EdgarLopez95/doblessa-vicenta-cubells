@@ -5,7 +5,6 @@ import SectionHeader from '../components/SectionHeader.astro';
 import PillarCard from '../components/PillarCard.astro';
 import Faq from '../components/Faq.astro';
 import CtaBlock from '../components/CtaBlock.astro';
-import ReviewNote from '../components/ReviewNote.astro';
 import StatementBand from '../components/StatementBand.astro';
 import Icon from '../components/Icon.astro';
 import { pickFaqs } from '../data/faqs';
@@ -85,12 +84,6 @@ const questions = [
       <a class="btn btn--secondary" href={url('consulta-control-peso-castellon/')}>Ver cómo es la consulta</a>
     </Fragment>
     <div slot="after" class="mt-32">
-      <p class="notice">
-        <Icon name="notes" size={20} />
-        <span>
-          <strong>Información procedente de la web original.</strong> La denominación Método PnK® / PronoKal®, su descripción y marcas asociadas pertenecen a sus titulares; su uso comercial definitivo requiere confirmación de derechos y revisión clínica.
-        </span>
-      </p>
     </div>
   </Hero>
 
@@ -217,9 +210,6 @@ const questions = [
             </div>
           </li>
         </ul>
-        <p class="credentials__note mt-16">
-          La web original no precisa qué profesionales del método atienden presencialmente en Nules ni su relación contractual con CLIN&amp;DIET.
-        </p>
       </div>
     </div>
   </section>
@@ -248,14 +238,9 @@ const questions = [
           </a>
         </SectionHeader>
       </div>
-      <div class="split__main">
-        <Faq items={faqs} />
-        <div class="mt-56">
-          <ReviewNote
-            text="La denominación Método PnK® / Pronokal y su descripción técnica proceden de la web original; están pendientes de validación formal con el titular de la marca y de revisión clínica antes de su publicación real."
-          />
+        <div class="split__main">
+          <Faq items={faqs} />
         </div>
-      </div>
     </div>
   </section>
 
