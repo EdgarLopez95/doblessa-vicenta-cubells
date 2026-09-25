@@ -5,16 +5,15 @@ import SectionHeader from '../components/SectionHeader.astro';
 import Credentials from '../components/Credentials.astro';
 import CtaBlock from '../components/CtaBlock.astro';
 import Icon, { type IconName } from '../components/Icon.astro';
-import { credentials, images } from '../data/site';
+import { credentials, images, site } from '../data/site';
 import { url } from '../lib/url';
 
 const breadcrumbs = [{ label: 'Dra. Vicenta Cubells', path: 'dra-vicenta-cubells/' }];
 
 const profile = [
   { label: 'Nombre completo', value: 'Vicenta Cubells Santaolaria' },
+  { label: 'Consulta', value: `CLIN&DIET · ${site.address}` },
   ...credentials,
-  { label: 'Nº de colegiación', value: 'Pendiente de aportar por la doctora' },
-  { label: 'Consulta', value: 'CLIN&DIET, Castellón' },
 ];
 
 const approach: { icon: IconName; title: string; text: string }[] = [
@@ -25,8 +24,8 @@ const approach: { icon: IconName; title: string; text: string }[] = [
 ---
 
 <BaseLayout
-  title="Dra. Vicenta Cubells | Médica en Castellón"
-  description="Perfil profesional de la Dra. Vicenta Cubells Santaolaria, médica en Castellón: formación, enfoque de consulta y acompañamiento en el control de peso."
+  title="Dra. Vicenta Cubells | Médica en Nules (Castellón)"
+  description="Perfil profesional de la Dra. Vicenta Cubells Santaolaria, médica colegiada nº 2664 en Nules (Castellón): formación médica, nutrición clínica y trayectoria documentada."
   pageType="ProfilePage"
   breadcrumbs={breadcrumbs}
   preloadImage={images.inConsultation.src}
@@ -34,12 +33,12 @@ const approach: { icon: IconName; title: string; text: string }[] = [
   <Hero
     eyebrow="Perfil profesional"
     title="Dra. Vicenta Cubells"
-    lead="Médica en Castellón y responsable de la consulta CLIN&DIET. Acompaña a personas que quieren cuidar su salud desde una valoración individual, con escucha y seguimiento profesional."
+    lead="Médica colegiada nº 2664 y responsable de la consulta CLIN&DIET en Nules (provincia de Castellón). Acompaña a personas en el control de peso desde una valoración clínica individual, con rigor profesional, escucha y seguimiento continuo."
     breadcrumbs={breadcrumbs}
     image={{
       ...images.inConsultation,
       position: '47% 50%',
-      caption: '<strong>Vicenta Cubells Santaolaria</strong><br />Médica · Castellón',
+      caption: '<strong>Vicenta Cubells Santaolaria</strong><br />Médica colegiada nº 2664 · Nules (Castellón)',
     }}
   >
     <Fragment slot="actions">
@@ -59,13 +58,12 @@ const approach: { icon: IconName; title: string; text: string }[] = [
             id="datos"
             eyebrow="Información profesional"
             title="Datos profesionales"
-            intro="Información profesional separada del texto descriptivo de la consulta. Se ha tomado de la web actual y debe verificarse antes de publicar."
+            intro="Información profesional documentada en la web original. Su vigencia actual y acreditación documental están sujetas a verificación formal antes de una web definitiva."
           />
           <p class="notice mt-32">
             <Icon name="notes" />
             <span>
-              <strong>Contenido sujeto a revisión profesional.</strong> Biografía, titulaciones, colegiación, mención a
-              los métodos y uso de las fotografías deben ser aprobados por la doctora antes de publicar.
+              <strong>Comprobación de vigencia:</strong> Titulaciones, colegiación nº 2664, mención a los métodos y uso de fotografías proceden del sitio web original y deben ser validados documentalmente antes de su publicación real.
             </span>
           </p>
         </div>
@@ -73,9 +71,9 @@ const approach: { icon: IconName; title: string; text: string }[] = [
       <div class="split__main">
         <Credentials
           items={profile}
-          title="Formación y trayectoria"
+          title="Formación y trayectoria documentada"
           variant="full"
-          note="No se muestran años de experiencia, afiliaciones ni certificados que no estén documentados."
+          note="Datos procedentes de la web original. La mención a «más de 30 años de experiencia» es una declaración histórica del sitio antiguo y los títulos están pendientes de verificación documental."
         />
       </div>
     </div>

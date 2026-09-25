@@ -36,8 +36,8 @@ const canonical = new URL(pathname, Astro.site).href;
 const home = absoluteUrl('');
 const personId = `${absoluteUrl('dra-vicenta-cubells/')}#persona`;
 
-// JSON-LD prudente: solo datos verificables (nombre, profesión, teléfonos públicos).
-// Sin dirección, reseñas, ofertas, resultados ni schema de preguntas frecuentes.
+// JSON-LD prudente: datos verificables y documentados en la web original.
+// Sin reseñas, ofertas comerciales, resultados prometidos ni schema de preguntas frecuentes.
 const graph: Record<string, unknown>[] = [
   { '@type': 'WebSite', '@id': `${home}#website`, url: home, name: site.name, inLanguage: 'es-ES' },
   {
@@ -47,6 +47,15 @@ const graph: Record<string, unknown>[] = [
     honorificPrefix: 'Dra.',
     jobTitle: 'Médica',
     telephone: site.phones.map((p) => p.schema),
+    email: site.email,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: site.street,
+      addressLocality: site.town,
+      addressRegion: site.province,
+      postalCode: site.postalCode,
+      addressCountry: 'ES',
+    },
     image: absoluteUrl(images.portrait.src),
     url: absoluteUrl('dra-vicenta-cubells/'),
   },

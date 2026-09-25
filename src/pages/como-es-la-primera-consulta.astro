@@ -19,35 +19,35 @@ const breadcrumbs = [
 const faqs = pickFaqs(['valoracion-preparar', 'valoracion-compromiso', 'privacidad-telefono']);
 
 const details = [
-  { label: 'Qué necesitas', text: 'Un nombre, un teléfono o email y un motivo general. Nada sobre tu salud.' },
-  { label: 'Qué se acuerda', text: 'El momento de la valoración y los detalles prácticos para acudir a la consulta.' },
-  { label: 'Qué te llevas', text: 'Respuestas a tus dudas y una explicación de las opciones que se valoran en tu caso.' },
-  { label: 'Qué decides', text: 'Si quieres continuar y cuándo. Pedir la valoración no te compromete a nada.' },
+  { label: 'Qué aportas', text: 'Datos básicos de localización. La web no te pedirá historial clínico.' },
+  { label: 'Qué se acuerda', text: 'El día y la hora para la valoración presencial en la consulta de Nules.' },
+  { label: 'Qué ocurre', text: 'Conversación directa con la doctora para conocer tu estado de salud y hábitos.' },
+  { label: 'Qué decides', text: 'La doctora te explica si procede acompañamiento. Decides libremente y sin compromiso.' },
 ];
 const steps = firstVisitSteps.map((step, i) => ({ ...step, detail: details[i].text, detailLabel: details[i].label }));
 
 const canPrepare = [
-  { title: 'Informes o analíticas recientes', text: 'Si los tienes a mano. Los verá la doctora en la consulta.' },
-  { title: 'Tu medicación habitual', text: 'Una lista sencilla de lo que tomas, incluidos suplementos.' },
-  { title: 'Tus dudas por escrito', text: 'Para que no se quede ninguna pregunta sin plantear.' },
+  { title: 'Informes o analíticas recientes', text: 'Sugerencia voluntaria, si dispones de ellos. Los revisará la doctora en la consulta.' },
+  { title: 'Tu medicación habitual', text: 'Una lista orientativa de lo que tomas, incluidos suplementos o tratamientos actuales.' },
+  { title: 'Tus dudas anotadas', text: 'Para tener presentes las preguntas que desees plantear durante la consulta.' },
 ];
 
 const noNeed = [
   { title: 'Enviar datos de salud por la web', text: 'Ni informes, ni diagnósticos, ni medicación a través del formulario.' },
-  { title: 'Tener todo decidido', text: 'Para eso está la valoración: para decidir con información.' },
-  { title: 'Comprometerte a empezar', text: 'La primera valoración no te obliga a continuar.' },
+  { title: 'Tener todo decidido de antemano', text: 'La consulta médica es precisamente el espacio para resolver dudas y valorar opciones.' },
+  { title: 'Comprometerte a iniciar tratamiento', text: 'La primera valoración no obliga a comenzar ningún plan posterior.' },
 ];
 ---
 
 <BaseLayout
-  title="Cómo es la primera valoración médica | Dra. Vicenta Cubells"
-  description="Qué ocurre en la primera valoración para el control de peso en Castellón: cómo pedirla, qué preparar y qué no necesitas enviar por la web."
+  title="Cómo es la primera valoración médica en Nules (Castellón) | Dra. Vicenta Cubells"
+  description="Propuesta orientativa para tu primera valoración de control de peso en Nules (Castellón): cómo solicitar cita sin compromiso, qué preparar voluntariamente y qué no necesitas enviar por la web."
   breadcrumbs={breadcrumbs}
 >
   <Hero
     eyebrow="Primera consulta"
     title="Cómo es la primera valoración médica"
-    lead="Pedir una valoración es sencillo, no te compromete a nada y no necesitas compartir datos de salud por la web. Así empieza."
+    lead="Propuesta orientativa de la experiencia de consulta: cómo concertar cita sin compromiso, qué puedes preparar de forma voluntaria y cómo se desarrolla la valoración médica en Nules."
     breadcrumbs={breadcrumbs}
   >
     <Fragment slot="actions">
@@ -69,9 +69,9 @@ const noNeed = [
         <div class="sticky">
           <SectionHeader
             id="pasos"
-            eyebrow="El proceso"
-            title="Cuatro pasos para empezar"
-            intro="Cada paso tiene un objetivo sencillo. Ninguno exige que decidas nada antes de tiempo."
+            eyebrow="Propuesta orientativa"
+            title="El recorrido de la primera consulta"
+            intro="Una propuesta orientativa de los momentos habituales de contacto y valoración. No constituye un protocolo rígido ni una promesa contractual de plazos."
           />
         </div>
       </div>
@@ -85,9 +85,9 @@ const noNeed = [
     <div class="container">
       <SectionHeader
         id="preparar"
-        eyebrow="Preparación"
-        title="Qué puedes preparar y qué no necesitas"
-        intro="La historia clínica se trata en consulta, nunca a través de la web."
+        eyebrow="Sugerencias orientativas"
+        title="Qué puedes preparar voluntariamente y qué no necesitas"
+        intro="Cualquier información clínica sobre tu salud se evalúa de manera confidencial en la consulta médica, nunca a través de la web."
       />
       <div class="split split--halves mt-56">
         <div class="split__aside">

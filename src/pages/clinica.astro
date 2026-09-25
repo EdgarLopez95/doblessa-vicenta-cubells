@@ -6,12 +6,39 @@ import CtaBlock from '../components/CtaBlock.astro';
 import SectionNav from '../components/SectionNav.astro';
 import PhoneList from '../components/PhoneList.astro';
 import Icon, { type IconName } from '../components/Icon.astro';
-import { consultaSection } from '../data/site';
+import { consultaSection, site } from '../data/site';
 import { url } from '../lib/url';
 
 const breadcrumbs = [
   { label: 'La consulta', path: 'consulta-control-peso-castellon/' },
   { label: 'La clínica', path: 'clinica/' },
+];
+
+const publishedServices = [
+  {
+    title: 'Tratamiento médico y dietético',
+    desc: 'Atención clínica y pautas nutricionales individualizadas bajo supervisión médica.',
+  },
+  {
+    title: 'Consejo nutricional',
+    desc: 'Reeducación de hábitos alimentarios y aprendizaje para el día a día.',
+  },
+  {
+    title: 'Actividad física adaptada',
+    desc: 'Orientación de movimiento progresivo según la condición de salud de cada persona.',
+  },
+  {
+    title: 'Apoyo emocional y motivación',
+    desc: 'Acompañamiento en las dificultades del proceso para no afrontarlo en solitario.',
+  },
+  {
+    title: 'Dietas adaptadas a patologías',
+    desc: 'Planes específicos ante factores de salud que requieren ajuste clínico particular.',
+  },
+  {
+    title: 'Actividades y talleres publicados',
+    desc: 'La web original documentaba talleres de alimentación consciente, sofrología, cocina y salidas activas.',
+  },
 ];
 
 const principles: { icon: IconName; title: string; text: string }[] = [
@@ -22,15 +49,15 @@ const principles: { icon: IconName; title: string; text: string }[] = [
 ---
 
 <BaseLayout
-  title="La clínica CLIN&DIET en Castellón | Dra. Vicenta Cubells"
-  description="CLIN&DIET, la consulta de la Dra. Vicenta Cubells en Castellón: principios de trabajo, experiencia de consulta y cómo pedir una primera valoración."
+  title="La consulta CLIN&DIET en Nules (Castellón) | Dra. Vicenta Cubells"
+  description="CLIN&DIET, la consulta de la Dra. Vicenta Cubells en Nules (Castellón): trayectoria documentada desde 2007, inventario de servicios y principios de atención médica."
   pageType="AboutPage"
   breadcrumbs={breadcrumbs}
 >
   <Hero
     eyebrow="La clínica"
-    title="CLIN&DIET, la consulta de la Dra. Vicenta Cubells en Castellón"
-    lead="Un entorno de consulta pensado para hablar con calma de tu salud, con la privacidad, la escucha y el seguimiento como forma de trabajar."
+    title="CLIN&DIET, la consulta de la Dra. Vicenta Cubells en Nules"
+    lead="Espacio de consulta médica dedicado al control de peso y la educación nutricional en la provincia de Castellón. La web original sitúa el inicio de su actividad en 2007, con la atención individual, la privacidad y el rigor profesional como principios."
     breadcrumbs={breadcrumbs}
   >
     <Fragment slot="actions">
@@ -38,24 +65,29 @@ const principles: { icon: IconName; title: string; text: string }[] = [
         Pedir primera valoración
         <Icon name="arrow" size={20} />
       </a>
+      <a class="btn btn--secondary" href={url('como-es-la-primera-consulta/')}>Cómo es la consulta</a>
     </Fragment>
-    <aside slot="aside" class="fact-card" aria-label="Datos prácticos">
+    <aside slot="aside" class="fact-card" aria-label="Datos de la consulta">
       <dl>
         <div class="fact-card__row">
-          <dt>Responsable</dt>
-          <dd><a href={url('dra-vicenta-cubells/')}>Dra. Vicenta Cubells</a></dd>
+          <dt>Responsable médica</dt>
+          <dd><a href={url('dra-vicenta-cubells/')}>Dra. Vicenta Cubells</a> (Colegiada nº {site.collegiateNumber})</dd>
         </div>
         <div class="fact-card__row">
-          <dt>Ciudad</dt>
-          <dd>Castellón</dd>
+          <dt>Ubicación documentada</dt>
+          <dd>{site.address}</dd>
         </div>
         <div class="fact-card__row">
-          <dt>Dirección y horario</dt>
-          <dd>Pendientes de confirmar</dd>
+          <dt>Correo electrónico</dt>
+          <dd><a href={`mailto:${site.email}`}>{site.email}</a></dd>
         </div>
         <div class="fact-card__row">
-          <dt>Fotografías del espacio</dt>
-          <dd>Falta una fotografía autorizada de la consulta CLIN&amp;DIET</dd>
+          <dt>Trayectoria histórica</dt>
+          <dd>Actividad documentada desde {site.foundedYear} en la web original</dd>
+        </div>
+        <div class="fact-card__row">
+          <dt>Horario</dt>
+          <dd>Atención presencial con cita previa</dd>
         </div>
       </dl>
       <PhoneList />
@@ -69,10 +101,40 @@ const principles: { icon: IconName; title: string; text: string }[] = [
       <div class="placeholder placeholder--band" role="note">
         <div>
           <Icon name="notes" size={24} />
-          <strong>Espacio de consulta</strong>
-          <p>Falta una fotografía autorizada de la consulta CLIN&amp;DIET</p>
+          <strong>Espacio de consulta en Nules</strong>
+          <p>Espacio reservado para fotografía autorizada de las instalaciones reales de CLIN&amp;DIET en Nules (Castellón).</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="section section--line" aria-labelledby="servicios-publicados">
+    <div class="container">
+      <SectionHeader
+        id="servicios-publicados"
+        eyebrow="Inventario publicado"
+        title="Servicios y actividades de CLIN&DIET"
+        intro="Relación de áreas asistenciales y actividades documentadas en la web original de la consulta. Su disponibilidad actual, formatos y condiciones se confirman directamente con la doctora (esta web no publica calendarios ni convocatorias de inscripción)."
+      />
+      <ul class="topic-list topic-list--grid mt-56">
+        {
+          publishedServices.map((service) => (
+            <li>
+              <span class="topic-list__icon"><Icon name="check" size={20} /></span>
+              <div>
+                <h3>{service.title}</h3>
+                <p>{service.desc}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="notice mt-32">
+        <Icon name="notes" size={20} />
+        <span>
+          <strong>Diferenciación de vigencia:</strong> Este inventario refleja las actividades recogidas en la web original de CLIN&amp;DIET (con inicio documentado en 2007). La disponibilidad específica de talleres de alimentación consciente, salidas o sofrología se consulta directamente con el centro.
+        </span>
+      </p>
     </div>
   </section>
 

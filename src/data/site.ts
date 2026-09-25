@@ -2,7 +2,15 @@ export const site = {
   name: 'Dra. Vicenta Cubells',
   fullName: 'Dra. Vicenta Cubells Santaolaria',
   brand: 'CLIN&DIET',
-  city: 'Castellón',
+  town: 'Nules',
+  province: 'Castellón',
+  city: 'Nules (Castellón)',
+  address: 'C/ Faustino Valentín, 9, 12520 Nules (Castellón)',
+  street: 'C/ Faustino Valentín, 9',
+  postalCode: '12520',
+  email: 'hola@vicentacubells.com',
+  collegiateNumber: '2664',
+  foundedYear: '2007',
   contentUpdated: 'septiembre de 2026',
   phones: [
     { label: '964 671 300', href: 'tel:+34964671300', schema: '+34 964 671 300' },
@@ -43,31 +51,44 @@ export const sitemapRoutes = [
   'contacto/',
 ] as const;
 
-/** Credenciales recogidas literalmente en la auditoría de la web actual. Pendientes de verificación documental. */
+/** Credenciales y formación recogidas de la web original. Pendientes de comprobación documental de vigencia. */
 export const credentials = [
+  { label: 'Colegiación', value: 'Médica colegiada nº 2664' },
   { label: 'Titulación', value: 'Licenciada en Medicina y Cirugía' },
-  { label: 'Formación', value: 'Máster en Nutrición y Dietética' },
-  { label: 'Especialidad', value: 'Especialista en Medicina del Trabajo' },
-  { label: 'Método', value: 'Formadora de métodos Pronokal / PnK / Diaprokal' },
+  { label: 'Nutrición', value: 'Máster en Nutrición y Dietética' },
+  { label: 'Medicina laboral', value: 'Especialista en Medicina del Trabajo y Diplomada en Traumatología Laboral' },
+  { label: 'Sofrología', value: 'Formación en Sofrología Médica' },
+  { label: 'Método PnK®', value: 'Médica prescriptora y formadora acreditada en métodos PronoKal / PnK / Diaprokal' },
+  { label: 'Divulgación', value: 'Charlas de alimentación saludable y cursos de preparación al parto' },
+  { label: 'Trayectoria', value: '«Más de 30 años de experiencia» según declaración histórica de la web original' },
 ];
 
+/** Credenciales sintetizadas para visualización compacta en la home. */
+export const credentialsCompact = [
+  { label: 'Colegiación', value: 'Médica colegiada nº 2664' },
+  { label: 'Titulación', value: 'Licenciada en Medicina y Cirugía' },
+  { label: 'Especialidad', value: 'Máster en Nutrición y Especialista en Medicina del Trabajo' },
+  { label: 'Método', value: 'Formadora de métodos PronoKal / PnK / Diaprokal' },
+];
+
+/** Propuesta orientativa de experiencia para la primera consulta (no contractual ni protocolo cerrado). */
 export const firstVisitSteps = [
   {
-    title: 'Solicitud de contacto',
-    text: 'Llamas por teléfono o dejas tus datos básicos. No necesitas contar nada sobre tu salud a través de la web.',
+    title: 'Contacto y solicitud',
+    text: 'Llamas a la consulta o dejas tus datos de contacto básicos. No es necesario enviar información sobre tu salud por la web.',
   },
   {
-    title: 'Conversación inicial',
-    text: 'La consulta te contacta para resolver dudas prácticas y acordar el momento de la valoración.',
+    title: 'Concertar cita',
+    text: 'Se acuerda el día y la hora para la valoración presencial en la consulta de Nules, resolviendo dudas organizativas previas.',
   },
   {
-    title: 'Valoración profesional',
-    text: 'La doctora conoce tu historia, tus hábitos y lo que esperas, y valora qué enfoque tiene sentido para ti.',
+    title: 'Valoración individual',
+    text: 'Conversación directa con la doctora para conocer tu estado de salud, hábitos y expectativas con rigor médico.',
   },
   {
-    title: 'Siguientes pasos personalizados',
-    short: 'Siguientes pasos',
-    text: 'Si decides continuar, se plantea un plan individual y cómo será el seguimiento. Si no, te vas con tus dudas resueltas.',
+    title: 'Decisión compartida',
+    short: 'Decisión clínica',
+    text: 'Conocido tu caso, la doctora valora si procede acompañamiento y qué opciones tienen sentido. Decides con libertad y sin compromiso.',
   },
 ];
 

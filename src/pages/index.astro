@@ -9,7 +9,7 @@ import Faq from '../components/Faq.astro';
 import CtaBlock from '../components/CtaBlock.astro';
 import PhoneList from '../components/PhoneList.astro';
 import Icon from '../components/Icon.astro';
-import { credentials, firstVisitSteps, images } from '../data/site';
+import { credentialsCompact, firstVisitSteps, images, site } from '../data/site';
 import { pickFaqs } from '../data/faqs';
 import { url } from '../lib/url';
 
@@ -47,18 +47,18 @@ const principles = [
 ---
 
 <BaseLayout
-  title="Control de peso médico en Castellón | Dra. Vicenta Cubells"
-  description="Consulta médica en Castellón para acompañar tu proceso de control de peso con valoración, plan y seguimiento personalizado."
+  title="Control médico de peso en Nules (Castellón) | Dra. Vicenta Cubells"
+  description="Consulta médica de la Dra. Vicenta Cubells (CLIN&DIET) en Nules (provincia de Castellón): valoración clínica individual, método PnK® y seguimiento profesional."
   preloadImage={images.portrait.src}
 >
   <Hero
     variant="home"
-    eyebrow="Consulta médica · Castellón"
-    title="Control de peso con acompañamiento médico en Castellón"
-    lead="Empezamos con una valoración médica para conocer tu contexto. Después, si es adecuado para ti, un plan individual y un seguimiento profesional durante el proceso."
+    eyebrow="Consulta médica · Nules (Castellón)"
+    title="Control de peso con acompañamiento médico en Nules"
+    lead="Empezamos con una valoración médica individual para conocer tu salud y tus hábitos. Después, si procede clínicamente, un plan adaptado y seguimiento profesional en la provincia de Castellón."
     image={{
       ...images.portrait,
-      caption: '<strong>Dra. Vicenta Cubells Santaolaria</strong><br />Médica · CLIN&amp;DIET, Castellón',
+      caption: `<strong>Dra. Vicenta Cubells Santaolaria</strong><br />Médica colegiada nº ${site.collegiateNumber} · CLIN&amp;DIET, Nules (Castellón)`,
     }}
   >
     <Fragment slot="actions">
@@ -129,12 +129,12 @@ const principles = [
       <div class="section-row">
         <SectionHeader
           id="empezar"
-          eyebrow="Cómo empezar"
-          title="Conoce cómo es la primera consulta"
-          intro="Cuatro pasos sencillos, sin compromiso de continuar y sin compartir datos de salud por la web."
+          eyebrow="Propuesta orientativa"
+          title="Cómo es la primera consulta"
+          intro="Una propuesta de cómo transcurre el contacto y la valoración: sin compromiso de iniciar tratamiento y sin enviar datos clínicos por la web."
         />
         <a class="text-link" href={url('como-es-la-primera-consulta/')}>
-          <span>Ver la primera consulta en detalle</span>
+          <span>Ver la propuesta de consulta en detalle</span>
           <Icon name="arrow" size={20} />
         </a>
       </div>
@@ -189,10 +189,10 @@ const principles = [
           id="doctora"
           eyebrow="Tu médica"
           title="Conoce a la Dra. Vicenta Cubells"
-          intro="Médica en Castellón y responsable de la consulta CLIN&DIET. Acompaña a cada persona desde la valoración médica, con escucha, explicaciones claras y seguimiento."
+          intro="Médica colegiada nº 2664 y responsable de la consulta CLIN&DIET en Nules (Castellón). Acompaña a cada persona desde la valoración clínica individual, con rigor facultativo, escucha y seguimiento."
         />
-        <Credentials items={credentials} />
-        <a class="btn btn--secondary mt-32" href={url('dra-vicenta-cubells/')}>Ver perfil profesional</a>
+        <Credentials items={credentialsCompact} title="Datos profesionales documentados" />
+        <a class="btn btn--secondary mt-32" href={url('dra-vicenta-cubells/')}>Ver perfil profesional completo</a>
       </div>
     </div>
   </section>
@@ -216,7 +216,7 @@ const principles = [
   <CtaBlock
     eyebrow="Primer paso"
     title="Empezamos con una valoración médica"
-    text="Pedir una valoración no te obliga a empezar nada. Es el momento de conocer el enfoque, resolver tus dudas y decidir con calma."
+    text="Solicitar una valoración en Nules no te compromete a iniciar tratamiento. Es el momento de conocer el enfoque médico, resolver dudas y decidir con calma."
     primary={{ label: 'Solicitar valoración', path: 'contacto/' }}
     secondary={{ label: 'Conoce cómo es la primera consulta', path: 'como-es-la-primera-consulta/' }}
   />

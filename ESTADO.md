@@ -2,16 +2,24 @@
 
 ## Estado actual
 
-Mockup estático completo del rediseño: 10 pantallas, sistema visual propio, componentes reutilizables, SEO técnico y formulario demostrativo. Huecos de confianza y SEO cerrados al 100% en el alcance del mockup: tipografías autoalojadas localmente en WOFF2 (sin llamadas externas a Google Fonts), erradicación total del schema FAQPage y de la prop muerta `faqs`, directiva `noindex,follow` global en todas las pantallas por prudencia YMYL (mockup en github.io + inyecciones de casino en dominio legacy), fecha de revisión médica visible en el pie de todas las páginas, avisos normativos de NAP, tarifas y marca PnK®, y navegación móvil completada con «La clínica». Documentados `GAPS.md` (formato cuestionario de cliente) y `BUGS.md` (BUG-01 a BUG-09). Mockup listo para presentación al cliente; los huecos restantes quedan exclusivamente del lado del cliente/doctora/legal.
+Mockup estático completo del rediseño tras la auditoría de herencia y sustento del 25 de septiembre de 2026. Se aplica la regla central del proyecto: **lo publicado en la web original se hereda y rediseña**, registrando en `GAPS.md` la verificación de vigencia antes de una publicación real.
+
+- **Ubicación y contacto**: Rectificada la inferencia errónea que situaba la consulta en Castellón de la Plana. La consulta está documentada en **Nules (provincia de Castellón)**, con dirección física en **C/ Faustino Valentín 9, 12520 Nules**, correo **hola@vicentacubells.com** y **médica colegiada nº 2664**, junto con los dos teléfonos públicos (964 671 300 y 616 42 43 25).
+- **Método PnK® recuperado**: Reconstruido con los elementos propios publicados en la web original: control médico prescriptor en CLIN&DIET diferenciado del ecosistema de apoyo PnK® (dietistas-coach, técnicos y Club PnK®), abordaje de la **lipoinflamación**, formulación **ProteinDHA®**, suplementación con **DHA**, y la estructura documentada de **dos momentos y cinco pasos**. Todo redactado con prudencia sanitaria y sin promesas de eficacia garantizada.
+- **CLIN&DIET**: Recuperada la trayectoria histórica con inicio de actividad documentado en 2007 y un inventario claro y compacto de la oferta publicada (tratamiento médico y dietético, consejo nutricional, actividad física, apoyo emocional, dietas adaptadas y actividades grupales como alimentación consciente, sofrología, cocina y salidas), distinguiendo la oferta histórica de la confirmación de disponibilidad actual en consulta. Se mantiene la reserva para fotografía autorizada del espacio real.
+- **Perfil profesional**: Incorporados los estudios de Sofrología Médica, Diplomatura en Traumatología Laboral, charlas de alimentación saludable y preparación al parto, la colegiación nº 2664 y la contextualización de los «más de 30 años de experiencia» como declaración histórica fechada.
+- **Primera consulta**: Desacopladas las promesas operativas y protocolos cerrados; presentada de forma transparente como una **propuesta orientativa de experiencia**, preservando la mención documentada de «cita sin compromiso» (sin equipararla a gratuidad).
+- **Preguntas frecuentes**: Incorporadas preguntas procedentes de la FAQ original (lipoinflamación, ProteinDHA®, DHA, etapas del método, equipo prescriptor vs. soporte), con respuestas prudentes y sin atribución de prácticas no sustentadas.
+- **Textos legales y privacidad**: Corregida la contradicción sobre fuentes (se especifica el autoalojamiento local en WOFF2) e incorporados los datos de titularidad, sede en Nules y colegiación documentados, dejando los campos sin fuente (NIF, condiciones RGPD definitivas) marcados honestamente como pendientes de la asesoría legal.
 
 ## Base técnica
 
-- Framework: Astro 7 + TypeScript + CSS nativo (sin Tailwind ni dependencias nuevas).
-- Tipografías: Cormorant Garamond y DM Sans autoalojadas en formato WOFF2 en `public/fonts/`, servidas mediante `@font-face` con `font-display: swap` y fallbacks nativos (`Georgia, serif` y `system-ui, sans-serif`), con preloads en `BaseLayout.astro`. Cero dependencias externas de Google Fonts (`fonts.googleapis.com` / `fonts.gstatic.com`).
-- `base`: `/doblessa-vicenta-cubells` (configuración original de `astro.config.mjs` sin cambios).
-- GitHub Pages: `https://edgarlopez95.github.io/doblessa-vicenta-cubells/`.
-- Validación: `npm run build` sin errores ni advertencias.
-- Meta robots: `noindex, follow` incondicional en todas las páginas por prudencia YMYL hasta el despliegue en dominio canónico limpio y saneado.
+- Framework: Astro 7 + TypeScript + CSS nativo (sin dependencias adicionales).
+- Tipografías: Cormorant Garamond y DM Sans autoalojadas localmente en WOFF2 en `public/fonts/`, servidas mediante `@font-face` con `font-display: swap` y fallbacks del sistema (`Georgia, serif` y `system-ui, sans-serif`), con preloads en `BaseLayout.astro`. Cero llamadas a Google Fonts.
+- Base GitHub Pages: `/doblessa-vicenta-cubells/` (`https://edgarlopez95.github.io/doblessa-vicenta-cubells/`).
+- Validación: `npm run build` genera 10 páginas estáticas + `robots.txt` + `sitemap.xml` sin errores ni advertencias.
+- Meta robots: `<meta name="robots" content="noindex, follow" />` incondicional en todas las páginas por prudencia YMYL.
+- Datos estructurados: JSON-LD con `WebSite`, `Person` (nombre, colegiación, teléfonos, email, dirección en Nules), `MedicalWebPage` / `ProfilePage` / `AboutPage` / `ContactPage` y `BreadcrumbList`. Cero schemas de `FAQPage`.
 
 ## Rutas creadas
 
@@ -19,112 +27,38 @@ Mockup estático completo del rediseño: 10 pantallas, sistema visual propio, co
 |---|---|---|
 | `/` | Inicio | `noindex, follow` |
 | `/consulta-control-peso-castellon/` | Consulta (servicio principal) | `noindex, follow` |
-| `/metodo-pnk-castellon/` | Método PnK® | `noindex, follow` |
-| `/como-es-la-primera-consulta/` | Primera valoración | `noindex, follow` |
-| `/dra-vicenta-cubells/` | Perfil profesional | `noindex, follow` |
-| `/clinica/` | La clínica CLIN&DIET | `noindex, follow` |
-| `/preguntas-frecuentes/` | FAQ extensa (4 categorías) | `noindex, follow` |
-| `/contacto/` | Solicita una valoración | `noindex, follow` |
-| `/politica-de-privacidad/` | Legal (borrador) | `noindex, follow` (fuera del sitemap) |
-| `/aviso-legal/` | Legal (borrador) | `noindex, follow` (fuera del sitemap) |
+| `/metodo-pnk-castellon/` | Método PnK® (dos momentos, cinco pasos, ProteinDHA®) | `noindex, follow` |
+| `/como-es-la-primera-consulta/` | Primera valoración (propuesta orientativa) | `noindex, follow` |
+| `/dra-vicenta-cubells/` | Perfil profesional (colegiada 2664, credenciales completas) | `noindex, follow` |
+| `/clinica/` | La consulta CLIN&DIET (historia 2007, inventario de servicios) | `noindex, follow` |
+| `/preguntas-frecuentes/` | FAQ extensa con preguntas originales de PnK® | `noindex, follow` |
+| `/contacto/` | Solicita valoración (dirección en Nules, email, colegiación) | `noindex, follow` |
+| `/politica-de-privacidad/` | Legal (borrador con datos documentados y WOFF2 local) | `noindex, follow` (fuera del sitemap) |
+| `/aviso-legal/` | Legal (borrador con datos documentados en Nules) | `noindex, follow` (fuera del sitemap) |
 | `/sitemap.xml`, `/robots.txt` | Endpoints estáticos | — |
 
-## Componentes construidos (`src/components/`)
+## Clasificación de datos pendientes (GAPS)
 
-`Header` (sticky, navegación, CTA persistente, sublista móvil para «La consulta» con «Cómo es la primera consulta» y «La clínica», menú accesible con Escape y `aria-expanded` sin duplicar `aria-current`) · `Footer` (navegación, teléfonos, legal, aviso médico, nota de revisión médica con fecha y aviso de NAP pendiente) · `MobileActionBar` (Llamar + Solicitar valoración en <720 px; oculta en contacto) · `Hero` (inicio / interior, con imagen o ficha lateral) · `Breadcrumbs` · `SectionHeader` · `PillarCard` · `Timeline` (horizontal / vertical) · `Credentials` (compacto / completo, con aviso de verificación) · `ResourceCard` (recurso de muestra) · `Faq` (`<details>` nativo) · `DemoForm` (sin atributos name, seguro contra envíos GET) · `CtaBlock` (oscuro / sage) · `PhoneList` · `ReviewNote` · `Icon` (iconos lineales SVG) · `SectionNav` (navegación local de la rama «La consulta») · `StatementBand` (banda editorial a todo el ancho).
+1. **Datos heredados de la web original pendientes de confirmar vigencia**:
+   - Vigencia de la colegiación médica nº 2664 e identificación del Colegio Oficial (COM Castellón u otro).
+   - Vigencia de la sede física en C/ Faustino Valentín 9, Nules (Castellón).
+   - Acceso operativo al buzón hola@vicentacubells.com.
+   - Verificación documental de títulos universitarios y acreditaciones formativas.
+   - Decisión sobre el uso del hito histórico «más de 30 años de experiencia».
+   - Disponibilidad actual de talleres grupales de CLIN&DIET (alimentación consciente, sofrología, salidas).
+   - Autorización de uso de marca y acuerdo formal con PronoKal Group / Nestlé Health Science.
 
-Layout SEO: `src/layouts/BaseLayout.astro` (title, description, canonical, Open Graph, `noindex,follow` global, preload del hero y JSON-LD sin FAQPage). Datos: `src/data/site.ts` y `src/data/faqs.ts`. Rutas: `src/lib/url.ts` (`url()` y `absoluteUrl()` sobre `import.meta.env.BASE_URL`).
-
-## Imágenes copiadas (`public/images/`)
-
-- `marca/logo-dra-vicenta-cubells.png` → logotipo blanco, usado en el pie.
-- `inicio/consulta-control-de-peso.png` → **es el logotipo CLIN&DIET en gris, no una foto**; usado en la cabecera.
-- `doctora/dra-vicenta-cubells-retrato.jpg` → hero de inicio y perfil (alt «Dra. Vicenta Cubells», precargada).
-- `doctora/dra-vicenta-cubells-en-consulta.jpg` → módulo de la doctora en inicio y perfil (alt «Dra. Vicenta Cubells en consulta», lazy).
-
-## Decisiones de implementación
-
-- Elemento memorable: la barra diagonal de latón del logotipo CLIN&DIET reutilizada en etiquetas, hero, timeline y CTA.
-- Tokens obligatorios en `:root`; derivados semánticos mínimos (líneas, borde de controles y `--error-700` para errores de formulario).
-- Navegación completa desde 1180 px; por debajo, menú móvil con CTA, teléfonos y sublista de «La consulta» (`como-es-la-primera-consulta/` y `clinica/`).
-- Jerarquía de navegación: `/como-es-la-primera-consulta/` y `/clinica/` son hijas de «La consulta». El menú de escritorio marca la sección padre, el menú móvil muestra la sublista y solo la coincidencia exacta recibe `aria-current="page"`. Los breadcrumbs tienen tres niveles y las tres páginas comparten SectionNav local.
-- El pie usa un verde más profundo (`--clinic-950`) con filete de latón, navegación en dos columnas, enlaces legales y bloque persistente de revisión médica fechada en septiembre de 2026.
-- Formulario 100% libre de atributos `name`, con exclusión mutua de radios vía `data-group`, `preventDefault`, `action="javascript:void(0);"` y `onsubmit="return false;"`: imposible serializar datos en la URL ni aun desactivando JavaScript.
-- Tipografías autoalojadas: Cormorant Garamond y DM Sans servidas íntegramente en WOFF2 local desde `public/fonts/`, erradicando peticiones de terceros a Google Fonts y garantizando cumplimiento RGPD estricto y carga instantánea con preloads en `BaseLayout.astro`.
-- JSON-LD prudente: `WebSite`, `Person` (nombre, «Médica», teléfonos públicos e imagen, sin address), `MedicalWebPage` / `ProfilePage` / `AboutPage` / `ContactPage`, `BreadcrumbList`. **Se erradicó por completo el schema `@type: FAQPage`** (Google ha limitado los rich snippets de FAQ y el contenido está pendiente de revisión clínica) y se eliminó la prop muerta `faqs` en `BaseLayout.astro`. Sin dirección, reseñas, ofertas ni resultados.
-- La foto «en consulta» no muestra la clínica: en `/clinica/` hay un bloque neutro reservado con el texto explícito *«Falta una fotografía autorizada de la consulta CLIN&DIET»*, en lugar de presentarla como el espacio.
-- Se descartó el revelado al hacer scroll: ocultaba pasos del timeline en capturas y herramientas que no desplazan. Solo hay transiciones de 200 ms en hover, foco y acordeón, anuladas con `prefers-reduced-motion`.
-- Documentación de control y auditoría: `GAPS.md` como cuestionario estructurado de cliente (clasificando huecos pendientes de doctora/legal vs. cerrados en el frontend) y `BUGS.md` para registro pormenorizado de correcciones técnicas (BUG-01 a BUG-09). Documentos de diseño en `design/brief.md` y `design/direction.md`.
-
-## Resultado de build y QA
-
-- `npm run build`: 10 páginas + `robots.txt` + `sitemap.xml`, sin errores ni avisos.
-- Un único H1 por página; canonical correcto bajo la base; sin `href="#"`, sin enlaces vacíos ni rutas absolutas sin base; todos los enlaces internos resuelven a archivos generados.
-- Capturas revisadas en 390, 768, 1024 y 1440 px sin desbordamiento horizontal.
-- Formulario verificado en navegador: 4 errores en envío vacío, foco en el primero, mensaje demostrativo al enviar válido, sin navegación ni errores de consola.
-
-## Crítica y refinamiento
-
-- Ronda 1 de crítica independiente: 73.5/100, sin bloqueantes (`design/critiques/ronda-1.md`).
-- Refinamiento (`83c5852`):
-  - Nuevo componente `StatementBand` con bandas editoriales a todo el ancho.
-  - La diagonal de latón se aplica al timeline y a las fotos enmarcadas.
-  - Todo el texto de contenido sube a 17 px.
-  - Los avisos de revisión salen de los heroes y se compactan.
-  - Los placeholders se reducen a bandas bajas.
-  - Nueva maquetación de los pilares a 1024 px y en móvil.
-  - El hero del perfil usa la foto «en consulta» recortada en vertical.
-- Ronda 2: 78.3/100, sin bloqueantes (`design/critiques/ronda-2.md`).
-- Refinamiento de la ronda 3:
-  - En la home, "Quién te atiende" pasa a declaración a todo el ancho con los principios en fila.
-  - Nueva variante compacta del timeline, que solo aparece completo en la página de primera consulta.
-  - En contacto, el orden en móvil es teléfonos → formulario → pasos.
-  - Se ocultan con `clip-path` los lemas pequeños del logotipo en cabecera y pie; los archivos originales no se tocan.
-  - Todos los CTA finales van en verde.
-  - En el perfil, el aviso de revisión pasa a la columna izquierda (sticky).
-  - Recortes cuadrados en el segundo uso de cada foto.
-- Los textos de CTA se mantienen porque los fija el encargo por página.
-- Ronda 3: 81.25/100, todas las categorías ≥7.5, sin bloqueantes (`design/critiques/ronda-3.md`).
-- Refinamiento de la ronda 4 (última):
-  - Nuevas composiciones en páginas interiores: preguntas en rejilla con numerales, temas de consulta en 2×2 y banda de declaración en clínica.
-  - "La propuesta" pasa a 3 columnas.
-  - Las cajas de detalle de la primera consulta aportan información nueva.
-  - Rejillas fijas para los pasos compactos.
-  - Hero en dos columnas a 768px.
-  - Radios en columna en móvil.
-  - Logo más grande.
-  - Se elimina la franja bajo el pie en móvil.
-- **Ronda 4 (final): 83.75/100.** Todas las categorías ≥8 y sin bloqueantes, pero no llega al umbral de 85 (`design/critiques/ronda-4.md`). Evolución: 73.5 → 78.3 → 81.25 → 83.75.
-- Correcciones posteriores a la ronda 4 (sin nueva puntuación, se agotaron las rondas):
-  - La banda de declaración queda solo en inicio y método.
-  - Se elimina la sección vacía "El espacio" de clínica y su estado pasa a la ficha del hero.
-  - Corregido un bug: faltaba la rejilla de 2 columnas de las preguntas de método.
-  - Se retiran los pasos compactos de consulta.
-  - Orden móvil corregido en ubicación de contacto.
-  - La barra de acciones móvil aparece solo cuando los CTA del hero salen de pantalla; sin JS se ve siempre.
-  - Ficha lateral del hero alineada arriba.
-  - Logo del pie sin carga diferida.
-
-## Próxima acción
-
-Presentar el mockup al cliente y revisar con la doctora los contenidos marcados abajo. Si se quiere superar el 85 de la crítica, lo siguiente sería incorporar fotografías reales y autorizadas de la consulta: con solo dos fotos, la variedad visual tiene un techo.
-
-## Validación pendiente (doctora, legal, marca)
-
-- **Credenciales**: Licenciada en Medicina y Cirugía, Máster en Nutrición y Dietética, Especialista en Medicina del Trabajo y formadora de métodos Pronokal / PnK / Diaprokal. Se tomaron de la auditoría y deben verificarse documentalmente.
-- **Número de colegiación**: pendiente de aportar.
-- **Omitido a propósito**: los «más de 30 años de experiencia» de la web antigua.
-- **Uso de marca**: PnK® / Pronokal / Diaprokal y descripción del método, pendientes de validación clínica, legal y con el titular de la marca.
-- **Logotipo blanco**: incluye el lema «medicina estética», que no encaja con el posicionamiento de consulta médica de control de peso. Conviene una versión sin lema o validarlo.
-- **Fotografías**: confirmar vigencia y permiso de uso. La foto «en consulta» no está tomada en la clínica. Faltan fotos reales del espacio.
-- **NAP y ubicación**: dirección, horario, email y mapa pendientes; no se muestran.
-- **Textos**: copy de enfoque, FAQs y proceso de primera consulta (incluido que «la consulta te contacta») pendientes de revisión médica.
-- **Legal**: privacidad y aviso legal son borradores con campos pendientes (titular, NIF, conservación, destinatarios, canal de derechos).
-- **Formulario real**: requiere solución segura de envío y consentimiento antes de publicar.
-- **Indexación protegida**: el mockup cuenta con directiva global e incondicional `<meta name="robots" content="noindex, follow" />` en todas las páginas (`BaseLayout.astro`) para blindar contra indexación prematura YMYL en `github.io`. Solo se retirará cuando se configure el dominio canónico definitivo limpio y el cliente apruebe la publicación.
-- **Web antigua**: sigue pendiente limpiar el contenido de casino inyectado antes de migrar o redirigir.
+2. **Datos no encontrados (pendientes de provisión por cliente/legal)**:
+   - NIF de la doctora o CIF de la sociedad titular.
+   - Franjas horarias de apertura y recepción telefónica de la consulta física.
+   - Fotografías reales y autorizadas de las instalaciones de CLIN&DIET en Nules.
+   - Tarifas oficiales de consulta o confirmación de política de precio exclusivamente por teléfono.
+   - Redacción legal definitiva de política de privacidad y aviso legal con canal formal ARCO.
+   - Backend seguro y pasarela de formulario para la web en producción.
+   - Saneamiento de malware/casino en el hosting del dominio original antes de redirigir.
+   - Autorización formal para retirar la directiva `noindex, follow` al publicar en dominio canónico.
 
 ## Límites y bloqueos
 
-- No hay bloqueos técnicos.
-- Las decisiones de marca, alcance o contenido nuevo vuelven al orquestador.
+- No hay bloqueos técnicos en el mockup estático.
+- Las decisiones clínicas, de contratación legal, de marca o de backend corresponden al cliente y al orquestador.

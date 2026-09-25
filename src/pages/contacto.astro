@@ -6,23 +6,23 @@ import DemoForm from '../components/DemoForm.astro';
 import PhoneList from '../components/PhoneList.astro';
 import SectionHeader from '../components/SectionHeader.astro';
 import Icon from '../components/Icon.astro';
-import { firstVisitSteps } from '../data/site';
+import { site, firstVisitSteps } from '../data/site';
 import { url } from '../lib/url';
 
 const breadcrumbs = [{ label: 'Contacto', path: 'contacto/' }];
 ---
 
 <BaseLayout
-  title="Contacto y valoración | Dra. Vicenta Cubells"
-  description="Solicita una valoración médica en Castellón. Consulta teléfonos, proceso de primera cita y datos de contacto."
+  title="Contacto y valoración en Nules (Castellón) | Dra. Vicenta Cubells"
+  description="Solicita una valoración médica en Nules (provincia de Castellón). Consulta teléfonos, dirección documentada y proceso de cita sin compromiso con la Dra. Vicenta Cubells."
   pageType="ContactPage"
   breadcrumbs={breadcrumbs}
   showActionBar={false}
 >
   <Hero
     eyebrow="Contacto"
-    title="Solicita una valoración"
-    lead="Llama a la consulta o deja una solicitud de contacto. Solo hace falta saber cómo localizarte: los datos de salud se tratan en consulta."
+    title="Solicita una valoración médica"
+    lead="Llama a la consulta o deja una solicitud de contacto sin compromiso. Solo hace falta saber cómo localizarte: los datos de salud se tratan siempre en consulta."
     breadcrumbs={breadcrumbs}
   />
 
@@ -31,7 +31,9 @@ const breadcrumbs = [{ label: 'Contacto', path: 'contacto/' }];
       <div class="contact-block contact-layout__phones">
         <h2>Llama a la consulta</h2>
         <PhoneList variant="cards" />
-        <p class="contact-pricing-note mt-16">El importe de la valoración se consulta por teléfono o en la propia cita. Esta web no publica tarifas.</p>
+        <p class="contact-pricing-note mt-16">
+          <strong>Cita sin compromiso.</strong> El importe de la valoración se consulta por teléfono o en la propia cita. Esta web no publica tarifas.
+        </p>
       </div>
 
       <div class="contact-layout__form">
@@ -55,8 +57,8 @@ const breadcrumbs = [{ label: 'Contacto', path: 'contacto/' }];
         <SectionHeader
           id="ubicacion"
           eyebrow="Ubicación y privacidad"
-          title="Datos de contacto y uso de tu información"
-          intro="Esta propuesta no muestra dirección ni horario porque aún no están verificados. Antes de enviar cualquier dato, consulta cómo se tratará."
+          title="Datos de la consulta y uso de tu información"
+          intro="Consulta los datos publicados en la web original (dirección en Nules, correo y colegiación médica) y las condiciones de privacidad antes de solicitar tu valoración."
         >
           <ul class="link-list">
             <li>
@@ -74,12 +76,28 @@ const breadcrumbs = [{ label: 'Contacto', path: 'contacto/' }];
           </ul>
         </SectionHeader>
       </div>
-      <div class="split__main placeholder placeholder--band" role="note">
-        <div>
-          <Icon name="pin" size={28} />
-          <strong>Castellón</strong>
-          <p>Ubicación, horario y correo de la consulta: pendientes de confirmar por CLIN&amp;DIET. Mientras tanto, llama a los teléfonos de cabecera.</p>
-        </div>
+      <div class="split__main fact-card" role="region" aria-label="Ubicación y datos de la consulta">
+        <dl>
+          <div class="fact-card__row">
+            <dt>Dirección documentada</dt>
+            <dd>{site.address}</dd>
+          </div>
+          <div class="fact-card__row">
+            <dt>Correo electrónico</dt>
+            <dd><a href={`mailto:${site.email}`}>{site.email}</a></dd>
+          </div>
+          <div class="fact-card__row">
+            <dt>Colegiación médica</dt>
+            <dd>Médica colegiada nº {site.collegiateNumber}</dd>
+          </div>
+          <div class="fact-card__row">
+            <dt>Horario de consulta</dt>
+            <dd>Atención presencial con cita concertada previamente</dd>
+          </div>
+        </dl>
+        <p class="credentials__note mt-16">
+          Datos publicados en la web original. Su vigencia operativa y asignación formal de colegio profesional se verificarán antes de la publicación definitiva.
+        </p>
       </div>
     </div>
   </section>

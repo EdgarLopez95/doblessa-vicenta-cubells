@@ -9,7 +9,7 @@ import PhoneList from '../components/PhoneList.astro';
 import ReviewNote from '../components/ReviewNote.astro';
 import SectionNav from '../components/SectionNav.astro';
 import Icon, { type IconName } from '../components/Icon.astro';
-import { consultaSection } from '../data/site';
+import { consultaSection, site } from '../data/site';
 import { pickFaqs } from '../data/faqs';
 import { url } from '../lib/url';
 
@@ -51,14 +51,14 @@ const prepare = [
 ---
 
 <BaseLayout
-  title="Consulta médica para el control de peso en Castellón"
-  description="Conoce cómo es una primera valoración para el control de peso y solicita cita con la Dra. Vicenta Cubells."
+  title="Consulta médica para el control de peso en Nules (Castellón) | Dra. Vicenta Cubells"
+  description="Conoce cómo es la valoración médica individual para el control de peso con la Dra. Vicenta Cubells en Nules (provincia de Castellón) y solicita cita sin compromiso."
   breadcrumbs={breadcrumbs}
 >
   <Hero
     eyebrow="La consulta"
-    title="Consulta médica para el control de peso en Castellón"
-    lead="Una consulta para entender tu situación con calma, valorar qué enfoque tiene sentido para ti y acompañarte durante el proceso."
+    title="Consulta médica para el control de peso en Nules"
+    lead="Una consulta médica en la provincia de Castellón para entender tu situación con calma, valorar qué enfoque tiene sentido clínico para ti y acompañarte durante el proceso."
     breadcrumbs={breadcrumbs}
   >
     <Fragment slot="actions">
@@ -71,16 +71,16 @@ const prepare = [
     <aside slot="aside" class="fact-card" aria-label="Datos de la consulta">
       <dl>
         <div class="fact-card__row">
-          <dt>Atiende</dt>
-          <dd><a href={url('dra-vicenta-cubells/')}>Dra. Vicenta Cubells</a>, médica</dd>
+          <dt>Atención facultativa</dt>
+          <dd><a href={url('dra-vicenta-cubells/')}>Dra. Vicenta Cubells</a> (Colegiada nº {site.collegiateNumber})</dd>
         </div>
         <div class="fact-card__row">
-          <dt>Dónde</dt>
-          <dd><a href={url('clinica/')}>CLIN&DIET</a>, Castellón · dirección pendiente de confirmar</dd>
+          <dt>Ubicación documentada</dt>
+          <dd><a href={url('clinica/')}>CLIN&DIET</a> · {site.address}</dd>
         </div>
         <div class="fact-card__row">
-          <dt>Cómo empezar</dt>
-          <dd>Con una primera valoración</dd>
+          <dt>Cita y valoración</dt>
+          <dd>Sin compromiso de inicio de tratamiento</dd>
         </div>
       </dl>
       <PhoneList label="Pedir cita por teléfono" />

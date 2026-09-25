@@ -64,3 +64,17 @@ Registro de incidencias, vulnerabilidades técnicas, inconsistencias de navegaci
 - **Severidad**: Media (Privacidad RGPD y rendimiento web).
 - **Descripción**: La tipografía de diseño (`Cormorant Garamond` y `DM Sans`) dependía de conexiones a servidores de Google Fonts, generando transferencia de IP de usuarios y bloqueos de red externos.
 - **Resolución**: Se descargaron localmente los archivos WOFF2 en `public/fonts/`, se declararon las reglas `@font-face` en `src/styles/global.css` con `font-display: swap` y fallbacks nativos (`Georgia, serif` y `system-ui, sans-serif`), se retiraron todos los enlaces a `googleapis` y `gstatic`, y se añadieron preloads de los 2 WOFF2 críticos en `BaseLayout.astro`.
+
+---
+
+### BUG-10: Inferencia geográfica errónea de ubicación en Castellón de la Plana y omisión de datos de contacto documentados
+- **Severidad**: Alta (Fidelidad de negocio / SEO local / Confianza médica).
+- **Descripción**: El mockup situaba la consulta en Castellón de la Plana e indicaba que la dirección, el correo corporativo y la colegiación médica «faltaban» o estaban «pendientes de aportar», cuando la web original publicaba explícitamente la dirección en Nules (Castellón), el correo hola@vicentacubells.com y la colegiación médica nº 2664.
+- **Resolución**: Se corrigieron todos los textos y metadatos para situar la consulta con exactitud en Nules (provincia de Castellón), se reincorporaron la dirección física (C/ Faustino Valentín 9, 12520 Nules), el correo y la colegiación nº 2664 en contacto, clínica, perfil, pie, JSON-LD y textos legales, registrando en `GAPS.md` la comprobación de vigencia administrativa antes de publicación real.
+
+---
+
+### BUG-11: Contradicción sobre el origen de fuentes tipográficas en la política de privacidad
+- **Severidad**: Baja (Transparencia legal RGPD).
+- **Descripción**: `src/pages/politica-de-privacidad.astro` indicaba que las fuentes se cargaban desde Google Fonts, a pesar de que el proyecto ya las sirve localmente en formato WOFF2.
+- **Resolución**: Se corrigió la redacción en la política de privacidad especificando el autoalojamiento local en WOFF2 y la ausencia total de transferencias a servidores externos de Google Fonts.

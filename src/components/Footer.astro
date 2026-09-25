@@ -23,7 +23,7 @@ const more = [
             decoding="async"
           />
         </a>
-        <p>Consulta médica para el control de peso en {site.city}, con valoración individual y seguimiento profesional.</p>
+        <p>Consulta médica para el control de peso en Nules (provincia de Castellón), con valoración individual y seguimiento profesional.</p>
       </div>
 
       <nav class="site-footer__col site-footer__nav" aria-label="Pie de página">
@@ -37,7 +37,11 @@ const more = [
       <div class="site-footer__col">
         <p class="site-footer__title">Contacto</p>
         <PhoneList tone="light" />
-        <p class="site-footer__muted">Ubicación, horario y correo de la consulta: pendientes de confirmar por CLIN&amp;DIET. Mientras tanto, llama a los teléfonos de cabecera.</p>
+        <p class="site-footer__muted">
+          {site.address}<br />
+          <a href={`mailto:${site.email}`}>{site.email}</a><br />
+          <span>Médica colegiada nº {site.collegiateNumber}</span>
+        </p>
       </div>
     </div>
 
