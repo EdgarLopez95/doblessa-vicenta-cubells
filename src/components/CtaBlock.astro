@@ -24,27 +24,31 @@ const dark = variant === 'dark';
 ---
 
 <section class:list={['cta', `cta--${variant}`]} aria-labelledby={id}>
-  <div class="container cta__inner">
-    <div class="cta__text">
-      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
-      <h2 id={id}>{title}</h2>
-      <p>{text}</p>
-    </div>
-    <div class="cta__actions">
-      <div class="cta__buttons">
-        <a class:list={['btn', dark ? 'btn--light' : 'btn--primary']} href={url(primary.path)}>
-          {primary.label}
-          <Icon name="arrow" size={20} />
-        </a>
-        {
-          secondary && (
-            <a class:list={['btn', dark ? 'btn--ghost-light' : 'btn--secondary']} href={url(secondary.path)}>
-              {secondary.label}
+  <div class="container cta__outer">
+    <div class="cta__card">
+      <div class="cta__inner">
+        <div class="cta__text">
+          {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+          <h2 id={id}>{title}</h2>
+          <p>{text}</p>
+        </div>
+        <div class="cta__actions">
+          <div class="cta__buttons">
+            <a class:list={['btn', dark ? 'btn--light' : 'btn--primary']} href={url(primary.path)}>
+              {primary.label}
+              <Icon name="arrow" size={20} />
             </a>
-          )
-        }
+            {
+              secondary && (
+                <a class:list={['btn', dark ? 'btn--ghost-light' : 'btn--secondary']} href={url(secondary.path)}>
+                  {secondary.label}
+                </a>
+              )
+            }
+          </div>
+          {phones && <PhoneList tone={dark ? 'light' : 'default'} label="También por teléfono" />}
+        </div>
       </div>
-      {phones && <PhoneList tone={dark ? 'light' : 'default'} label="También por teléfono" />}
     </div>
   </div>
 </section>

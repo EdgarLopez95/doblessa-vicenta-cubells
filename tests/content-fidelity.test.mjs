@@ -29,3 +29,12 @@ test('no presenta como hechos roles, tarifas o titularidad legal no acreditados'
   assert.doesNotMatch(legal, /<h2>Titular del sitio web<\/h2>[\s\S]*?<strong>Titularidad médica documentada:/);
   assert.doesNotMatch(site, /formadora acreditada/);
 });
+
+test('el CTA compartido se presenta como card separada del footer', () => {
+  const component = read('components/CtaBlock.astro');
+  const css = read('styles/global.css');
+  assert.match(component, /class="container cta__outer"[\s\S]*class="cta__card/);
+  assert.match(css, /\.cta\s*\{[^}]*background:\s*var\(--ivory-50\)/);
+  assert.match(css, /\.cta__card\s*\{[^}]*border-radius:/);
+  assert.match(css, /\.cta--dark\s+\.cta__card\s*\{[^}]*background:\s*var\(--clinic-900\)/);
+});
